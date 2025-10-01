@@ -1,0 +1,102 @@
+<!-- Generate PNG icons for manifest -->
+<!-- Open this file in a browser and use the generated images -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Icon Generator</title>
+    <style>
+        canvas {
+            border: 1px solid #ccc;
+            margin: 10px;
+            background: white;
+        }
+
+        .icon-row {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Generate PNG Icons</h1>
+
+    <div class="icon-row">
+        <div>
+            <h3>192x192</h3>
+            <canvas id="icon192" width="192" height="192"></canvas>
+            <br>
+            <a id="download192" download="icon-192.png" href="#">Download 192x192</a>
+        </div>
+    </div>
+
+    <div class="icon-row">
+        <div>
+            <h3>512x512</h3>
+            <canvas id="icon512" width="512" height="512"></canvas>
+            <br>
+            <a id="download512" download="icon-512.png" href="#">Download 512x512</a>
+        </div>
+    </div>
+
+    <script>
+        function createIcon(canvasId, downloadId, size) {
+            const canvas = document.getElementById(canvasId);
+            const ctx = canvas.getContext('2d');
+
+            // Clear canvas with white background
+            ctx.fillStyle = 'white';
+            ctx.fillRect(0, 0, size, size);
+
+            // Scale factor
+            const scale = size / 48;
+
+            // Draw the pocket shape
+            ctx.fillStyle = '#ffc314';
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 2 * scale;
+
+            ctx.beginPath();
+            // Pocket shape (scaled)
+            const x1 = 8 * scale;
+            const y1 = 12 * scale;
+            const w = 32 * scale;
+            const h = 32 * scale;
+            const r = 8 * scale;
+
+            ctx.roundRect(x1, y1, w, h, r);
+            ctx.fill();
+            ctx.stroke();
+
+            // Pocket opening line
+            ctx.beginPath();
+            ctx.moveTo(12 * scale, 12 * scale);
+            ctx.lineTo(36 * scale, 12 * scale);
+            ctx.lineCap = 'round';
+            ctx.stroke();
+
+            // Check mark
+            ctx.lineWidth = 3 * scale;
+            ctx.beginPath();
+            ctx.moveTo(16 * scale, 24 * scale);
+            ctx.lineTo(20 * scale, 28 * scale);
+            ctx.lineTo(32 * scale, 16 * scale);
+            ctx.lineJoin = 'round';
+            ctx.stroke();
+
+            // Create download link
+            const dataURL = canvas.toDataURL('image/png');
+            const link = document.getElementById(downloadId);
+            link.href = dataURL;
+        }
+
+        // Generate both icons
+        createIcon('icon192', 'download192', 192);
+        createIcon('icon512', 'download512', 512);
+    </script>
+</body>
+
+</html>

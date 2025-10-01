@@ -1,0 +1,40 @@
+{
+  "description": "Schema for normalized RFID Rights Guide data",
+  "version": "2.0.0",
+  "structure": {
+    "metadata": {
+      "type": "object",
+      "description": "Information about the data generation"
+    },
+    "categories": {
+      "type": "array",
+      "description": "Available topic categories",
+      "items": {
+        "id": "string (generated from name)",
+        "name": "string (original Thai name)",
+        "slug": "string (URL-friendly version)"
+      }
+    },
+    "topics": {
+      "type": "array",
+      "description": "All topics with structured content",
+      "items": {
+        "id": "string (generated from title)",
+        "slug": "string (URL-friendly version)",
+        "title": "string (original Thai title)",
+        "category": "object (category reference)",
+        "sections": "object (structured content with bullet points)",
+        "legacy": "object (backward compatibility format)",
+        "metadata": "object (creation info)"
+      }
+    },
+    "topicsByCategory": {
+      "type": "object",
+      "description": "Topics grouped by category ID"
+    },
+    "legacy": {
+      "type": "object",
+      "description": "Backward compatible data formats"
+    }
+  }
+}
