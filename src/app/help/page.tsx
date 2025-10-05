@@ -42,7 +42,7 @@ export default function HelpPage() {
     {
       title: "มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน",
       organization: "Labor Protection Network",
-      phone: "034-434-726",
+      phone: "084-121-609",
       website: "https://www.lpnfoundation.org/th",
       description: "ภาคประชาชนช่วยเหลือแรงงานข้ามชาติ",
     },

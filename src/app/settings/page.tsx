@@ -343,6 +343,20 @@ export default function SettingsPage() {
                     สำหรับใช้งานออฟไลน์โดยไม่ต้องเชื่อมต่ออินเทอร์เน็ต
                   </p>
                 </div>
+                <div>
+                  <p className="text-gray-700 font-medium">ออกแบบและพัฒนาโดย</p>
+                  <p className="text-gray-500 text-sm">
+                    มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน (LPN) และ{" "}
+                    <a
+                      href="http://visarutsankham.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:text-blue-800 hover:underline transition-colors"
+                    >
+                      วิศรุต แสนคำ
+                    </a>
+                  </p>
+                </div>
 
                 <div className="pt-4 border-t border-gray-200">
                   <button

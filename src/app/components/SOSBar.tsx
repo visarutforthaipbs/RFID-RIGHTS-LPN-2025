@@ -16,7 +16,7 @@ export function SOSBar() {
           <h3 className="font-semibold text-sm text-yellow-400">
             ต้องการความช่วยเหลือเร่งด่วน?
           </h3>
-          <p className="text-xs text-gray-300">โทรหาสายด่วนหรือติดต่อผ่านแอป</p>
+          <p className="text-xs text-gray-300">ติดต่อหามูลนิธิ LPN</p>
         </div>
 
         <div className="flex gap-2 ml-4">
@@ -26,16 +26,7 @@ export function SOSBar() {
             className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-semibold text-sm hover:bg-yellow-300 transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
             aria-label="โทร 191 ตำรวจ"
           >
-            📞 191
-          </button>
-
-          {/* Department of Employment hotline */}
-          <button
-            onClick={() => handleCallClick("1694", "call")}
-            className="bg-yellow-400 text-black px-4 py-2 rounded-lg font-semibold text-sm hover:bg-yellow-300 transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
-            aria-label="โทร 1694 กรมการจัดหางาน"
-          >
-            🏢 1694
+            📞 084-121-609
           </button>
 
           {/* More help page */}
