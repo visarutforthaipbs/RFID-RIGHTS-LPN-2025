@@ -20,7 +20,9 @@ export default function TopicsPage() {
   useEffect(() => {
     const loadData = async () => {
       try {
-        const response = await fetch("/data/data_flat.json");
+        const response = await fetch("/api/topics", {
+          cache: "no-store", // Always get fresh data
+        });
         const jsonData: TopicRow[] = await response.json();
 
         // Get unique categories

@@ -28,16 +28,28 @@ async function buildData() {
 
     console.log(`📝 Processing ${rows.length} rows...`);
     const flat = rows
-      .map((r) => ({
-        category: r["หมวดหมู่"]?.trim() || "",
-        topic: r["หัวข้อ"]?.trim() || "",
-        law: r["กฎหมายที่ให้สิทธิ"]?.trim() || undefined,
-        knowYourRights: r["รู้สิทธิตัวเอง"]?.trim() || undefined,
-        howToIdentify: r["วิธีสังเกตุ"]?.trim() || undefined,
-        selfHelp: r["วิธีช่วยตัวเอง"]?.trim() || undefined,
-        remark: r["remark"]?.trim() || undefined,
-        slug: slugify(r["หัวข้อ"] || ""),
-      }))
+      .map((r) => {
+        // Parse multiple law URLs separated by semicolon
+        const lawUrlString = r["กฎหมายที่อ้างอิง"]?.trim();
+        const lawUrls = lawUrlString
+          ? lawUrlString
+              .split(";")
+              .map((url) => url.trim())
+              .filter(Boolean)
+          : undefined;
+
+        return {
+          category: r["หมวดหมู่"]?.trim() || "",
+          topic: r["หัวข้อ"]?.trim() || "",
+          law: r["กฎหมายที่ให้สิทธิ"]?.trim() || undefined,
+          lawUrls: lawUrls,
+          knowYourRights: r["รู้สิทธิตัวเอง"]?.trim() || undefined,
+          howToIdentify: r["วิธีสังเกตุ"]?.trim() || undefined,
+          selfHelp: r["วิธีช่วยตัวเอง"]?.trim() || undefined,
+          remark: r["remark"]?.trim() || undefined,
+          slug: slugify(r["หัวข้อ"] || ""),
+        };
+      })
       .filter((row) => row.topic);
 
     console.log("🗂️  Grouping data by topic...");

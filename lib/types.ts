@@ -2,6 +2,7 @@ export type TopicRow = {
   category: string; // หมวดหมู่
   topic: string; // หัวข้อ
   law?: string; // กฎหมายที่ให้สิทธิ
+  lawUrls?: string[]; // กฎหมายที่อ้างอิง (multiple URLs separated by semicolon)
   knowYourRights?: string; // รู้สิทธิตัวเอง
   howToIdentify?: string; // วิธีสังเกตุ
   selfHelp?: string; // วิธีช่วยตัวเอง

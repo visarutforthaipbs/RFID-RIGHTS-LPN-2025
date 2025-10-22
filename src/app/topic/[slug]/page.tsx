@@ -24,7 +24,9 @@ export default function TopicPage({ params }: TopicPageProps) {
         // Decode the URL-encoded slug
         const decodedSlug = decodeURIComponent(slug);
 
-        const response = await fetch("/data/data_flat.json");
+        const response = await fetch("/api/topics", {
+          cache: "no-store", // Always get fresh data
+        });
         const data: TopicRow[] = await response.json();
 
         const foundTopic = data.find((item) => item.slug === decodedSlug);
@@ -133,9 +135,37 @@ export default function TopicPage({ params }: TopicPageProps) {
                   </svg>
                   กฎหมายที่เกี่ยวข้อง
                 </h2>
-                <p className="text-gray-700 leading-relaxed whitespace-pre-line">
-                  {topic.law}
-                </p>
+                <FormattedContent content={topic.law} />
+                {topic.lawUrls && topic.lawUrls.length > 0 && (
+                  <div className="mt-4 flex flex-wrap gap-3">
+                    {topic.lawUrls.map((url, index) => (
+                      <a
+                        key={index}
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-300 transition-colors font-medium"
+                      >
+                        <svg
+                          className="h-5 w-5 mr-2"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                          />
+                        </svg>
+                        {topic.lawUrls && topic.lawUrls.length === 1
+                          ? "อ่านกฎหมายฉบับเต็ม"
+                          : `อ่านกฎหมายฉบับที่ ${index + 1}`}
+                      </a>
+                    ))}
+                  </div>
+                )}
               </section>
             )}
 
