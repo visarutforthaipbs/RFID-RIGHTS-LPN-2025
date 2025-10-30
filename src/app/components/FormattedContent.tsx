@@ -137,7 +137,7 @@ export function FormattedContent({ content }: FormattedContentProps) {
 }
 
 function ContentNode({ item }: { item: ContentItem }) {
-  const [isOpen, setIsOpen] = useState(true); // Start expanded by default
+  const [isOpen, setIsOpen] = useState(false); // Start collapsed by default
   const hasChildren = item.children.length > 0;
 
   // Plain text (no bullet)
@@ -218,7 +218,7 @@ function LPNPopup() {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black bg-opacity-30 z-40"
+            className="fixed inset-0 bg-black bg-opacity-10 z-40"
             onClick={(e) => {
               e.stopPropagation();
               setIsOpen(false);
@@ -226,9 +226,9 @@ function LPNPopup() {
           />
 
           {/* Popup Modal */}
-          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-2xl z-50 p-6 max-w-md w-full mx-4 border-2 border-yellow-400">
-            <div className="flex justify-between items-start mb-4">
-              <h3 className="text-lg font-bold text-gray-800">
+          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-2xl z-50 p-4 sm:p-6 max-w-md w-[calc(100%-2rem)] sm:w-full border-2 border-yellow-400 max-h-[90vh] overflow-y-auto">
+            <div className="flex justify-between items-start mb-4 gap-2">
+              <h3 className="text-base sm:text-lg font-bold text-gray-800 leading-tight">
                 ติดต่อมูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน (LPN)
               </h3>
               <button
@@ -236,10 +236,10 @@ function LPNPopup() {
                   e.stopPropagation();
                   setIsOpen(false);
                 }}
-                className="text-gray-400 hover:text-gray-600 transition-colors"
+                className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
               >
                 <svg
-                  className="w-6 h-6"
+                  className="w-5 h-5 sm:w-6 sm:h-6"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -254,61 +254,69 @@ function LPNPopup() {
               </button>
             </div>
 
-            <div className="space-y-3">
-              <div className="flex items-start gap-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+            <div className="space-y-2 sm:space-y-3">
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
                 <span className="text-yellow-600 font-bold text-sm mt-0.5">
                   ◦
                 </span>
                 <div>
-                  <p className="font-semibold text-gray-700">ภาษาพม่า</p>
+                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
+                    ภาษาพม่า
+                  </p>
                   <a
                     href="tel:099-1865-587"
-                    className="text-yellow-600 hover:text-yellow-700 font-medium"
+                    className="text-yellow-600 hover:text-yellow-700 font-medium text-sm sm:text-base"
                   >
                     099-1865-587
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
                 <span className="text-yellow-600 font-bold text-sm mt-0.5">
                   ◦
                 </span>
                 <div>
-                  <p className="font-semibold text-gray-700">ภาษาไทย</p>
+                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
+                    ภาษาไทย
+                  </p>
                   <a
                     href="tel:084-121-1609"
-                    className="text-yellow-600 hover:text-yellow-700 font-medium"
+                    className="text-yellow-600 hover:text-yellow-700 font-medium text-sm sm:text-base"
                   >
                     084-121-1609
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
                 <span className="text-yellow-600 font-bold text-sm mt-0.5">
                   ◦
                 </span>
                 <div>
-                  <p className="font-semibold text-gray-700">ภาษาลาว</p>
+                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
+                    ภาษาลาว
+                  </p>
                   <a
                     href="tel:092-321-1516"
-                    className="text-yellow-600 hover:text-yellow-700 font-medium"
+                    className="text-yellow-600 hover:text-yellow-700 font-medium text-sm sm:text-base"
                   >
                     092-321-1516
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
                 <span className="text-yellow-600 font-bold text-sm mt-0.5">
                   ◦
                 </span>
                 <div>
-                  <p className="font-semibold text-gray-700">ภาษากัมพูชา</p>
+                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
+                    ภาษากัมพูชา
+                  </p>
                   <a
                     href="tel:086-449-9413"
-                    className="text-yellow-600 hover:text-yellow-700 font-medium"
+                    className="text-yellow-600 hover:text-yellow-700 font-medium text-sm sm:text-base"
                   >
                     086-449-9413
                   </a>
