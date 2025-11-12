@@ -7,6 +7,8 @@ import { SearchBox } from "../components/SearchBox";
 import { TopicCard, TopicCardSkeleton } from "../components/TopicCard";
 import { FilterChips } from "../components/FilterChips";
 import { TopicRow } from "../../../lib/types";
+import { useLanguage } from "../contexts/LanguageContext";
+import { messages } from "../../../lib/i18n";
 
 export default function TopicsPage() {
   const [data, setData] = useState<TopicRow[]>([]);
@@ -15,6 +17,8 @@ export default function TopicsPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [categories, setCategories] = useState<string[]>([]);
+  const { locale } = useLanguage();
+  const t = messages[locale];
 
   // Load data on mount
   useEffect(() => {
@@ -84,18 +88,16 @@ export default function TopicsPage() {
           <header className="mb-8">
             <nav className="mb-4">
               <Link href="/" className="text-black hover:text-yellow-600">
-                หน้าหลัก
+                {t.home}
               </Link>
               <span className="mx-2 text-gray-400">/</span>
-              <span className="text-gray-700">หัวข้อทั้งหมด</span>
+              <span className="text-gray-700">{t.allTopics}</span>
             </nav>
 
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              หัวข้อทั้งหมด
+              {t.allTopics}
             </h1>
-            <p className="text-gray-600 mb-6">
-              ค้นหาและเรียนรู้เกี่ยวกับสิทธิของคุณในฐานะแรงงานต่างด้าว
-            </p>
+            <p className="text-gray-600 mb-6">{t.topicsPageDescription}</p>
           </header>
 
           {/* Search */}
@@ -106,7 +108,7 @@ export default function TopicsPage() {
                 setFilteredData(results);
                 setSearchQuery(query);
               }}
-              placeholder="ค้นหาหัวข้อ..."
+              placeholder={t.searchTopicsPlaceholder}
             />
           </div>
 
@@ -126,8 +128,8 @@ export default function TopicsPage() {
             ) : (
               <p className="text-gray-600">
                 {filteredData.length === data.length
-                  ? `ทั้งหมด ${data.length} หัวข้อ`
-                  : `พบ ${filteredData.length} หัวข้อจากทั้งหมด ${data.length} หัวข้อ`}
+                  ? `${t.totalTopics} ${data.length} ${t.topicsCount}`
+                  : `${t.foundTopicsOf} ${filteredData.length} ${t.topicsOf} ${data.length} ${t.topicsCount}`}
               </p>
             )}
           </div>
@@ -161,10 +163,10 @@ export default function TopicsPage() {
                 />
               </svg>
               <h3 className="text-lg font-medium text-gray-900 mb-2">
-                ไม่พบหัวข้อที่คุณค้นหา
+                {t.noTopicsFound}
               </h3>
               <p className="text-gray-500 mb-4">
-                ลองเปลี่ยนคำค้นหาหรือเลือกหมวดหมู่อื่น
+                {t.tryDifferentSearchOrCategory}
               </p>
               <button
                 onClick={() => {
@@ -173,7 +175,7 @@ export default function TopicsPage() {
                 }}
                 className="inline-flex items-center px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-300 transition-colors"
               >
-                แสดงหัวข้อทั้งหมด
+                {t.showAllTopics}
               </button>
             </div>
           )}

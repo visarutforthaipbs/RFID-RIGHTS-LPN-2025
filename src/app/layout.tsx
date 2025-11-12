@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { LanguageProvider } from "./contexts/LanguageContext";
 
 export const metadata: Metadata = {
   title: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
@@ -54,10 +55,12 @@ export default function RootLayout({
           fontFamily: "'DB Helvethaica', system-ui, -apple-system, sans-serif",
         }}
       >
-        <a href="#main-content" className="skip-to-content">
-          ข้ามไปยังเนื้อหาหลัก
-        </a>
-        <div className="flex flex-col min-h-screen">{children}</div>
+        <LanguageProvider>
+          <a href="#main-content" className="skip-to-content">
+            ข้ามไปยังเนื้อหาหลัก
+          </a>
+          <div className="flex flex-col min-h-screen">{children}</div>
+        </LanguageProvider>
       </body>
     </html>
   );

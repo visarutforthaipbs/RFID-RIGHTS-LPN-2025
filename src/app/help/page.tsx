@@ -2,49 +2,145 @@
 
 import Link from "next/link";
 import { Header } from "../components/Header";
+import { useLanguage } from "../contexts/LanguageContext";
+import { messages } from "../../../lib/i18n";
 
 export default function HelpPage() {
+  const { locale } = useLanguage();
+  const t = messages[locale];
+
   const emergencyContacts = [
     {
-      name: "สายด่วนตำรวจ",
+      name:
+        locale === "en"
+          ? "Police Hotline"
+          : locale === "mm"
+          ? "ရဲဖုန်းလိုင်း"
+          : locale === "km"
+          ? "ខ្សែទូរស័ព្ទប៉ូលីស"
+          : "สายด่วนตำรวจ",
       number: "191",
-      description: "เมื่อเกิดเหตุฉุกเฉิน อันตราย หรือต้องการความช่วยเหลือทันที",
-      available: "24 ชั่วโมง",
+      description:
+        locale === "en"
+          ? "For emergencies, danger, or immediate assistance needed"
+          : locale === "mm"
+          ? "အရေးပေါ်အခြေအနေ၊ အန္တရာယ် သို့မဟုတ်ချက်ချင်းအကူအညီလိုအပ်သည့်အခါ"
+          : locale === "km"
+          ? "សម្រាប់ករណីបន្ទាន់ គ្រោះថ្នាក់ ឬត្រូវការជំនួយភ្លាមៗ"
+          : "เมื่อเกิดเหตุฉุกเฉิน อันตราย หรือต้องการความช่วยเหลือทันที",
+      available: t.hours24,
     },
     {
-      name: "กรมการจัดหางาน",
+      name:
+        locale === "en"
+          ? "Department of Employment"
+          : locale === "mm"
+          ? "အလုပ်အကိုင်ဌာန"
+          : locale === "km"
+          ? "នាយកដ្ឋានការងារ"
+          : "กรมการจัดหางาน",
       number: "1694",
-      description: "ปัญหาเกี่ยวกับการทำงาน แรงงาน หรือนายจ้าง",
-      available: "จันทร์-ศุกร์ 8:30-16:30",
+      description:
+        locale === "en"
+          ? "Work-related issues, labor, or employer problems"
+          : locale === "mm"
+          ? "အလုပ်နှင့်ပတ်သက်သောပြဿနာများ၊ အလုပ်သမား သို့မဟုတ်အလုပ်ရှင်"
+          : locale === "km"
+          ? "បញ្ហាការងារ ពលករ ឬនិយោជក"
+          : "ปัญหาเกี่ยวกับการทำงาน แรงงาน หรือนายจ้าง",
+      available: t.weekdayHours,
     },
     {
-      name: "สำนักงานตรวจคนเข้าเมือง",
+      name:
+        locale === "en"
+          ? "Immigration Bureau"
+          : locale === "mm"
+          ? "လူဝင်မှုကြီးကြပ်ရေးဗျူရို"
+          : locale === "km"
+          ? "ការិយាល័យអន្តោប្រវេសន៍"
+          : "สำนักงานตรวจคนเข้าเมือง",
       number: "1178",
-      description: "ปัญหาเกี่ยวกับการเข้าเมือง วีซ่า หรือเอกสารการอยู่อาศัย",
-      available: "24 ชั่วโมง",
+      description:
+        locale === "en"
+          ? "Immigration, visa, or residence document issues"
+          : locale === "mm"
+          ? "လူဝင်မှု၊ ဗီဇာ သို့မဟုတ်နေထိုင်ခွင့်စာရွက်စာတမ်းပြဿနာများ"
+          : locale === "km"
+          ? "បញ្ហាអន្តោប្រវេសន៍ ទិដ្ឋាការ ឬឯកសារស្នាក់នៅ"
+          : "ปัญหาเกี่ยวกับการเข้าเมือง วีซ่า หรือเอกสารการอยู่อาศัย",
+      available: t.hours24,
     },
     {
-      name: "สายด่วนสุขภาพจิต",
+      name:
+        locale === "en"
+          ? "Mental Health Hotline"
+          : locale === "mm"
+          ? "စိတ်ကျန်းမာရေးဖုန်းလိုင်း"
+          : locale === "km"
+          ? "ខ្សែទូរស័ព្ទសុខភាពផ្លូវចិត្ត"
+          : "สายด่วนสุขภาพจิต",
       number: "1323",
-      description: "ปรึกษาปัญหาสุขภาพจิต ความเครียด หรือซึมเศร้า",
-      available: "24 ชั่วโมง",
+      description:
+        locale === "en"
+          ? "Mental health counseling, stress, or depression"
+          : locale === "mm"
+          ? "စိတ်ကျန်းမာရေးအကြံဉာဏ်၊ စိတ်ဖိစီးမှု သို့မဟုတ်စိတ်ဓာတ်ကျခြင်း"
+          : locale === "km"
+          ? "ការប្រឹក្សាសុខភាពផ្លូវចិត្ត ភាពតានតឹង ឬការធ្លាក់ទឹកចិត្ត"
+          : "ปรึกษาปัญหาสุขภาพจิต ความเครียด หรือซึมเศร้า",
+      available: t.hours24,
     },
   ];
 
   const helpfulResources = [
     {
-      title: "ศูนย์ช่วยเหลือแรงงานต่างด้าว",
-      organization: "กระทรวงแรงงาน",
+      title:
+        locale === "en"
+          ? "Migrant Worker Assistance Center"
+          : locale === "mm"
+          ? "ရွှေ့ပြောင်းအလုပ်သမားအကူအညီဌာန"
+          : locale === "km"
+          ? "មជ្ឈមណ្ឌលជំនួយកម្មករអន្តោប្រវេសន៍"
+          : "ศูนย์ช่วยเหลือแรงงานต่างด้าว",
+      organization:
+        locale === "en"
+          ? "Ministry of Labour"
+          : locale === "mm"
+          ? "အလုပ်သမားဝန်ကြီးဌာန"
+          : locale === "km"
+          ? "ក្រសួងការងារ"
+          : "กระทรวงแรงงาน",
       phone: "02-354-9999",
       website: "www.mol.go.th",
-      description: "ให้คำปรึกษาและช่วยเหลือแรงงานต่างด้าวในทุกเรื่อง",
+      description:
+        locale === "en"
+          ? "Provides advice and assistance to migrant workers on all matters"
+          : locale === "mm"
+          ? "ရွှေ့ပြောင်းအလုပ်သမားများကိုကိစ္စရပ်အားလုံးအတွက်အကြံဉာဏ်နှင့်အကူအညီပေးသည်"
+          : locale === "km"
+          ? "ផ្តល់ដំបូន្មាននិងជំនួយដល់កម្មករអន្តោប្រវេសន៍លើបញ្ហាទាំងអស់"
+          : "ให้คำปรึกษาและช่วยเหลือแรงงานต่างด้าวในทุกเรื่อง",
     },
     {
-      title: "มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน",
+      title:
+        locale === "en"
+          ? "Labor Protection Network Foundation"
+          : locale === "mm"
+          ? "အလုပ်သမားကာကွယ်ရေးကွန်ရက်ဖောင်ဒေးရှင်း"
+          : locale === "km"
+          ? "មូលនិធិបណ្តាញការពារកម្មករ"
+          : "มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน",
       organization: "Labor Protection Network",
       phone: "084-121-609",
       website: "https://www.lpnfoundation.org/th",
-      description: "ภาคประชาชนช่วยเหลือแรงงานข้ามชาติ",
+      description:
+        locale === "en"
+          ? "Civil society organization helping migrant workers"
+          : locale === "mm"
+          ? "ရွှေ့ပြောင်းအလုပ်သမားများကိုကူညီသောအရပ်ဘက်အဖွဲ့အစည်း"
+          : locale === "km"
+          ? "អង្គការសង្គមស៊ីវិលជួយកម្មករអន្តោប្រវេសន៍"
+          : "ภาคประชาชนช่วยเหลือแรงงานข้ามชาติ",
     },
   ];
 
@@ -57,21 +153,18 @@ export default function HelpPage() {
           {/* Breadcrumb */}
           <nav className="mb-6">
             <Link href="/" className="text-black hover:text-yellow-600">
-              หน้าหลัก
+              {t.home}
             </Link>
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-700">ขอความช่วยเหลือ</span>
+            <span className="text-gray-700">{t.helpPageTitle}</span>
           </nav>
 
           {/* Page Header */}
           <header className="mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
-              ขอความช่วยเหลือ
+              {t.helpPageTitle}
             </h1>
-            <p className="text-gray-600">
-              หากคุณต้องการความช่วยเหลือเร่งด่วน หรือต้องการคำปรึกษา
-              ติดต่อได้ตามช่องทางด้านล่าง
-            </p>
+            <p className="text-gray-600">{t.helpPageDescription}</p>
           </header>
 
           {/* Emergency Alert */}
@@ -91,13 +184,10 @@ export default function HelpPage() {
                 />
               </svg>
               <h2 className="text-xl font-semibold text-red-900">
-                เหตุฉุกเฉิน
+                {t.emergency}
               </h2>
             </div>
-            <p className="text-red-800 mb-4">
-              หากคุณอยู่ในสถานการณ์อันตราย ต้องการความช่วยเหลือทันที
-              หรือเห็นใครกำลังถูกทำร้าย
-            </p>
+            <p className="text-red-800 mb-4">{t.emergencyDescription}</p>
             <div className="flex flex-wrap gap-3">
               <a
                 href="tel:191"
@@ -116,7 +206,7 @@ export default function HelpPage() {
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
-                โทร 191 ตำรวจ
+                {t.callPolice}
               </a>
               <a
                 href="tel:1669"
@@ -135,7 +225,7 @@ export default function HelpPage() {
                     d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                   />
                 </svg>
-                โทร 1669 การแพทย์ฉุกเฉิน
+                {t.callAmbulance}
               </a>
             </div>
           </div>
@@ -143,7 +233,7 @@ export default function HelpPage() {
           {/* Emergency Contacts */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-              สายด่วนสำคัญ
+              {t.importantHotlines}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {emergencyContacts.map((contact, index) => (
@@ -166,7 +256,7 @@ export default function HelpPage() {
                     {contact.description}
                   </p>
                   <p className="text-green-600 text-sm font-medium">
-                    เปิดให้บริการ: {contact.available}
+                    {t.availableHours}: {contact.available}
                   </p>
                 </div>
               ))}
@@ -176,7 +266,7 @@ export default function HelpPage() {
           {/* Helpful Organizations */}
           <section className="mb-8">
             <h2 className="text-2xl font-semibold text-gray-900 mb-6">
-              องค์กรที่ให้ความช่วยเหลือ
+              {t.helpfulOrganizations}
             </h2>
             <div className="space-y-4">
               {helpfulResources.map((resource, index) => (
@@ -232,7 +322,7 @@ export default function HelpPage() {
                             d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                           />
                         </svg>
-                        เว็บไซต์
+                        {t.website}
                       </a>
                     </div>
                   </div>
@@ -258,27 +348,48 @@ export default function HelpPage() {
                   d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
                 />
               </svg>
-              คำแนะนำเพิ่มเติม
+              {t.additionalTips}
             </h2>
             <ul className="text-black space-y-2">
               <li className="flex items-start">
                 <span className="inline-block w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                เก็บเบอร์โทรศัพท์สำคัญไว้ในมือถือของคุณ
+                {locale === "en"
+                  ? "Save important phone numbers in your mobile phone"
+                  : locale === "mm"
+                  ? "သင့်မိုဘိုင်းဖုန်းတွင်အရေးကြီးသောဖုန်းနံပါတ်များကိုသိမ်းဆည်းပါ"
+                  : locale === "km"
+                  ? "រក្សាទុកលេខទូរស័ព្ទសំខាន់ៗក្នុងទូរស័ព្ទរបស់អ្នក"
+                  : "เก็บเบอร์โทรศัพท์สำคัญไว้ในมือถือของคุณ"}
               </li>
               <li className="flex items-start">
                 <span className="inline-block w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                จำที่อยู่ของคุณและสถานที่ทำงานให้ได้
-                เพื่อแจ้งเจ้าหน้าที่ในกรณีฉุกเฉิน
+                {locale === "en"
+                  ? "Remember your address and workplace location to inform authorities in emergencies"
+                  : locale === "mm"
+                  ? "အရေးပေါ်အခြေအနေများတွင်အာဏာပိုင်များကိုအကြောင်းကြားရန်သင့်လိပ်စာနှင့်အလုပ်ခွင်တည်နေရာကိုမှတ်ထားပါ"
+                  : locale === "km"
+                  ? "ចងចាំអាសយដ្ឋាននិងទីតាំងកន្លែងធ្វើការរបស់អ្នក ដើម្បីជូនដំណឹងដល់អាជ្ញាធរក្នុងករណីបន្ទាន់"
+                  : "จำที่อยู่ของคุณและสถานที่ทำงานให้ได้ เพื่อแจ้งเจ้าหน้าที่ในกรณีฉุกเฉิน"}
               </li>
               <li className="flex items-start">
                 <span className="inline-block w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                เก็บสำเนาเอกสารสำคัญไว้ในมือถือ เช่น หนังสือเดินทาง
-                ใบอนุญาตทำงาน
+                {locale === "en"
+                  ? "Keep copies of important documents on your phone, such as passport and work permit"
+                  : locale === "mm"
+                  ? "သင့်ဖုန်းတွင်အရေးကြီးသောစာရွက်စာတမ်းများဖြစ်သောနိုင်ငံကူးလက်မှတ်၊ အလုပ်ခွင့်ပြုလက်မှတ်စသည်တို့ကိုသိမ်းဆည်းထားပါ"
+                  : locale === "km"
+                  ? "រក្សាទុកច្បាប់ចំលងនៃឯកសារសំខាន់ៗក្នុងទូរស័ព្ទរបស់អ្នក ដូចជាលិខិតឆ្លងដែន និងអាជ្ញាប័ណ្ណការងារ"
+                  : "เก็บสำเนาเอกสารสำคัญไว้ในมือถือ เช่น หนังสือเดินทาง ใบอนุญาตทำงาน"}
               </li>
               <li className="flex items-start">
                 <span className="inline-block w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                หากไม่พูดภาษาไทยได้
-                ขอให้เพื่อนหรือคนรู้จักช่วยแปลเมื่อติดต่อหน่วยงาน
+                {locale === "en"
+                  ? "If you don't speak Thai, ask a friend or acquaintance to help translate when contacting agencies"
+                  : locale === "mm"
+                  ? "သင်ထိုင်းဘာသာမပြောနိုင်ပါက အေဂျင်စီများကိုဆက်သွယ်သည့်အခါ သူငယ်ချင်း သို့မဟုတ်အသိများအားဘာသာပြန်ပေးရန်တောင်းပါ"
+                  : locale === "km"
+                  ? "ប្រសិនបើអ្នកមិននិយាយភាសាថៃបាន សូមស្នើឱ្យមិត្តភក្តិ ឬអ្នកស្គាល់ជួយបកប្រែពេលទាក់ទងទៅស្ថាប័ន"
+                  : "หากไม่พูดภาษาไทยได้ ขอให้เพื่อนหรือคนรู้จักช่วยแปลเมื่อติดต่อหน่วยงาน"}
               </li>
             </ul>
           </section>

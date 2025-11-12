@@ -1,5 +1,8 @@
 "use client";
 
+import { useLanguage } from "../contexts/LanguageContext";
+import { messages } from "../../../lib/i18n";
+
 interface FilterChipsProps {
   categories: string[];
   selectedCategory: string | null;
@@ -11,6 +14,19 @@ export function FilterChips({
   selectedCategory,
   onCategoryChange,
 }: FilterChipsProps) {
+  const { locale } = useLanguage();
+  const t = messages[locale];
+
+  // Map Thai category names to translation keys
+  const getCategoryLabel = (category: string): string => {
+    const categoryMap: Record<string, string> = {
+      เอกสารและการเดินทาง: t.categoryDocuments,
+      ทำงานและสวัสดิการ: t.categoryWork,
+      ครอบครัวและชีวิตในชุมชน: t.categoryFamily,
+    };
+    return categoryMap[category] || category;
+  };
+
   return (
     <div className="flex flex-wrap gap-2 mb-6">
       <button
@@ -23,7 +39,7 @@ export function FilterChips({
         aria-pressed={selectedCategory === null}
         type="button"
       >
-        ทั้งหมด
+        {t.all}
       </button>
 
       {categories.map((category) => (
@@ -38,7 +54,7 @@ export function FilterChips({
           aria-pressed={selectedCategory === category}
           type="button"
         >
-          {category}
+          {getCategoryLabel(category)}
         </button>
       ))}
     </div>

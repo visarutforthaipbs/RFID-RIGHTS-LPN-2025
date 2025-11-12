@@ -11,12 +11,16 @@ import { ScenarioCard, scenarios } from "./components/ScenarioCard";
 import { TopicRow } from "../../lib/types";
 import { hashUid } from "../../lib/rfidhash";
 import { trackEvent } from "../../lib/analytics";
+import { useLanguage } from "./contexts/LanguageContext";
+import { messages } from "../../lib/i18n";
 
 export default function Home() {
   const [data, setData] = useState<TopicRow[]>([]);
   const [filteredData, setFilteredData] = useState<TopicRow[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedScenario, setSelectedScenario] = useState<string | null>(null);
+  const { locale } = useLanguage();
+  const t = messages[locale];
 
   // Load data on mount
   useEffect(() => {
@@ -128,12 +132,10 @@ export default function Home() {
                 />
               </div>
               <h1 className="text-3xl sm:text-4xl font-bold text-black mb-4">
-                เลือกสถานการณ์ของคุณ
+                {t.chooseYourSituation}
               </h1>
               <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-                เลือกสถานการณ์ที่ตรงกับปัญหาหรือความต้องการของคุณ
-                <br className="hidden sm:block" />
-                เพื่อให้เราช่วยคุณหาคำตอบและวิธีแก้ไขที่เหมาะสม
+                {t.chooseDescription}
               </p>
             </div>
 
@@ -142,10 +144,10 @@ export default function Home() {
                 <SearchBox
                   data={data}
                   onResults={handleSearchResults}
-                  placeholder="หรือค้นหาโดยตรง..."
+                  placeholder={t.orSearchDirectly}
                 />
                 <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 text-sm text-gray-400">
-                  หรือเลือกสถานการณ์ด้านล่าง
+                  {t.orChooseBelow}
                 </div>
               </div>
             </div>
@@ -172,7 +174,7 @@ export default function Home() {
                   d="M15 19l-7-7 7-7"
                 />
               </svg>
-              กลับไปเลือกสถานการณ์
+              {t.backToSituations}
             </button>
           </div>
         )}
@@ -182,11 +184,9 @@ export default function Home() {
           <section className="mb-12">
             <div className="mb-8 text-center">
               <h2 className="text-2xl font-bold text-black mb-2">
-                สถานการณ์ที่พบบ่อย
+                {t.commonSituations}
               </h2>
-              <p className="text-gray-600">
-                เลือกสถานการณ์ที่ใกล้เคียงกับของคุณมากที่สุด
-              </p>
+              <p className="text-gray-600">{t.chooseClosest}</p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
@@ -200,7 +200,7 @@ export default function Home() {
             </div>
 
             <div className="mt-8 text-center text-sm text-gray-500">
-              💡 เคล็ดลับ: คลิกที่สถานการณ์เพื่อดูหัวข้อที่เกี่ยวข้อง
+              {t.tip}
             </div>
           </section>
         )}
@@ -227,14 +227,21 @@ export default function Home() {
                 </div>
                 <div className="flex-1">
                   <h2 className="text-2xl font-bold text-black mb-1">
-                    {selectedScenarioData.title}
+                    {locale === "en"
+                      ? selectedScenarioData.titleEn
+                      : selectedScenarioData.title}
                   </h2>
                   <p className="text-gray-600">
-                    {selectedScenarioData.description}
+                    {locale === "en"
+                      ? selectedScenarioData.descriptionEn
+                      : selectedScenarioData.description}
                   </p>
                 </div>
                 <div className="hidden sm:flex gap-2 flex-wrap">
-                  {selectedScenarioData.keywords
+                  {(locale === "en"
+                    ? selectedScenarioData.keywordsEn
+                    : selectedScenarioData.keywords
+                  )
                     .slice(0, 4)
                     .map((keyword, index) => (
                       <span
@@ -253,11 +260,10 @@ export default function Home() {
                     <span className="text-2xl mr-3">🚨</span>
                     <div>
                       <p className="text-red-800 font-medium">
-                        เรื่องนี้สำคัญและต้องดำเนินการเร่งด่วน
+                        {t.urgentAction}
                       </p>
                       <p className="text-red-600 text-sm mt-1">
-                        หากเป็นเรื่องฉุกเฉินจริง กรุณาติดต่อสายด่วน 191 หรือ
-                        1694
+                        {t.emergencyContact}
                       </p>
                     </div>
                   </div>
@@ -267,10 +273,10 @@ export default function Home() {
 
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-xl font-semibold text-black">
-                หัวข้อที่เกี่ยวข้อง
+                {t.relatedTopics}
               </h3>
               <span className="text-sm text-gray-500 bg-gray-100 px-3 py-1 rounded-full">
-                พบ {filteredData.length} หัวข้อ
+                {t.found} {filteredData.length} {t.topicsCount}
               </span>
             </div>
 
@@ -284,23 +290,23 @@ export default function Home() {
               <div className="text-center py-16 bg-white rounded-xl border border-gray-100">
                 <div className="text-6xl mb-4">🤔</div>
                 <h3 className="text-xl font-medium text-gray-900 mb-2">
-                  ยังไม่พบหัวข้อที่เกี่ยวข้อง
+                  {t.notFoundYet}
                 </h3>
                 <p className="text-gray-500 mb-8 max-w-md mx-auto">
-                  ลองเลือกสถานการณ์อื่น หรือใช้การค้นหาเพื่อหาข้อมูลที่ต้องการ
+                  {t.tryOtherOrSearch}
                 </p>
                 <div className="flex gap-4 justify-center flex-wrap">
                   <button
                     onClick={clearScenario}
                     className="px-4 py-2 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors"
                   >
-                    เลือกสถานการณ์ใหม่
+                    {t.chooseNewSituation}
                   </button>
                   <Link
                     href="/topics"
                     className="inline-flex items-center px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-300 transition-colors"
                   >
-                    ดูหัวข้อทั้งหมด
+                    {t.viewAllTopics}
                   </Link>
                 </div>
               </div>
@@ -313,10 +319,10 @@ export default function Home() {
           <section>
             <div className="flex items-center justify-between mb-6">
               <h3 className="text-2xl font-semibold text-black">
-                ผลการค้นหา &quot;{searchQuery}&quot;
+                {t.searchResults} &quot;{searchQuery}&quot;
               </h3>
               <span className="text-sm text-gray-500">
-                พบ {filteredData.length} รายการ
+                {t.found} {filteredData.length} {t.resultsCount}
               </span>
             </div>
 
@@ -342,9 +348,9 @@ export default function Home() {
                   />
                 </svg>
                 <h3 className="mt-4 text-lg font-medium text-gray-900">
-                  ไม่พบผลลัพธ์
+                  {t.noResults}
                 </h3>
-                <p className="mt-2 text-gray-500">ลองเปลี่ยนคำค้นหาดู</p>
+                <p className="mt-2 text-gray-500">{t.tryDifferentKeywords}</p>
               </div>
             )}
           </section>
@@ -355,7 +361,7 @@ export default function Home() {
           <section className="mt-16">
             <div className="bg-white rounded-xl p-8 border border-gray-200">
               <h3 className="text-xl font-semibold text-black mb-4 text-center">
-                ไม่เจอที่ต้องการ?
+                {t.cantFind}
               </h3>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
@@ -365,9 +371,9 @@ export default function Home() {
                 >
                   <div className="text-2xl mb-2">🚨</div>
                   <h4 className="font-semibold text-red-800 group-hover:text-red-900">
-                    ขอความช่วยเหลือ
+                    {t.getHelp}
                   </h4>
-                  <p className="text-sm text-red-600">สายด่วนฉุกเฉิน</p>
+                  <p className="text-sm text-red-600">{t.emergencyHotline}</p>
                 </Link>
 
                 <Link
@@ -375,8 +381,10 @@ export default function Home() {
                   className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 hover:bg-yellow-100 transition-colors group text-center"
                 >
                   <div className="text-2xl mb-2">📚</div>
-                  <h4 className="font-semibold text-black">ดูหัวข้อทั้งหมด</h4>
-                  <p className="text-sm text-gray-600">ศึกษาเพิ่มเติม</p>
+                  <h4 className="font-semibold text-black">
+                    {t.viewAllTopics}
+                  </h4>
+                  <p className="text-sm text-gray-600">{t.learnMore}</p>
                 </Link>
 
                 <Link
@@ -385,9 +393,11 @@ export default function Home() {
                 >
                   <div className="text-2xl mb-2">⚙️</div>
                   <h4 className="font-semibold text-gray-800 group-hover:text-gray-900">
-                    ตั้งค่า
+                    {t.settings}
                   </h4>
-                  <p className="text-sm text-gray-600">ภาษาและการแสดงผล</p>
+                  <p className="text-sm text-gray-600">
+                    {t.settingsAndDisplay}
+                  </p>
                 </Link>
               </div>
             </div>

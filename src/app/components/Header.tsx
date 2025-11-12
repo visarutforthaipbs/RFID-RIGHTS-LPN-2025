@@ -1,8 +1,15 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { useLanguage } from "../contexts/LanguageContext";
+import { messages } from "../../../lib/i18n";
 
 export function Header() {
+  const { locale } = useLanguage();
+  const t = messages[locale];
+
   return (
     <header
       className="bg-white border-b border-gray-200 sticky top-0 z-40"
@@ -17,15 +24,13 @@ export function Header() {
           >
             <Image
               src="/logo.svg"
-              alt="รู้สิทธิ ติดกระเป๋า Logo"
+              alt={t.title}
               width={32}
               height={32}
               className="w-8 h-8"
             />
             <div>
-              <h1 className="text-lg font-bold text-black">
-                รู้สิทธิ ติดกระเป๋า
-              </h1>
+              <h1 className="text-lg font-bold text-black">{t.title}</h1>
               <p className="text-xs text-gray-600">Migrant Rights Guide</p>
             </div>
           </Link>
@@ -41,19 +46,19 @@ export function Header() {
                 href="/topics"
                 className="text-sm text-gray-700 hover:text-black hover:bg-yellow-400 hover:bg-opacity-20 px-2 py-1 rounded transition-all"
               >
-                หัวข้อทั้งหมด
+                {t.allTopics}
               </Link>
               <Link
                 href="/help"
                 className="text-sm text-gray-700 hover:text-black hover:bg-yellow-400 hover:bg-opacity-20 px-2 py-1 rounded transition-all"
               >
-                ขอความช่วยเหลือ
+                {t.help}
               </Link>
               <Link
                 href="/settings"
                 className="text-sm text-gray-700 hover:text-black hover:bg-yellow-400 hover:bg-opacity-20 px-2 py-1 rounded transition-all"
               >
-                ตั้งค่า
+                {t.settings}
               </Link>
             </nav>
 

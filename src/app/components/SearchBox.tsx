@@ -3,6 +3,8 @@
 import { useState, useCallback, useMemo } from "react";
 import { TopicRow } from "../../../lib/types";
 import { trackEvent } from "../../../lib/analytics";
+import { useLanguage } from "../contexts/LanguageContext";
+import { messages } from "../../../lib/i18n";
 
 interface SearchBoxProps {
   data: TopicRow[];
@@ -10,12 +12,13 @@ interface SearchBoxProps {
   placeholder?: string;
 }
 
-export function SearchBox({
-  data,
-  onResults,
-  placeholder = "ค้นหาหัวข้อ...",
-}: SearchBoxProps) {
+export function SearchBox({ data, onResults, placeholder }: SearchBoxProps) {
   const [query, setQuery] = useState("");
+  const { locale } = useLanguage();
+  const t = messages[locale];
+
+  // Use provided placeholder or default from i18n
+  const searchPlaceholder = placeholder || t.searchPlaceholder;
 
   // Debounced search function
   const performSearch = useCallback(
@@ -29,10 +32,20 @@ export function SearchBox({
       const results = data.filter(
         (item) =>
           item.topic.toLowerCase().includes(lowercaseQuery) ||
+          item.topicEn?.toLowerCase().includes(lowercaseQuery) ||
+          item.topicMm?.toLowerCase().includes(lowercaseQuery) ||
           item.category.toLowerCase().includes(lowercaseQuery) ||
+          item.categoryEn?.toLowerCase().includes(lowercaseQuery) ||
+          item.categoryMm?.toLowerCase().includes(lowercaseQuery) ||
           item.knowYourRights?.toLowerCase().includes(lowercaseQuery) ||
+          item.knowYourRightsEn?.toLowerCase().includes(lowercaseQuery) ||
+          item.knowYourRightsMm?.toLowerCase().includes(lowercaseQuery) ||
           item.howToIdentify?.toLowerCase().includes(lowercaseQuery) ||
-          item.selfHelp?.toLowerCase().includes(lowercaseQuery)
+          item.howToIdentifyEn?.toLowerCase().includes(lowercaseQuery) ||
+          item.howToIdentifyMm?.toLowerCase().includes(lowercaseQuery) ||
+          item.selfHelp?.toLowerCase().includes(lowercaseQuery) ||
+          item.selfHelpEn?.toLowerCase().includes(lowercaseQuery) ||
+          item.selfHelpMm?.toLowerCase().includes(lowercaseQuery)
       );
 
       // Track search analytics
@@ -74,9 +87,9 @@ export function SearchBox({
           type="text"
           value={query}
           onChange={handleInputChange}
-          placeholder={placeholder}
+          placeholder={searchPlaceholder}
           className="w-full pl-12 pr-12 py-3 text-base border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
-          aria-label={placeholder}
+          aria-label={searchPlaceholder}
         />
 
         {/* Search icon */}
@@ -101,7 +114,7 @@ export function SearchBox({
           <button
             onClick={clearSearch}
             className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600"
-            aria-label="ล้างการค้นหา"
+            aria-label={locale === "en" ? "Clear search" : "ล้างการค้นหา"}
             type="button"
           >
             <svg
@@ -123,7 +136,10 @@ export function SearchBox({
 
       {/* Results count */}
       <div className="sr-only" aria-live="polite" role="status">
-        {query && `พบผลลัพธ์การค้นหา ${data.length} รายการ`}
+        {query &&
+          (locale === "en"
+            ? `Found ${data.length} search results`
+            : `พบผลลัพธ์การค้นหา ${data.length} รายการ`)}
       </div>
     </div>
   );

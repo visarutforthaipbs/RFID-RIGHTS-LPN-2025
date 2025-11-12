@@ -1,30 +1,50 @@
+"use client";
+
 import Link from "next/link";
 import { TopicRow } from "../../../lib/types";
+import { useLanguage } from "../contexts/LanguageContext";
+import { messages } from "../../../lib/i18n";
 
 interface TopicCardProps {
   row: TopicRow;
 }
 
 export function TopicCard({ row }: TopicCardProps) {
-  const excerpt = row.knowYourRights
-    ? row.knowYourRights.substring(0, 120) +
-      (row.knowYourRights.length > 120 ? "..." : "")
-    : row.howToIdentify
-    ? row.howToIdentify.substring(0, 120) +
-      (row.howToIdentify.length > 120 ? "..." : "")
-    : "คลิกเพื่อดูรายละเอียด";
+  const { locale } = useLanguage();
+  const t = messages[locale];
+
+  const category =
+    locale === "en"
+      ? row.categoryEn
+      : locale === "mm"
+      ? row.categoryMm
+      : row.category;
+  const topic =
+    locale === "en" ? row.topicEn : locale === "mm" ? row.topicMm : row.topic;
+
+  const content =
+    locale === "en"
+      ? row.knowYourRightsEn || row.howToIdentifyEn || "Click to see details"
+      : locale === "mm"
+      ? row.knowYourRightsMm ||
+        row.howToIdentifyMm ||
+        "အသေးစိတ်ကြည့်ရန် နှိပ်ပါ"
+      : row.knowYourRights || row.howToIdentify || "คลิกเพื่อดูรายละเอียด";
+
+  const excerpt =
+    content.substring(0, 120) + (content.length > 120 ? "..." : "");
 
   return (
     <Link href={`/topic/${row.slug}`} className="block group">
       <article className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 hover:shadow-md transition-shadow duration-200 group-hover:border-yellow-400">
         <div className="mb-3">
           <span className="inline-block px-3 py-1 text-xs font-medium bg-yellow-100 text-black rounded-full">
-            {row.category}
+            {category}
           </span>
         </div>
 
         <h3 className="text-lg font-semibold text-black mb-3 group-hover:text-yellow-600 transition-colors">
-          {row.topic}
+          {topic}
         </h3>
 
         <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
@@ -32,7 +52,7 @@ export function TopicCard({ row }: TopicCardProps) {
         </p>
 
         <div className="mt-4 flex items-center text-black text-sm font-medium">
-          <span>อ่านต่อ</span>
+          <span>{t.readMore}</span>
           <svg
             className="ml-1 h-4 w-4 group-hover:translate-x-1 transition-transform"
             fill="none"

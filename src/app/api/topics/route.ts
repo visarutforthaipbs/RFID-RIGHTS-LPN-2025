@@ -21,8 +21,10 @@ export const dynamic = "force-dynamic"; // Disable caching for development
 export async function GET() {
   try {
     const csvPath = path.join(process.cwd(), "data", "source.csv");
+    const csvPathEn = path.join(process.cwd(), "data", "english-source.csv");
+    const csvPathMm = path.join(process.cwd(), "data", "myanmar-content.csv");
 
-    // Check if file exists
+    // Check if files exist
     if (!fs.existsSync(csvPath)) {
       return NextResponse.json(
         { error: "CSV file not found" },
@@ -30,18 +32,39 @@ export async function GET() {
       );
     }
 
+    // Read Thai CSV
     const csvContent = fs.readFileSync(csvPath, "utf-8");
-
-    // Parse CSV using csv-parse
     const rows = parse(csvContent, {
       columns: true,
       skip_empty_lines: true,
       bom: true,
     }) as Record<string, string>[];
 
+    // Read English CSV if it exists
+    let rowsEn: Record<string, string>[] = [];
+    if (fs.existsSync(csvPathEn)) {
+      const csvContentEn = fs.readFileSync(csvPathEn, "utf-8");
+      rowsEn = parse(csvContentEn, {
+        columns: true,
+        skip_empty_lines: true,
+        bom: true,
+      }) as Record<string, string>[];
+    }
+
+    // Read Myanmar CSV if it exists
+    let rowsMm: Record<string, string>[] = [];
+    if (fs.existsSync(csvPathMm)) {
+      const csvContentMm = fs.readFileSync(csvPathMm, "utf-8");
+      rowsMm = parse(csvContentMm, {
+        columns: true,
+        skip_empty_lines: true,
+        bom: true,
+      }) as Record<string, string>[];
+    }
+
     const data = rows
       .filter((r) => r["หัวข้อ"]?.trim())
-      .map((r) => {
+      .map((r, index) => {
         // Parse multiple law URLs separated by semicolon
         const lawUrlString = r["กฎหมายที่อ้างอิง"]?.trim();
         const lawUrls = lawUrlString
@@ -50,6 +73,12 @@ export async function GET() {
               .map((url) => url.trim())
               .filter(Boolean)
           : undefined;
+
+        // Get corresponding English row (same index)
+        const enRow = rowsEn[index] || {};
+
+        // Get corresponding Myanmar row (same index)
+        const mmRow = rowsMm[index] || {};
 
         return {
           category: r["หมวดหมู่"]?.trim() || "",
@@ -61,6 +90,26 @@ export async function GET() {
           selfHelp: r["วิธีช่วยตัวเอง"]?.trim() || undefined,
           remark: r["remark"]?.trim() || undefined,
           slug: slugify(r["หัวข้อ"] || ""),
+          // English translations
+          categoryEn: enRow["Category"]?.trim() || undefined,
+          topicEn: enRow["Topic"]?.trim() || undefined,
+          lawEn: enRow["Law Granting Rights"]?.trim() || undefined,
+          knowYourRightsEn: enRow["Know Your Rights"]?.trim() || undefined,
+          howToIdentifyEn:
+            enRow["How to Observe (Signs of Violation)"]?.trim() || undefined,
+          selfHelpEn: enRow["How to Help Yourself"]?.trim() || undefined,
+          // Myanmar translations
+          categoryMm: mmRow["အမျိုးအစား"]?.trim() || undefined,
+          topicMm:
+            mmRow["ချို့တဲ့ချက် / ချို့သောအကြောင်းအရာ"]?.trim() || undefined,
+          lawMm: mmRow["အခွင့်အရေးပေးသည့်ဥပဒေ"]?.trim() || undefined,
+          knowYourRightsMm:
+            mmRow["သင်၏အခွင့်အရေးများကို သိရှိပါ"]?.trim() || undefined,
+          howToIdentifyMm:
+            mmRow["ချိုးဖောက်မှုလက္ခဏာများကို မည်သို့သိနိုင်မလဲ"]?.trim() ||
+            undefined,
+          selfHelpMm:
+            mmRow["ကိုယ်တိုင်ကယ်နိုင်သောနည်းလမ်းများ"]?.trim() || undefined,
         };
       });
 

@@ -5,6 +5,8 @@ import Link from "next/link";
 import { TopicRow } from "../../../../lib/types";
 import { Header } from "../../components/Header";
 import { FormattedContent } from "../../components/FormattedContent";
+import { useLanguage } from "../../contexts/LanguageContext";
+import { messages } from "../../../../lib/i18n";
 
 interface TopicPageProps {
   params: Promise<{ slug: string }>;
@@ -14,6 +16,19 @@ export default function TopicPage({ params }: TopicPageProps) {
   const [topic, setTopic] = useState<TopicRow | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { locale } = useLanguage();
+  const t = messages[locale];
+
+  // Helper function to get content in current language
+  const getContent = (
+    thContent?: string,
+    enContent?: string,
+    mmContent?: string
+  ) => {
+    if (locale === "en" && enContent) return enContent;
+    if (locale === "mm" && mmContent) return mmContent;
+    return thContent || "";
+  };
 
   useEffect(() => {
     const loadTopic = async () => {
@@ -34,18 +49,18 @@ export default function TopicPage({ params }: TopicPageProps) {
         if (foundTopic) {
           setTopic(foundTopic);
         } else {
-          setError("ไม่พบหัวข้อที่คุณต้องการ");
+          setError(t.topicNotFound);
         }
       } catch (err) {
         console.error("Failed to load topic:", err);
-        setError("เกิดข้อผิดพลาดในการโหลดข้อมูล");
+        setError(t.loadError);
       } finally {
         setLoading(false);
       }
     };
 
     loadTopic();
-  }, [params]);
+  }, [params, locale, t]);
 
   if (loading) {
     return (
@@ -97,27 +112,29 @@ export default function TopicPage({ params }: TopicPageProps) {
           {/* Breadcrumb */}
           <nav className="mb-6">
             <Link href="/" className="text-black hover:text-yellow-600">
-              หน้าหลัก
+              {t.home}
             </Link>
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-700">{topic.topic}</span>
+            <span className="text-gray-700">
+              {getContent(topic.topic, topic.topicEn)}
+            </span>
           </nav>
 
           {/* Topic Header */}
           <header className="mb-8">
             <div className="mb-3">
               <span className="inline-block px-3 py-1 text-sm font-medium bg-yellow-100 text-black rounded-full">
-                {topic.category}
+                {getContent(topic.category, topic.categoryEn, topic.categoryMm)}
               </span>
             </div>
             <h1 className="text-3xl font-bold text-black mb-4">
-              {topic.topic}
+              {getContent(topic.topic, topic.topicEn, topic.topicMm)}
             </h1>
           </header>
 
           <div className="space-y-8">
             {/* Law Section */}
-            {topic.law && (
+            {(topic.law || topic.lawEn || topic.lawMm) && (
               <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-black mb-4 flex items-center">
                   <svg
@@ -133,9 +150,11 @@ export default function TopicPage({ params }: TopicPageProps) {
                       d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
                     />
                   </svg>
-                  กฎหมายที่เกี่ยวข้อง
+                  {t.relatedLaws}
                 </h2>
-                <FormattedContent content={topic.law} />
+                <FormattedContent
+                  content={getContent(topic.law, topic.lawEn, topic.lawMm)}
+                />
                 {topic.lawUrls && topic.lawUrls.length > 0 && (
                   <div className="mt-4 flex flex-wrap gap-3">
                     {topic.lawUrls.map((url, index) => (
@@ -160,8 +179,8 @@ export default function TopicPage({ params }: TopicPageProps) {
                           />
                         </svg>
                         {topic.lawUrls && topic.lawUrls.length === 1
-                          ? "อ่านกฎหมายฉบับเต็ม"
-                          : `อ่านกฎหมายฉบับที่ ${index + 1}`}
+                          ? t.readFullLaw
+                          : `${t.readFullLaw} ${index + 1}`}
                       </a>
                     ))}
                   </div>
@@ -170,7 +189,9 @@ export default function TopicPage({ params }: TopicPageProps) {
             )}
 
             {/* Know Your Rights Section */}
-            {topic.knowYourRights && (
+            {(topic.knowYourRights ||
+              topic.knowYourRightsEn ||
+              topic.knowYourRightsMm) && (
               <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                   <svg
@@ -186,14 +207,22 @@ export default function TopicPage({ params }: TopicPageProps) {
                       d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                     />
                   </svg>
-                  รู้สิทธิของคุณ
+                  {t.knowYourRights}
                 </h2>
-                <FormattedContent content={topic.knowYourRights} />
+                <FormattedContent
+                  content={getContent(
+                    topic.knowYourRights,
+                    topic.knowYourRightsEn,
+                    topic.knowYourRightsMm
+                  )}
+                />
               </section>
             )}
 
             {/* How to Identify Section */}
-            {topic.howToIdentify && (
+            {(topic.howToIdentify ||
+              topic.howToIdentifyEn ||
+              topic.howToIdentifyMm) && (
               <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-black mb-4 flex items-center">
                   <svg
@@ -209,14 +238,20 @@ export default function TopicPage({ params }: TopicPageProps) {
                       d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z"
                     />
                   </svg>
-                  วิธีสังเกตปัญหา
+                  {t.howToIdentify}
                 </h2>
-                <FormattedContent content={topic.howToIdentify} />
+                <FormattedContent
+                  content={getContent(
+                    topic.howToIdentify,
+                    topic.howToIdentifyEn,
+                    topic.howToIdentifyMm
+                  )}
+                />
               </section>
             )}
 
             {/* Self Help Section */}
-            {topic.selfHelp && (
+            {(topic.selfHelp || topic.selfHelpEn || topic.selfHelpMm) && (
               <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-black mb-4 flex items-center">
                   <svg
@@ -232,9 +267,15 @@ export default function TopicPage({ params }: TopicPageProps) {
                       d="M13 10V3L4 14h7v7l9-11h-7z"
                     />
                   </svg>
-                  วิธีช่วยเหลือตนเอง
+                  {t.selfHelp}
                 </h2>
-                <FormattedContent content={topic.selfHelp} />
+                <FormattedContent
+                  content={getContent(
+                    topic.selfHelp,
+                    topic.selfHelpEn,
+                    topic.selfHelpMm
+                  )}
+                />
               </section>
             )}
 
@@ -255,7 +296,7 @@ export default function TopicPage({ params }: TopicPageProps) {
                       d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"
                     />
                   </svg>
-                  หมายเหตุ
+                  {t.remarks}
                 </h2>
                 <p className="text-yellow-800 leading-relaxed">
                   {topic.remark}
@@ -283,7 +324,7 @@ export default function TopicPage({ params }: TopicPageProps) {
                   d="M10 19l-7-7m0 0l7-7m-7 7h18"
                 />
               </svg>
-              กลับสู่หน้าหลัก
+              {t.backToHome}
             </Link>
           </div>
         </div>

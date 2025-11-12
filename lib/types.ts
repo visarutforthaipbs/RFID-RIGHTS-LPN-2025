@@ -7,7 +7,21 @@ export type TopicRow = {
   howToIdentify?: string; // วิธีสังเกตุ
   selfHelp?: string; // วิธีช่วยตัวเอง
   remark?: string;
-  slug: string; // derived kebab
+  slug: string; // derived kebab-case
+  // English translations
+  categoryEn?: string;
+  topicEn?: string;
+  lawEn?: string;
+  knowYourRightsEn?: string;
+  howToIdentifyEn?: string;
+  selfHelpEn?: string;
+  // Myanmar translations
+  categoryMm?: string;
+  topicMm?: string;
+  lawMm?: string;
+  knowYourRightsMm?: string;
+  howToIdentifyMm?: string;
+  selfHelpMm?: string;
 };
 
 export type DataGrouped = {
