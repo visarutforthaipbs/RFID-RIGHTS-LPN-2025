@@ -1,6 +1,14 @@
 import type { Metadata, Viewport } from "next";
+import { Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./contexts/LanguageContext";
+
+const notoSansThai = Noto_Sans_Thai({
+  subsets: ["thai", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-noto-sans-thai",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
@@ -15,12 +23,9 @@ export const metadata: Metadata = {
     title: "รู้สิทธิ",
   },
   icons: {
-    icon: [
-      { url: "/favicon-16x16.svg", sizes: "16x16", type: "image/svg+xml" },
-      { url: "/favicon-32x32.svg", sizes: "32x32", type: "image/svg+xml" },
-    ],
-    apple: "/logo.svg",
-    shortcut: "/favicon-32x32.svg",
+    icon: [{ url: "/favicon-new.svg", type: "image/svg+xml" }],
+    apple: "/favicon-new.svg",
+    shortcut: "/favicon-new.svg",
   },
 };
 
@@ -36,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th">
+    <html lang="th" className={notoSansThai.variable}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -52,7 +57,8 @@ export default function RootLayout({
       <body
         className="min-h-screen bg-gray-50 text-black antialiased"
         style={{
-          fontFamily: "'DB Helvethaica', system-ui, -apple-system, sans-serif",
+          fontFamily:
+            "var(--font-noto-sans-thai), system-ui, -apple-system, sans-serif",
         }}
       >
         <LanguageProvider>

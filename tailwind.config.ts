@@ -38,7 +38,12 @@ const config: Config = {
         },
       },
       fontFamily: {
-        sans: ["DB Helvethaica", "system-ui", "-apple-system", "sans-serif"],
+        sans: [
+          "var(--font-noto-sans-thai)",
+          "system-ui",
+          "-apple-system",
+          "sans-serif",
+        ],
       },
     },
   },

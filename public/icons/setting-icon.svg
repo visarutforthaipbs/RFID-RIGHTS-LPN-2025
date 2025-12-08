@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 113.98 108.34">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #e7f0f2;
+        stroke: #000;
+        stroke-miterlimit: 10;
+        stroke-width: 4.85px;
+      }
+    </style>
+  </defs>
+  <g id="KV-Migrant_rights_guide">
+    <g>
+      <g>
+        <rect x="0" y="10.06" width="113.98" height="9.77" rx="4.89" ry="4.89"/>
+        <circle class="cls-1" cx="74.85" cy="15.17" r="12.75"/>
+      </g>
+      <g>
+        <rect x="0" y="49.06" width="113.98" height="9.77" rx="4.89" ry="4.89"/>
+        <circle class="cls-1" cx="31.7" cy="54.17" r="12.75"/>
+      </g>
+      <g>
+        <rect x="0" y="88.05" width="113.98" height="9.77" rx="4.89" ry="4.89"/>
+        <circle class="cls-1" cx="74.85" cy="93.16" r="12.75"/>
+      </g>
+    </g>
+  </g>
+</svg>

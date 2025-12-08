@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "build:data": "node scripts/build-data.js",
     "prebuild": "npm run build:data",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint"
   },

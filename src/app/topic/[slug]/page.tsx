@@ -2,11 +2,13 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { TopicRow } from "../../../../lib/types";
 import { Header } from "../../components/Header";
 import { FormattedContent } from "../../components/FormattedContent";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { messages } from "../../../../lib/i18n";
+import { getTopicIcon } from "../../../../lib/topic-icons";
 
 interface TopicPageProps {
   params: Promise<{ slug: string }>;
@@ -28,6 +30,22 @@ export default function TopicPage({ params }: TopicPageProps) {
     if (locale === "en" && enContent) return enContent;
     if (locale === "mm" && mmContent) return mmContent;
     return thContent || "";
+  };
+
+  // Helper function to get badge color based on category
+  const getBadgeStyle = (category: string) => {
+    const styles = [
+      "bg-[#117c8e] text-white", // Teal
+      "bg-[#ff5122] text-white", // Orange
+      "bg-[#fec700] text-black", // Yellow
+    ];
+
+    let hash = 0;
+    for (let i = 0; i < category.length; i++) {
+      hash = category.charCodeAt(i) + ((hash << 5) - hash);
+    }
+
+    return styles[Math.abs(hash) % styles.length];
   };
 
   useEffect(() => {
@@ -122,14 +140,35 @@ export default function TopicPage({ params }: TopicPageProps) {
 
           {/* Topic Header */}
           <header className="mb-8">
-            <div className="mb-3">
-              <span className="inline-block px-3 py-1 text-sm font-medium bg-yellow-100 text-black rounded-full">
-                {getContent(topic.category, topic.categoryEn, topic.categoryMm)}
-              </span>
+            <div className="flex items-start justify-between">
+              <div>
+                <div className="mb-3">
+                  <span
+                    className={`inline-block px-3 py-1 text-sm font-medium rounded-full ${getBadgeStyle(
+                      topic.categoryEn || topic.category || ""
+                    )}`}
+                  >
+                    {getContent(
+                      topic.category,
+                      topic.categoryEn,
+                      topic.categoryMm
+                    )}
+                  </span>
+                </div>
+                <h1 className="text-3xl font-bold text-black mb-4">
+                  {getContent(topic.topic, topic.topicEn, topic.topicMm)}
+                </h1>
+              </div>
+              <div className="hidden sm:block w-24 h-24 relative flex-shrink-0">
+                <Image
+                  src={getTopicIcon(topic.topic)}
+                  alt={getContent(topic.topic, topic.topicEn, topic.topicMm)}
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
             </div>
-            <h1 className="text-3xl font-bold text-black mb-4">
-              {getContent(topic.topic, topic.topicEn, topic.topicMm)}
-            </h1>
           </header>
 
           <div className="space-y-8">

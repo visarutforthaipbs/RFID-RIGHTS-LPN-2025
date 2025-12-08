@@ -230,7 +230,7 @@ export default function SettingsPage() {
             <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                 <svg
-                  className="h-6 w-6 text-blue-600 mr-2"
+                  className="h-6 w-6 text-yellow-600 mr-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -272,7 +272,7 @@ export default function SettingsPage() {
             <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                 <svg
-                  className="h-6 w-6 text-blue-600 mr-2"
+                  className="h-6 w-6 text-yellow-600 mr-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -324,7 +324,7 @@ export default function SettingsPage() {
             <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                 <svg
-                  className="h-6 w-6 text-blue-600 mr-2"
+                  className="h-6 w-6 text-yellow-600 mr-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"

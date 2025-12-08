@@ -23,7 +23,7 @@ export function Header() {
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
             <Image
-              src="/logo.svg"
+              src="/favicon-new.svg"
               alt={t.title}
               width={32}
               height={32}

@@ -37,19 +37,47 @@ export function ScenarioCard({ scenario, onClick }: ScenarioCardProps) {
   const { locale } = useLanguage();
 
   const urgencyBadge =
-    scenario.urgency === "high"
-      ? locale === "en"
-        ? "🚨 Urgent"
-        : locale === "mm"
-        ? "🚨 အရေးတကြီး"
-        : "🚨 ด่วน"
-      : scenario.urgency === "medium"
-      ? locale === "en"
-        ? "⚡ Important"
-        : locale === "mm"
-        ? "⚡ အရေးကြီး"
-        : "⚡ สำคัญ"
-      : null;
+    scenario.urgency === "high" ? (
+      <div className="flex items-center gap-1">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="w-4 h-4"
+        >
+          <path
+            fillRule="evenodd"
+            d="M9.401 3.003c1.155-2 4.043-2 5.197 0l7.355 12.748c1.154 2-.29 4.5-2.599 4.5H4.645c-2.309 0-3.752-2.5-2.598-4.5L9.4 3.003zM12 8.25a.75.75 0 01.75.75v3.75a.75.75 0 01-1.5 0V9a.75.75 0 01.75-.75zm0 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z"
+            clipRule="evenodd"
+          />
+        </svg>
+        <span>
+          {locale === "en" ? "Urgent" : locale === "mm" ? "အရေးတကြီး" : "ด่วน"}
+        </span>
+      </div>
+    ) : scenario.urgency === "medium" ? (
+      <div className="flex items-center gap-1">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="w-4 h-4"
+        >
+          <path
+            fillRule="evenodd"
+            d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z"
+            clipRule="evenodd"
+          />
+        </svg>
+        <span>
+          {locale === "en"
+            ? "Important"
+            : locale === "mm"
+            ? "အရေးကြီး"
+            : "สำคัญ"}
+        </span>
+      </div>
+    ) : null;
 
   const handleImageError = () => {
     console.error(`Failed to load image: ${scenario.icon}`);
@@ -102,8 +130,21 @@ export function ScenarioCard({ scenario, onClick }: ScenarioCardProps) {
                   }
                 />
               ) : (
-                <div className="w-full h-full flex items-center justify-center text-2xl text-gray-400">
-                  🖼️
+                <div className="w-full h-full flex items-center justify-center text-gray-400">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={1.5}
+                    stroke="currentColor"
+                    className="w-12 h-12"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z"
+                    />
+                  </svg>
                 </div>
               )}
             </div>
@@ -173,11 +214,11 @@ export const scenarios: Scenario[] = [
     descriptionEn: "Want to know basic rights, documents, and adaptation",
     descriptionMm:
       "အခြေခံအခွင့်အရေးများ၊ စာရွက်စာတမ်းများနှင့် လိုက်လျောညီထွေဖြစ်ရန်",
-    icon: "/images/newjob-2.png",
+    icon: "/images/newjob-new.svg",
     iconType: "image",
     color: {
       bg: "bg-slate-50",
-      border: "border-slate-200",
+      border: "border-yellow-400",
       text: "text-slate-800",
       hoverBg: "hover:bg-slate-100",
     },
@@ -201,11 +242,11 @@ export const scenarios: Scenario[] = [
     descriptionEn: "Unpaid wages, hard work, or mistreatment",
     descriptionMm:
       "လုပ်ခမရရှိခြင်း၊ လုပ်ငန်းခက်ခဲခြင်း သို့မဟုတ် အလွဲသုံးစားခံရခြင်း",
-    icon: "/images/problem-job-1.png",
+    icon: "/images/problem-job-new.svg",
     iconType: "image",
     color: {
       bg: "bg-slate-50",
-      border: "border-slate-200",
+      border: "border-yellow-400",
       text: "text-slate-800",
       hoverBg: "hover:bg-slate-100",
     },
@@ -224,11 +265,11 @@ export const scenarios: Scenario[] = [
     descriptionEn: "Need to renew permit, visa, or important documents",
     descriptionMm:
       "ခွင့်ပြုမိန့်၊ ဗီဇာ သို့မဟုတ် အရေးကြီးစာရွက်စာတမ်းများ သက်တမ်းတိုးရန်",
-    icon: "/images/expire-workpermit.png",
+    icon: "/images/expire-workpermit-new.svg",
     iconType: "image",
     color: {
       bg: "bg-slate-50",
-      border: "border-slate-200",
+      border: "border-yellow-400",
       text: "text-slate-800",
       hoverBg: "hover:bg-slate-100",
     },
@@ -252,11 +293,11 @@ export const scenarios: Scenario[] = [
     descriptionEn: "Marriage, children, education, or family issues",
     descriptionMm:
       "လက်ထပ်ခြင်း၊ သားသမီးများ၊ ပညာရေး သို့မဟုတ် မိသားစုပြဿနာများ",
-    icon: "/images/family-1.png",
+    icon: "/images/family-new.svg",
     iconType: "image",
     color: {
       bg: "bg-slate-50",
-      border: "border-slate-200",
+      border: "border-yellow-400",
       text: "text-slate-800",
       hoverBg: "hover:bg-slate-100",
     },
@@ -274,11 +315,11 @@ export const scenarios: Scenario[] = [
     description: "ต้องการรักษา ประกันสุขภาพ หรือข้อมูลโรงพยาบาล",
     descriptionEn: "Need treatment, health insurance, or hospital information",
     descriptionMm: "ကုသမှု၊ ကျန်းမာရေးအာမခံ သို့မဟုတ် ဆေးရုံအချက်အလက်များ",
-    icon: "/images/hospital-1.png",
+    icon: "/images/hospital-new.svg",
     iconType: "image",
     color: {
       bg: "bg-slate-50",
-      border: "border-slate-200",
+      border: "border-yellow-400",
       text: "text-slate-800",
       hoverBg: "hover:bg-slate-100",
     },
@@ -297,11 +338,11 @@ export const scenarios: Scenario[] = [
     descriptionEn: "Social adaptation, language, culture, and living together",
     descriptionMm:
       "လူမှုရေးလိုက်လျောညီထွေဖြစ်ခြင်း၊ ဘာသာစကား၊ ယဉ်ကျေးမှုနှင့် အတူနေထိုင်ခြင်း",
-    icon: "/images/community-1.png",
+    icon: "/images/community-new.svg",
     iconType: "image",
     color: {
       bg: "bg-slate-50",
-      border: "border-slate-200",
+      border: "border-yellow-400",
       text: "text-slate-800",
       hoverBg: "hover:bg-slate-100",
     },
@@ -325,7 +366,7 @@ export const scenarios: Scenario[] = [
     descriptionEn: "Emergency situation, threatened, or need immediate help",
     descriptionMm:
       "အရေးပေါ်အခြေအနေ၊ ခြိမ်းခြောက်ခံရခြင်း သို့မဟုတ် ချက်ချင်းအကူအညီလိုအပ်ခြင်း",
-    icon: "/images/help-2.png",
+    icon: "/images/help-new.svg",
     iconType: "image",
     color: {
       bg: "bg-red-50",
@@ -348,11 +389,11 @@ export const scenarios: Scenario[] = [
     descriptionEn: "Learn about legal rights and self-protection methods",
     descriptionMm:
       "ဥပဒေအရအခွင့်အရေးများနှင့် မိမိကိုယ်ကို ကာကွယ်သောနည်းလမ်းများ",
-    icon: "/images/know-your-right.png",
+    icon: "/images/know-your-right-new.svg",
     iconType: "image",
     color: {
       bg: "bg-slate-50",
-      border: "border-slate-200",
+      border: "border-yellow-400",
       text: "text-slate-800",
       hoverBg: "hover:bg-slate-100",
     },

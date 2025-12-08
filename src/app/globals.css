@@ -15,31 +15,6 @@
   --color-border-light: #e7e7e7;
 }
 
-/* DB Helvethaica Font Faces */
-@font-face {
-  font-family: "DB Helvethaica";
-  src: url("/font/dbhelvethaicax-webfont.woff2") format("woff2");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "DB Helvethaica";
-  src: url("/font/dbhelvethaicaxmed-webfont.woff2") format("woff2");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "DB Helvethaica";
-  src: url("/font/dbhelvethaicaxbd-webfont.woff2") format("woff2");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
 /* Base styles */
 html {
   font-size: 16px;
@@ -47,7 +22,7 @@ html {
 }
 
 body {
-  font-family: "DB Helvethaica", system-ui, -apple-system, sans-serif;
+  font-family: var(--font-noto-sans-thai), system-ui, -apple-system, sans-serif;
   background-color: #fafafa;
   color: #000000;
 }
