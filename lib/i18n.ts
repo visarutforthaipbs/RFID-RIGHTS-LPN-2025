@@ -28,7 +28,7 @@ export const messages = {
     orChooseBelow: "หรือเลือกสถานการณ์ด้านล่าง",
     commonSituations: "สถานการณ์ที่พบบ่อย",
     chooseClosest: "เลือกสถานการณ์ที่ใกล้เคียงกับของคุณมากที่สุด",
-    backToSituations: "← กลับไปเลือกสถานการณ์",
+    backToSituations: "กลับไปเลือกสถานการณ์",
     searchPlaceholder: "ค้นหา",
     noResults: "ไม่พบผลลัพธ์",
     tryDifferentKeywords: "ลองใช้คำค้นหาอื่น",
@@ -121,6 +121,7 @@ export const messages = {
     designedBy: "ออกแบบและพัฒนาโดย",
     designedByDetail:
       "มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน (LPN) และ วิศรุต แสนคำ",
+    supportedBy: "สนับสนุนโดย",
     resetAllSettings: "รีเซ็ตการตั้งค่าทั้งหมด",
     confirmReset: "คุณต้องการรีเซ็ตการตั้งค่าทั้งหมดหรือไม่?",
     settingsReset: "การตั้งค่าถูกรีเซ็ตแล้ว",
@@ -148,7 +149,7 @@ export const messages = {
     orChooseBelow: "သို့မဟုတ်အောက်ပါအခြေအနေကိုရွေးချယ်ပါ",
     commonSituations: "အဖြစ်များသောအခြေအနေများ",
     chooseClosest: "သင့်အတွက်အနီးစပ်ဆုံးအခြေအနေကိုရွေးချယ်ပါ",
-    backToSituations: "← အခြေအနေရွေးချယ်ရန်ပြန်သွားပါ",
+    backToSituations: "အခြေအနေရွေးချယ်ရန်ပြန်သွားပါ",
     searchPlaceholder: "ရှာဖွေပါ",
     noResults: "ရလဒ်မရှိပါ",
     tryDifferentKeywords: "အခြားစကားလုံးများကိုကြိုးစားပါ",
@@ -243,6 +244,7 @@ export const messages = {
     designedBy: "ဒီဇိုင်းနှင့်တီထွင်သူ",
     designedByDetail:
       "Labour Protection Network Foundation (LPN) နှင့် Visarut Sankham",
+    supportedBy: "ပံ့ပိုးကူညီသူ",
     resetAllSettings: "ဆက်တင်အားလုံးပြန်လည်သတ်မှတ်ပါ",
     confirmReset: "ဆက်တင်အားလုံးကိုပြန်လည်သတ်မှတ်လိုပါသလား?",
     settingsReset: "ဆက်တင်များပြန်လည်သတ်မှတ်ပြီးပါပြီ",
@@ -269,7 +271,7 @@ export const messages = {
     orChooseBelow: "ឬជ្រើសរើសស្ថានភាពខាងក្រោម",
     commonSituations: "ស្ថានភាពទូទៅ",
     chooseClosest: "ជ្រើសរើសស្ថានភាពដែលជិតបំផុត",
-    backToSituations: "← ត្រឡប់ទៅជ្រើសរើសស្ថានភាព",
+    backToSituations: "ត្រឡប់ទៅជ្រើសរើសស្ថានភាព",
     searchPlaceholder: "ស្វែងរក",
     noResults: "គ្មានលទ្ធផល",
     tryDifferentKeywords: "សាកល្បងពាក្យគន្លឹះផ្សេង",
@@ -364,6 +366,7 @@ export const messages = {
     designedBy: "រចនានិងអភិវឌ្ឍដោយ",
     designedByDetail:
       "Labour Protection Network Foundation (LPN) និង Visarut Sankham",
+    supportedBy: "គាំទ្រដោយ",
     resetAllSettings: "កំណត់ការកំណត់ទាំងអស់ឡើងវិញ",
     confirmReset: "តើអ្នកចង់កំណត់ការកំណត់ទាំងអស់ឡើងវិញទេ?",
     settingsReset: "ការកំណត់ត្រូវបានកំណត់ឡើងវិញហើយ",
@@ -391,7 +394,7 @@ export const messages = {
     orChooseBelow: "Or choose a situation below",
     commonSituations: "Common Situations",
     chooseClosest: "Choose the situation closest to yours",
-    backToSituations: "← Back to choose situation",
+    backToSituations: "Back to choose situation",
     searchPlaceholder: "Search for topics...",
     noResults: "No results found",
     tryDifferentKeywords: "Try different keywords",
@@ -485,9 +488,40 @@ export const messages = {
     designedBy: "Designed and Developed by",
     designedByDetail:
       "Labour Protection Network Foundation (LPN) and Visarut Sankham",
+    supportedBy: "Supported by",
     resetAllSettings: "Reset All Settings",
     confirmReset: "Do you want to reset all settings?",
     settingsReset: "Settings have been reset",
     cacheCleared: "Cache data has been cleared",
   },
 };
+
+export function getLocalizedField<T>(
+  obj: T,
+
+  locale: Locale,
+
+  keyPrefix: keyof T | string
+): unknown {
+  // If the object is null or undefined, return undefined
+
+  if (!obj) return undefined;
+
+  // Helper to safely access property
+
+  const getProp = (key: string) => (obj as Record<string, unknown>)[key];
+
+  const keyStr = String(keyPrefix);
+
+  let val;
+
+  if (locale === "en") val = getProp(`${keyStr}En`);
+  else if (locale === "mm") val = getProp(`${keyStr}Mm`);
+  else if (locale === "km") val = getProp(`${keyStr}Km`);
+
+  // Return localized value if found, otherwise fallback to default (Thai)
+
+  if (val !== undefined) return val;
+
+  return getProp(keyStr);
+}

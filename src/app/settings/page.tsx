@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Header } from "../components/Header";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -11,10 +12,6 @@ export default function SettingsPage() {
   const [fontSize, setFontSize] = useState<"small" | "medium" | "large">(
     "medium"
   );
-  const [darkMode, setDarkMode] = useState(false);
-  const [notifications, setNotifications] = useState(true);
-  const [dataUsage, setDataUsage] = useState<string>("0 MB");
-  const [cacheSize, setCacheSize] = useState<string>("0 MB");
   const { locale } = useLanguage();
   const t = messages[locale];
 
@@ -23,22 +20,8 @@ export default function SettingsPage() {
     const savedFontSize =
       (localStorage.getItem("fontSize") as "small" | "medium" | "large") ||
       "medium";
-    const savedDarkMode = localStorage.getItem("darkMode") === "true";
-    const savedNotifications =
-      localStorage.getItem("notifications") !== "false";
 
     setFontSize(savedFontSize);
-    setDarkMode(savedDarkMode);
-    setNotifications(savedNotifications);
-
-    // Simulate data usage calculation
-    const calculateDataUsage = () => {
-      // This would normally calculate actual data usage
-      setDataUsage("2.5 MB");
-      setCacheSize("1.8 MB");
-    };
-
-    calculateDataUsage();
   }, []);
 
   // Apply font size to document
@@ -53,46 +36,10 @@ export default function SettingsPage() {
     localStorage.setItem("fontSize", fontSize);
   }, [fontSize]);
 
-  // Apply dark mode (for future implementation)
-  useEffect(() => {
-    localStorage.setItem("darkMode", darkMode.toString());
-    // Dark mode implementation would go here
-  }, [darkMode]);
-
-  // Save notifications preference
-  useEffect(() => {
-    localStorage.setItem("notifications", notifications.toString());
-  }, [notifications]);
-
-  const clearCache = () => {
-    // Clear any cached data
-    if ("caches" in window) {
-      caches.keys().then((names) => {
-        names.forEach((name) => {
-          caches.delete(name);
-        });
-      });
-    }
-
-    // Clear localStorage except for settings
-    const settingsToKeep = ["fontSize", "darkMode", "notifications"];
-    const allKeys = Object.keys(localStorage);
-    allKeys.forEach((key) => {
-      if (!settingsToKeep.includes(key)) {
-        localStorage.removeItem(key);
-      }
-    });
-
-    setCacheSize("0 MB");
-    alert(t.cacheCleared);
-  };
-
   const resetSettings = () => {
     if (confirm(t.confirmReset)) {
       localStorage.clear();
       setFontSize("medium");
-      setDarkMode(false);
-      setNotifications(true);
       document.documentElement.style.fontSize = "16px";
       alert(t.settingsReset);
     }
@@ -173,7 +120,7 @@ export default function SettingsPage() {
               </h2>
 
               {/* Font Size */}
-              <div className="mb-6">
+              <div>
                 <label className="block text-gray-700 font-medium mb-2">
                   {t.fontSize}
                 </label>
@@ -199,123 +146,6 @@ export default function SettingsPage() {
                       <span className={option.size}>{option.label}</span>
                     </button>
                   ))}
-                </div>
-              </div>
-
-              {/* Dark Mode (Future Feature) */}
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-700 font-medium mb-1">{t.darkMode}</p>
-                  <p className="text-gray-500 text-sm">
-                    {t.darkModeDescription}
-                  </p>
-                </div>
-                <button
-                  onClick={() => setDarkMode(!darkMode)}
-                  disabled
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 ${
-                    darkMode ? "bg-yellow-400" : "bg-gray-200"
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
-                      darkMode ? "translate-x-6" : "translate-x-1"
-                    }`}
-                  />
-                </button>
-              </div>
-            </section>
-
-            {/* Notifications */}
-            <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <svg
-                  className="h-6 w-6 text-yellow-600 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 17h5l-5 5v-5zM12 2l3.09 6.26L22 9l-5 4.74L18.18 22 12 19.77 5.82 22 7 13.74 2 9l6.91-.74L12 2z"
-                  />
-                </svg>
-                {t.notifications}
-              </h2>
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-gray-700 font-medium mb-1">
-                    {t.notifications}
-                  </p>
-                  <p className="text-gray-500 text-sm">
-                    {t.notificationsDescription}
-                  </p>
-                </div>
-                <button
-                  onClick={() => setNotifications(!notifications)}
-                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
-                    notifications ? "bg-yellow-400" : "bg-gray-200"
-                  }`}
-                >
-                  <span
-                    className={`inline-block h-4 w-4 rounded-full bg-white transition-transform ${
-                      notifications ? "translate-x-6" : "translate-x-1"
-                    }`}
-                  />
-                </button>
-              </div>
-            </section>
-
-            {/* Data & Storage */}
-            <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <svg
-                  className="h-6 w-6 text-yellow-600 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
-                  />
-                </svg>
-                {t.dataAndStorage}
-              </h2>
-
-              <div className="space-y-4">
-                <div className="flex items-center justify-between py-2">
-                  <div>
-                    <p className="text-gray-700 font-medium">{t.dataUsage}</p>
-                    <p className="text-gray-500 text-sm">
-                      {t.dataUsageDescription}
-                    </p>
-                  </div>
-                  <span className="text-gray-900 font-medium">{dataUsage}</span>
-                </div>
-
-                <div className="flex items-center justify-between py-2">
-                  <div>
-                    <p className="text-gray-700 font-medium">{t.cacheData}</p>
-                    <p className="text-gray-500 text-sm">
-                      {t.cacheDataDescription}
-                    </p>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="text-gray-900 font-medium">
-                      {cacheSize}
-                    </span>
-                    <button
-                      onClick={clearCache}
-                      className="px-3 py-1 text-sm bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors"
-                    >
-                      {t.clearCache}
-                    </button>
-                  </div>
                 </div>
               </div>
             </section>
@@ -356,6 +186,41 @@ export default function SettingsPage() {
                 <div>
                   <p className="text-gray-700 font-medium">{t.designedBy}</p>
                   <p className="text-gray-500 text-sm">{t.designedByDetail}</p>
+                </div>
+
+                <div>
+                  <p className="text-gray-700 font-medium mb-3">
+                    {t.supportedBy}
+                  </p>
+                  <div className="flex flex-wrap items-center gap-8 bg-gray-50 p-6 rounded-lg justify-center">
+                    <div className="relative h-20 w-auto">
+                      <Image
+                        src="/logos/AGO_001 - LPN Foundation - Final Logo Small- LPN Initials Small - No Background.png"
+                        alt="LPN Foundation"
+                        height={80}
+                        width={180}
+                        className="object-contain h-20 w-auto"
+                      />
+                    </div>
+                    <div className="relative h-20 w-auto">
+                      <Image
+                        src="/logos/IJM_Logo_Horizontal_Blue_PNG.png"
+                        alt="IJM"
+                        height={80}
+                        width={200}
+                        className="object-contain h-20 w-auto"
+                      />
+                    </div>
+                    <div className="relative h-8 w-auto">
+                      <Image
+                        src="/logos/KOICA_Logo Mark(BLUE).png"
+                        alt="KOICA"
+                        height={32}
+                        width={100}
+                        className="object-contain h-8 w-auto"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 <div className="pt-4 border-t border-gray-200">

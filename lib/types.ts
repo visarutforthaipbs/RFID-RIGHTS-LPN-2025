@@ -27,3 +27,27 @@ export type TopicRow = {
 export type DataGrouped = {
   [topic: string]: TopicRow[];
 };
+
+export interface Scenario {
+  id: string;
+  title: string;
+  titleEn: string;
+  titleMm: string;
+  description: string;
+  descriptionEn: string;
+  descriptionMm: string;
+  icon: string;
+  iconType?: "emoji" | "image";
+  color: {
+    bg: string;
+    border: string;
+    text: string;
+    hoverBg: string;
+  };
+  keywords: string[];
+  keywordsEn: string[];
+  keywordsMm: string[];
+  category?: string;
+  urgency?: "low" | "medium" | "high";
+  priority?: boolean;
+}
