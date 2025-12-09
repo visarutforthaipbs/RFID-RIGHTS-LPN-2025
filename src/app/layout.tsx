@@ -27,6 +27,30 @@ export const metadata: Metadata = {
     apple: "/favicon-new.svg",
     shortcut: "/favicon-new.svg",
   },
+  openGraph: {
+    title: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
+    description:
+      "Complete offline guide for migrant workers' rights in Thailand. Know your rights, identify issues, get help.",
+    url: "https://rfid-rights.vercel.app",
+    siteName: "Migrant Rights Guide",
+    images: [
+      {
+        url: "/images/thumnail-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Migrant Rights Guide Thumbnail",
+      },
+    ],
+    locale: "th_TH",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
+    description:
+      "Complete offline guide for migrant workers' rights in Thailand. Know your rights, identify issues, get help.",
+    images: ["/images/thumnail-image.png"],
+  },
 };
 
 export const viewport: Viewport = {
