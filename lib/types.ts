@@ -7,6 +7,7 @@ export type TopicRow = {
   howToIdentify?: string; // วิธีสังเกตุ
   selfHelp?: string; // วิธีช่วยตัวเอง
   remark?: string;
+  videoUrl?: string; // YouTube video URL
   slug: string; // derived kebab-case
   // English translations
   categoryEn?: string;

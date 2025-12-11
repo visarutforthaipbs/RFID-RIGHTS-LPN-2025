@@ -48,6 +48,15 @@ export default function TopicPage({ params }: TopicPageProps) {
     return styles[Math.abs(hash) % styles.length];
   };
 
+  const getYoutubeEmbedUrl = (url: string) => {
+    const regExp =
+      /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return match && match[2].length === 11
+      ? `https://www.youtube.com/embed/${match[2]}`
+      : null;
+  };
+
   useEffect(() => {
     const loadTopic = async () => {
       try {
@@ -172,6 +181,21 @@ export default function TopicPage({ params }: TopicPageProps) {
           </header>
 
           <div className="space-y-8">
+            {/* Video Section */}
+            {topic.videoUrl && (
+              <section className="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+                <div className="relative w-full aspect-video">
+                  <iframe
+                    src={getYoutubeEmbedUrl(topic.videoUrl) || ""}
+                    title="Video content"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute top-0 left-0 w-full h-full"
+                  ></iframe>
+                </div>
+              </section>
+            )}
+
             {/* Law Section */}
             {(topic.law || topic.lawEn || topic.lawMm) && (
               <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">

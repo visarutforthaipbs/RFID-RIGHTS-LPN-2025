@@ -38,6 +38,7 @@ export async function GET() {
       columns: true,
       skip_empty_lines: true,
       bom: true,
+      relax_column_count: true,
     }) as Record<string, string>[];
 
     // Read English CSV if it exists
@@ -48,6 +49,7 @@ export async function GET() {
         columns: true,
         skip_empty_lines: true,
         bom: true,
+        relax_column_count: true,
       }) as Record<string, string>[];
     }
 
@@ -59,6 +61,7 @@ export async function GET() {
         columns: true,
         skip_empty_lines: true,
         bom: true,
+        relax_column_count: true,
       }) as Record<string, string>[];
     }
 
@@ -89,6 +92,7 @@ export async function GET() {
           howToIdentify: r["วิธีสังเกตุ"]?.trim() || undefined,
           selfHelp: r["วิธีช่วยตัวเอง"]?.trim() || undefined,
           remark: r["remark"]?.trim() || undefined,
+          videoUrl: r["videoUrl"]?.trim() || undefined,
           slug: slugify(r["หัวข้อ"] || ""),
           // English translations
           categoryEn: enRow["Category"]?.trim() || undefined,

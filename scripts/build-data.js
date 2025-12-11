@@ -24,6 +24,7 @@ async function buildData() {
       columns: true,
       skip_empty_lines: true,
       bom: true,
+      relax_column_count: true,
     });
 
     console.log(`📝 Processing ${rows.length} rows...`);
@@ -47,6 +48,7 @@ async function buildData() {
           howToIdentify: r["วิธีสังเกตุ"]?.trim() || undefined,
           selfHelp: r["วิธีช่วยตัวเอง"]?.trim() || undefined,
           remark: r["remark"]?.trim() || undefined,
+          videoUrl: r["videoUrl"]?.trim() || undefined,
           slug: slugify(r["หัวข้อ"] || ""),
         };
       })
