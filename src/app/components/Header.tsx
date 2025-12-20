@@ -55,6 +55,12 @@ export function Header() {
                 {t.help}
               </Link>
               <Link
+                href="/volunteer"
+                className="text-sm text-gray-700 hover:text-black hover:bg-yellow-400 hover:bg-opacity-20 px-2 py-1 rounded transition-all"
+              >
+                {t.volunteer}
+              </Link>
+              <Link
                 href="/settings"
                 className="text-sm text-gray-700 hover:text-black hover:bg-yellow-400 hover:bg-opacity-20 px-2 py-1 rounded transition-all"
               >

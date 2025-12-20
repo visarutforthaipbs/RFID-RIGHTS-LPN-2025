@@ -11,6 +11,7 @@ const notoSansThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://rfid-rights.vercel.app"),
   title: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
   description:
     "Complete offline guide for migrant workers' rights in Thailand. Know your rights, identify issues, get help.",

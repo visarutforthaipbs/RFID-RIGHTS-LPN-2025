@@ -126,6 +126,8 @@ export const messages = {
     confirmReset: "คุณต้องการรีเซ็ตการตั้งค่าทั้งหมดหรือไม่?",
     settingsReset: "การตั้งค่าถูกรีเซ็ตแล้ว",
     cacheCleared: "ข้อมูลแคชถูกลบแล้ว",
+    // Volunteer page
+    volunteer: "สมัครอาสา",
   },
   mm: {
     title: "အခွင့်အရေးများ သိထားခြင်း",
@@ -249,6 +251,8 @@ export const messages = {
     confirmReset: "ဆက်တင်အားလုံးကိုပြန်လည်သတ်မှတ်လိုပါသလား?",
     settingsReset: "ဆက်တင်များပြန်လည်သတ်မှတ်ပြီးပါပြီ",
     cacheCleared: "ကက်ရှေဒေတာဖျက်ပြီးပါပြီ",
+    // Volunteer page
+    volunteer: "စေတနာ့ဝန်ထမ်း",
   },
   km: {
     title: "ដឹងសិទ្ធិ ចាំទុកក្នុងកាបូប",
@@ -371,6 +375,8 @@ export const messages = {
     confirmReset: "តើអ្នកចង់កំណត់ការកំណត់ទាំងអស់ឡើងវិញទេ?",
     settingsReset: "ការកំណត់ត្រូវបានកំណត់ឡើងវិញហើយ",
     cacheCleared: "ទិន្នន័យ Cache ត្រូវបានលុបហើយ",
+    // Volunteer page
+    volunteer: "ស្ម័គ្រចិត្ត",
   },
   en: {
     title: "Know Your Rights",
@@ -493,6 +499,8 @@ export const messages = {
     confirmReset: "Do you want to reset all settings?",
     settingsReset: "Settings have been reset",
     cacheCleared: "Cache data has been cleared",
+    // Volunteer page
+    volunteer: "Volunteer",
   },
 };
 
