@@ -281,8 +281,12 @@ export default function VolunteerPage() {
         experience: "",
         agreed: false,
       });
-    } catch (err: any) {
-      setError(err.message || "Failed to submit volunteer application");
+    } catch (err: unknown) {
+      const errorMessage =
+        err instanceof Error
+          ? err.message
+          : "Failed to submit volunteer application";
+      setError(errorMessage);
       console.error("Submission error:", err);
     } finally {
       setSubmitting(false);
