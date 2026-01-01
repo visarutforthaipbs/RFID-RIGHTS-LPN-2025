@@ -45,7 +45,7 @@ export const messages = {
     tryOtherOrSearch:
       "ลองเลือกสถานการณ์อื่น หรือใช้การค้นหาเพื่อหาข้อมูลที่ต้องการ",
     chooseNewSituation: "เลือกสถานการณ์ใหม่",
-    viewAllTopics: "หัวข้อทั้งหมด",
+    viewAllTopics: "คู่มือดูแลตัวเอง",
     cantFind: "ไม่เจอที่ต้องการ?",
     getHelp: "ขอความช่วยเหลือ",
     emergencyHotline: "สายด่วนสำคัญ / ฉุกเฉิน",
@@ -70,7 +70,7 @@ export const messages = {
     hours24: "24 ชั่วโมง",
     weekdayHours: "จันทร์-ศุกร์ 8:30-16:30",
     // Topics page
-    allTopics: "หัวข้อทั้งหมด",
+    allTopics: "คู่มือดูแลตัวเอง",
     topicsPageDescription:
       "ค้นหาและเรียนรู้เกี่ยวกับสิทธิของคุณในฐานะแรงงานต่างด้าว",
     searchTopicsPlaceholder: "ค้นหาหัวข้อ...",
@@ -89,9 +89,9 @@ export const messages = {
     topicNotFound: "ไม่พบหัวข้อที่คุณต้องการ",
     loadError: "เกิดข้อผิดพลาดในการโหลดข้อมูล",
     // Categories
-    categoryDocuments: "เอกสารและการเดินทาง",
-    categoryWork: "ทำงานและสวัสดิการ",
-    categoryFamily: "ครอบครัวและชีวิตในชุมชน",
+    categoryDocuments: "เรื่องวีซ่าและพาสปอร์ต",
+    categoryWork: "สิทธิทำงานและเงินเดือน",
+    categoryFamily: "การใช้ชีวิตและครอบครัว",
     // Settings page
     settingsPageTitle: "ตั้งค่า",
     settingsPageDescription: "ปรับแต่งการใช้งานแอปให้เหมาะกับคุณ",
