@@ -131,7 +131,7 @@ export default function HelpPage() {
           ? "មូលនិធិបណ្តាញការពារកម្មករ"
           : "มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน",
       organization: "Labor Protection Network",
-      phone: "084-121-609",
+      phone: "084-121-1609",
       website: "https://www.lpnfoundation.org/th",
       description:
         locale === "en"

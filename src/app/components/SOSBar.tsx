@@ -35,14 +35,14 @@ export function SOSBar() {
         <div className="flex gap-2 ml-4">
           {/* Emergency hotline */}
           <button
-            onClick={() => handleCallClick("084-121-609", "call")}
+            onClick={() => handleCallClick("084-121-1609", "call")}
             className="bg-white text-black px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100 transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center"
             aria-label={
               locale === "en"
-                ? "Call 084-121-609"
+                ? "Call 084-121-1609"
                 : locale === "mm"
-                ? "084-121-609 ကိုခေါ်ပါ"
-                : "โทร 084-121-609"
+                ? "084-121-1609 ကိုခေါ်ပါ"
+                : "โทร 084-121-1609"
             }
           >
             <svg
@@ -57,7 +57,7 @@ export function SOSBar() {
                 clipRule="evenodd"
               />
             </svg>
-            084-121-609
+            084-121-1609
           </button>
 
           {/* More help page */}
