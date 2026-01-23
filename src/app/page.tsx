@@ -7,6 +7,7 @@ import { HeroSection } from "./components/HeroSection";
 import { ScenarioGrid } from "./components/ScenarioGrid";
 import { ResultsSection } from "./components/ResultsSection";
 import { QuickHelp } from "./components/QuickHelp";
+import { FunderLogos } from "./components/FunderLogos";
 import { TopicRow } from "../../lib/types";
 import { scenarios } from "../../lib/scenarios";
 import { hashUid } from "../../lib/rfidhash";
@@ -161,6 +162,7 @@ export default function Home() {
         </div>
       </main>
 
+      <FunderLogos />
       <SOSBar />
     </div>
   );

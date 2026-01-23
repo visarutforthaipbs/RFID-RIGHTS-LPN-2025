@@ -1,0 +1,696 @@
+================================================================================
+รู้สิทธิ ติดกระเป๋า - MYANMAR TRANSLATION FILE
+================================================================================
+สำหรับผู้แปล: กรุณาแปลข้อความภาษาไทยเป็นภาษาพม่า
+For Translator: Please translate Thai text to Myanmar (Burmese)
+================================================================================
+
+================================================================================
+PART 1: UI LABELS (ป้ายข้อความในแอป)
+================================================================================
+
+## APP TITLE & NAVIGATION (ชื่อแอปและเมนู)
+-------------------------------------------
+Thai: รู้สิทธิ ติดกระเป๋า
+English: Know Your Rights
+Myanmar: [TRANSLATE HERE]
+
+Thai: ค้นหา
+English: Search
+Myanmar: [TRANSLATE HERE]
+
+Thai: หมวดหมู่
+English: Categories
+Myanmar: [TRANSLATE HERE]
+
+Thai: หัวข้อ
+English: Topics
+Myanmar: [TRANSLATE HERE]
+
+Thai: ขอความช่วยเหลือ
+English: Get Help
+Myanmar: [TRANSLATE HERE]
+
+Thai: ตั้งค่า
+English: Settings
+Myanmar: [TRANSLATE HERE]
+
+Thai: เกี่ยวกับ
+English: About
+Myanmar: [TRANSLATE HERE]
+
+Thai: ความเป็นส่วนตัว
+English: Privacy
+Myanmar: [TRANSLATE HERE]
+
+Thai: หน้าหลัก
+English: Home
+Myanmar: [TRANSLATE HERE]
+
+
+## TOPIC DETAIL SECTIONS (หัวข้อในหน้ารายละเอียด)
+-------------------------------------------
+Thai: รู้สิทธิตัวเอง
+English: Know Your Rights
+Myanmar: [TRANSLATE HERE]
+
+Thai: วิธีสังเกต
+English: How to Identify
+Myanmar: [TRANSLATE HERE]
+
+Thai: วิธีช่วยตัวเอง
+English: How to Help Yourself
+Myanmar: [TRANSLATE HERE]
+
+Thai: กฎหมายที่ให้สิทธิ
+English: Law Granting Rights
+Myanmar: [TRANSLATE HERE]
+
+Thai: ช่องทางติดต่อช่วยเหลือ
+English: Contact Channels for Help
+Myanmar: [TRANSLATE HERE]
+
+Thai: กฎหมายที่เกี่ยวข้อง
+English: Related Laws
+Myanmar: [TRANSLATE HERE]
+
+Thai: หมายเหตุ
+English: Remarks
+Myanmar: [TRANSLATE HERE]
+
+Thai: อ่านกฎหมายฉบับเต็ม
+English: Read Full Law
+Myanmar: [TRANSLATE HERE]
+
+
+## HOME PAGE (หน้าแรก)
+-------------------------------------------
+Thai: เลือกสถานการณ์ของคุณ
+English: Choose Your Situation
+Myanmar: [TRANSLATE HERE]
+
+Thai: เลือกสถานการณ์ที่ตรงกับปัญหาหรือความต้องการของคุณ เพื่อให้เราช่วยคุณหาคำตอบและวิธีแก้ไขที่เหมาะสม
+English: Select the situation that matches your problem or needs to help you find the right answers and solutions
+Myanmar: [TRANSLATE HERE]
+
+Thai: หรือค้นหาโดยตรง...
+English: Or search directly...
+Myanmar: [TRANSLATE HERE]
+
+Thai: หรือเลือกสถานการณ์ด้านล่าง
+English: Or choose a situation below
+Myanmar: [TRANSLATE HERE]
+
+Thai: สถานการณ์ที่พบบ่อย
+English: Common Situations
+Myanmar: [TRANSLATE HERE]
+
+Thai: เลือกสถานการณ์ที่ใกล้เคียงกับของคุณมากที่สุด
+English: Choose the situation closest to yours
+Myanmar: [TRANSLATE HERE]
+
+Thai: กลับไปเลือกสถานการณ์
+English: Back to choose situation
+Myanmar: [TRANSLATE HERE]
+
+Thai: ไม่พบผลลัพธ์
+English: No results found
+Myanmar: [TRANSLATE HERE]
+
+Thai: ลองใช้คำค้นหาอื่น
+English: Try different keywords
+Myanmar: [TRANSLATE HERE]
+
+Thai: เคล็ดลับ: คลิกที่สถานการณ์เพื่อดูหัวข้อที่เกี่ยวข้อง
+English: Tip: Click on a situation to see related topics
+Myanmar: [TRANSLATE HERE]
+
+Thai: เรื่องนี้สำคัญและต้องดำเนินการเร่งด่วน
+English: This matter is important and requires urgent action
+Myanmar: [TRANSLATE HERE]
+
+Thai: หากเป็นเรื่องฉุกเฉินจริง กรุณาติดต่อสายด่วน 191 หรือ 1694
+English: If this is a real emergency, please contact emergency hotline 191 or 1694
+Myanmar: [TRANSLATE HERE]
+
+Thai: หัวข้อที่เกี่ยวข้อง
+English: Related Topics
+Myanmar: [TRANSLATE HERE]
+
+Thai: พบ
+English: Found
+Myanmar: [TRANSLATE HERE]
+
+Thai: หัวข้อ
+English: topics
+Myanmar: [TRANSLATE HERE]
+
+Thai: ผลการค้นหา
+English: Search Results
+Myanmar: [TRANSLATE HERE]
+
+Thai: รายการ
+English: items
+Myanmar: [TRANSLATE HERE]
+
+Thai: ยังไม่พบหัวข้อที่เกี่ยวข้อง
+English: No related topics found yet
+Myanmar: [TRANSLATE HERE]
+
+Thai: ลองเลือกสถานการณ์อื่น หรือใช้การค้นหาเพื่อหาข้อมูลที่ต้องการ
+English: Try selecting another situation or use search to find the information you need
+Myanmar: [TRANSLATE HERE]
+
+Thai: เลือกสถานการณ์ใหม่
+English: Choose New Situation
+Myanmar: [TRANSLATE HERE]
+
+Thai: คู่มือดูแลตัวเอง
+English: View All Topics
+Myanmar: [TRANSLATE HERE]
+
+Thai: ไม่เจอที่ต้องการ?
+English: Can't Find What You Need?
+Myanmar: [TRANSLATE HERE]
+
+Thai: สายด่วนสำคัญ / ฉุกเฉิน
+English: Emergency Hotline
+Myanmar: [TRANSLATE HERE]
+
+Thai: ค้นหาและเรียนรู้เกี่ยวกับสิทธิของคุณ
+English: Learn More
+Myanmar: [TRANSLATE HERE]
+
+Thai: อ่านต่อ
+English: Read More
+Myanmar: [TRANSLATE HERE]
+
+Thai: ปรับแต่งการใช้งานแอปให้เหมาะกับคุณ
+English: Language and Display
+Myanmar: [TRANSLATE HERE]
+
+Thai: กลับไปหน้าหลัก
+English: Back to Home
+Myanmar: [TRANSLATE HERE]
+
+Thai: ไม่พบหัวข้อที่คุณต้องการ
+English: Topic not found
+Myanmar: [TRANSLATE HERE]
+
+Thai: เกิดข้อผิดพลาดในการโหลดข้อมูล
+English: Error loading data
+Myanmar: [TRANSLATE HERE]
+
+
+## HELP PAGE (หน้าขอความช่วยเหลือ)
+-------------------------------------------
+Thai: ขอความช่วยเหลือ
+English: Get Help
+Myanmar: [TRANSLATE HERE]
+
+Thai: หากคุณต้องการความช่วยเหลือเร่งด่วน หรือต้องการคำปรึกษา ติดต่อได้ตามช่องทางด้านล่าง
+English: If you need urgent help or advice, you can contact us through the channels below
+Myanmar: [TRANSLATE HERE]
+
+Thai: เหตุฉุกเฉิน
+English: Emergency
+Myanmar: [TRANSLATE HERE]
+
+Thai: หากคุณอยู่ในสถานการณ์อันตราย ต้องการความช่วยเหลือทันที หรือเห็นใครกำลังถูกทำร้าย
+English: If you are in a dangerous situation, need immediate help, or see someone being harmed
+Myanmar: [TRANSLATE HERE]
+
+Thai: โทร 191 ตำรวจ
+English: Call 191 Police
+Myanmar: [TRANSLATE HERE]
+
+Thai: โทร 1669 การแพทย์ฉุกเฉิน
+English: Call 1669 Emergency Medical
+Myanmar: [TRANSLATE HERE]
+
+Thai: สายด่วนสำคัญ
+English: Important Hotlines
+Myanmar: [TRANSLATE HERE]
+
+Thai: องค์กรที่ให้ความช่วยเหลือ
+English: Helpful Organizations
+Myanmar: [TRANSLATE HERE]
+
+Thai: คำแนะนำเพิ่มเติม
+English: Additional Tips
+Myanmar: [TRANSLATE HERE]
+
+Thai: เว็บไซต์
+English: Website
+Myanmar: [TRANSLATE HERE]
+
+Thai: เปิดให้บริการ
+English: Available Hours
+Myanmar: [TRANSLATE HERE]
+
+Thai: 24 ชั่วโมง
+English: 24 Hours
+Myanmar: [TRANSLATE HERE]
+
+Thai: จันทร์-ศุกร์ 8:30-16:30
+English: Mon-Fri 8:30-16:30
+Myanmar: [TRANSLATE HERE]
+
+
+## TOPICS PAGE (หน้ารายการหัวข้อ)
+-------------------------------------------
+Thai: คู่มือดูแลตัวเอง
+English: All Topics
+Myanmar: [TRANSLATE HERE]
+
+Thai: ค้นหาและเรียนรู้เกี่ยวกับสิทธิของคุณในฐานะแรงงานต่างด้าว
+English: Search and learn about your rights as a migrant worker
+Myanmar: [TRANSLATE HERE]
+
+Thai: ค้นหาหัวข้อ...
+English: Search topics...
+Myanmar: [TRANSLATE HERE]
+
+Thai: ทั้งหมด
+English: All
+Myanmar: [TRANSLATE HERE]
+
+Thai: ไม่พบหัวข้อที่คุณค้นหา
+English: No topics found
+Myanmar: [TRANSLATE HERE]
+
+Thai: ลองเปลี่ยนคำค้นหาหรือเลือกหมวดหมู่อื่น
+English: Try a different search or select another category
+Myanmar: [TRANSLATE HERE]
+
+Thai: แสดงหัวข้อทั้งหมด
+English: Show All Topics
+Myanmar: [TRANSLATE HERE]
+
+
+## CATEGORIES (หมวดหมู่)
+-------------------------------------------
+Thai: เอกสารและการเดินทาง
+English: Documents and Travel
+Myanmar: [TRANSLATE HERE]
+
+Thai: เรื่องวีซ่าและพาสปอร์ต
+English: Visa and Passport matters
+Myanmar: [TRANSLATE HERE]
+
+Thai: ทำงานและสวัสดิการ
+English: Work and Welfare
+Myanmar: [TRANSLATE HERE]
+
+Thai: สิทธิทำงานและเงินเดือน
+English: Work rights and salary
+Myanmar: [TRANSLATE HERE]
+
+Thai: ครอบครัวและชีวิตในชุมชน
+English: Family and Community Life
+Myanmar: [TRANSLATE HERE]
+
+Thai: การใช้ชีวิตและครอบครัว
+English: Living and family
+Myanmar: [TRANSLATE HERE]
+
+
+## SETTINGS PAGE (หน้าตั้งค่า)
+-------------------------------------------
+Thai: ตั้งค่า
+English: Settings
+Myanmar: [TRANSLATE HERE]
+
+Thai: ปรับแต่งการใช้งานแอปให้เหมาะกับคุณ
+English: Customize the app to suit your needs
+Myanmar: [TRANSLATE HERE]
+
+Thai: ภาษา
+English: Language
+Myanmar: [TRANSLATE HERE]
+
+Thai: เลือกภาษา
+English: Select Language
+Myanmar: [TRANSLATE HERE]
+
+Thai: เปลี่ยนภาษาการแสดงผล
+English: Change Display Language
+Myanmar: [TRANSLATE HERE]
+
+Thai: การแสดงผล
+English: Display
+Myanmar: [TRANSLATE HERE]
+
+Thai: ขนาดตัวอักษร
+English: Font Size
+Myanmar: [TRANSLATE HERE]
+
+Thai: เล็ก
+English: Small
+Myanmar: [TRANSLATE HERE]
+
+Thai: กลาง
+English: Medium
+Myanmar: [TRANSLATE HERE]
+
+Thai: ใหญ่
+English: Large
+Myanmar: [TRANSLATE HERE]
+
+Thai: โหมดมืด
+English: Dark Mode
+Myanmar: [TRANSLATE HERE]
+
+Thai: ใช้งานในสภาพแสงน้อย (ฟีเจอร์ใหม่เร็วๆ นี้)
+English: Use in low light conditions (Coming soon)
+Myanmar: [TRANSLATE HERE]
+
+Thai: การแจ้งเตือน
+English: Notifications
+Myanmar: [TRANSLATE HERE]
+
+Thai: รับการแจ้งเตือนข่าวสารใหม่
+English: Receive news and updates
+Myanmar: [TRANSLATE HERE]
+
+Thai: ข้อมูลและที่จัดเก็บ
+English: Data & Storage
+Myanmar: [TRANSLATE HERE]
+
+Thai: การใช้ข้อมูล
+English: Data Usage
+Myanmar: [TRANSLATE HERE]
+
+Thai: ข้อมูลที่ใช้ไปทั้งหมด
+English: Total data used
+Myanmar: [TRANSLATE HERE]
+
+Thai: ข้อมูลแคช
+English: Cache Data
+Myanmar: [TRANSLATE HERE]
+
+Thai: ข้อมูลที่จัดเก็บในเครื่อง
+English: Data stored on device
+Myanmar: [TRANSLATE HERE]
+
+Thai: ลบแคช
+English: Clear Cache
+Myanmar: [TRANSLATE HERE]
+
+Thai: เกี่ยวกับ
+English: About
+Myanmar: [TRANSLATE HERE]
+
+Thai: เวอร์ชัน 1.0.0
+English: Version 1.0.0
+Myanmar: [TRANSLATE HERE]
+
+Thai: คู่มือสิทธิแรงงานต่างด้าว
+English: Migrant Worker Rights Guide
+Myanmar: [TRANSLATE HERE]
+
+Thai: สำหรับใช้งานออฟไลน์โดยไม่ต้องเชื่อมต่ออินเทอร์เน็ต
+English: For offline use without internet connection
+Myanmar: [TRANSLATE HERE]
+
+Thai: ออกแบบและพัฒนาโดย
+English: Designed and Developed by
+Myanmar: [TRANSLATE HERE]
+
+Thai: มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน (LPN) และ วิศรุต แสนคำ
+English: Labour Protection Network Foundation (LPN) and Visarut Sankham
+Myanmar: [TRANSLATE HERE]
+
+Thai: สนับสนุนโดย
+English: Supported by
+Myanmar: [TRANSLATE HERE]
+
+Thai: รีเซ็ตการตั้งค่าทั้งหมด
+English: Reset All Settings
+Myanmar: [TRANSLATE HERE]
+
+Thai: คุณต้องการรีเซ็ตการตั้งค่าทั้งหมดหรือไม่?
+English: Do you want to reset all settings?
+Myanmar: [TRANSLATE HERE]
+
+Thai: การตั้งค่าถูกรีเซ็ตแล้ว
+English: Settings have been reset
+Myanmar: [TRANSLATE HERE]
+
+Thai: ข้อมูลแคชถูกลบแล้ว
+English: Cache data has been cleared
+Myanmar: [TRANSLATE HERE]
+
+
+## VOLUNTEER PAGE (หน้าสมัครอาสา)
+-------------------------------------------
+Thai: สมัครอาสา
+English: Volunteer
+Myanmar: [TRANSLATE HERE]
+
+
+================================================================================
+PART 2: SCENARIO CARDS (สถานการณ์บนหน้าแรก)
+================================================================================
+
+## Scenario 1: New Worker
+-------------------------------------------
+Thai: เพิ่งมาทำงานใหม่
+English: New to Work
+Myanmar: [TRANSLATE HERE]
+
+Thai: ต้องการทราบสิทธิพื้นฐาน เอกสาร และการปรับตัว
+English: Want to know basic rights, documents, and adaptation
+Myanmar: [TRANSLATE HERE]
+
+
+## Scenario 2: Workplace Problems
+-------------------------------------------
+Thai: มีปัญหาที่ทำงาน
+English: Workplace Problems
+Myanmar: [TRANSLATE HERE]
+
+Thai: ค่าแรงไม่ได้รับ ทำงานหนัก หรือถูกปฏิบัติไม่ดี
+English: Unpaid wages, hard work, or mistreatment
+Myanmar: [TRANSLATE HERE]
+
+
+## Scenario 3: Documents Expiring
+-------------------------------------------
+Thai: เอกสารใกล้หมดอายุ
+English: Documents Expiring
+Myanmar: [TRANSLATE HERE]
+
+Thai: ต้องต่อใบอนุญาต วีซ่า หรือเอกสารสำคัญ
+English: Need to renew permit, visa, or important documents
+Myanmar: [TRANSLATE HERE]
+
+
+## Scenario 4: Family Matters
+-------------------------------------------
+Thai: เรื่องครอบครัว
+English: Family Matters
+Myanmar: [TRANSLATE HERE]
+
+Thai: การแต่งงาน การมีบุตร การศึกษา หรือปัญหาครอบครัว
+English: Marriage, children, education, or family issues
+Myanmar: [TRANSLATE HERE]
+
+
+## Scenario 5: Health Issues
+-------------------------------------------
+Thai: ปัญหาสุขภาพ
+English: Health Issues
+Myanmar: [TRANSLATE HERE]
+
+Thai: ต้องการรักษา ประกันสุขภาพ หรือข้อมูลโรงพยาบาล
+English: Need treatment, health insurance, or hospital information
+Myanmar: [TRANSLATE HERE]
+
+
+## Scenario 6: Community Life
+-------------------------------------------
+Thai: ชีวิตในชุมชน
+English: Community Life
+Myanmar: [TRANSLATE HERE]
+
+Thai: ปรับตัวเข้าสังคม ภาษา วัฒนธรรม และการอยู่ร่วมกัน
+English: Social adaptation, language, culture, and living together
+Myanmar: [TRANSLATE HERE]
+
+
+## Scenario 7: Emergency
+-------------------------------------------
+Thai: ฉุกเฉิน! ต้องการความช่วยเหลือ
+English: Emergency! Need Help
+Myanmar: [TRANSLATE HERE]
+
+Thai: สถานการณ์ฉุกเฉิน ถูกคุกคาม หรือต้องการช่วยเหลือทันที
+English: Emergency situation, threatened, or need immediate help
+Myanmar: [TRANSLATE HERE]
+
+
+## Scenario 8: Know Your Rights
+-------------------------------------------
+Thai: ต้องการรู้สิทธิ
+English: Know Your Rights
+Myanmar: [TRANSLATE HERE]
+
+Thai: ศึกษาสิทธิตามกฎหมาย และวิธีการคุ้มครองตนเอง
+English: Learn about legal rights and self-protection methods
+Myanmar: [TRANSLATE HERE]
+
+
+================================================================================
+PART 3: CONTENT TOPICS (เนื้อหาหัวข้อต่างๆ)
+================================================================================
+หมายเหตุ: เนื้อหาส่วนนี้อยู่ในไฟล์ data/source.csv
+Note: This content is in the file data/source.csv
+ผู้แปลสามารถแปลลงในไฟล์ CSV โดยตรงหรือแปลในไฟล์นี้แล้วนำไปใส่ CSV ภายหลัง
+Translator can translate directly in CSV file or translate here and put in CSV later
+
+-------------------------------------------
+## TOPIC 1: เริ่มต้นทำงานให้ถูกกฎหมาย (Starting Work Legally)
+-------------------------------------------
+หมวดหมู่/Category: เอกสารและการเดินทาง / Documents and Travel
+
+หัวข้อ/Title:
+Thai: เริ่มต้นทำงานให้ถูกกฎหมาย
+English: Starting Work Legally
+Myanmar: [TRANSLATE HERE]
+
+กฎหมายที่ให้สิทธิ/Law:
+Thai: กฎหมายที่ควบคุมดูแลการเดินทางเข้า-ออก และการพำนักอยู่ในประเทศไทยของคนต่างด้าวคือ พระราชบัญญัติคนเข้าเมือง พ.ศ. ๒๕๒๒...
+English: The law controlling entry-exit and residence of foreigners in Thailand is the Immigration Act B.E. 2522...
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 2: วิธีต่ออายุบัตรและพาสปอร์ต (How to Renew Cards and Passports)
+-------------------------------------------
+หมวดหมู่/Category: เอกสารและการเดินทาง / Documents and Travel
+
+หัวข้อ/Title:
+Thai: วิธีต่ออายุบัตรและพาสปอร์ต
+English: How to Renew Cards and Passports
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 3: ระวังโดนหลอก/นายหน้าเถื่อน (Beware of Scams/Illegal Brokers)
+-------------------------------------------
+หมวดหมู่/Category: เอกสารและการเดินทาง / Documents and Travel
+
+หัวข้อ/Title:
+Thai: ระวังโดนหลอก/นายหน้าเถื่อน
+English: Beware of Scams/Illegal Brokers
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 4: เช็กเงินเดือนและค่าโอที (Check Salary and Overtime)
+-------------------------------------------
+หมวดหมู่/Category: ทำงานและสวัสดิการ / Work and Welfare
+
+หัวข้อ/Title:
+Thai: เช็กเงินเดือนและค่าโอที
+English: Check Salary and Overtime Pay
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 5: สิทธิเมื่อเจ็บป่วยหรือว่างงาน (Rights When Sick or Unemployed)
+-------------------------------------------
+หมวดหมู่/Category: ทำงานและสวัสดิการ / Work and Welfare
+
+หัวข้อ/Title:
+Thai: สิทธิเมื่อเจ็บป่วยหรือว่างงาน
+English: Rights When Sick or Unemployed
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 6: ทำงานยังไงให้ปลอดภัย (How to Work Safely)
+-------------------------------------------
+หมวดหมู่/Category: ทำงานและสวัสดิการ / Work and Welfare
+
+หัวข้อ/Title:
+Thai: ทำงานยังไงให้ปลอดภัย
+English: How to Work Safely
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 7: เมื่อถูกบังคับหรือโดนเอาเปรียบ (When Forced or Exploited)
+-------------------------------------------
+หมวดหมู่/Category: ทำงานและสวัสดิการ / Work and Welfare
+
+หัวข้อ/Title:
+Thai: เมื่อถูกบังคับหรือโดนเอาเปรียบ
+English: When Forced or Exploited
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 8: การเรียนและโรงเรียนของลูก (Children's Education and Schools)
+-------------------------------------------
+หมวดหมู่/Category: ครอบครัวและชีวิตในชุมชน / Family and Community Life
+
+หัวข้อ/Title:
+Thai: การเรียนและโรงเรียนของลูก
+English: Children's Education and Schools
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 9: สิทธิและการดูแลเด็ก (Children's Rights and Care)
+-------------------------------------------
+หมวดหมู่/Category: ครอบครัวและชีวิตในชุมชน / Family and Community Life
+
+หัวข้อ/Title:
+Thai: สิทธิและการดูแลเด็ก
+English: Children's Rights and Care
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 10: ปัญหาในบ้าน/ความรุนแรง (Domestic Problems/Violence)
+-------------------------------------------
+หมวดหมู่/Category: ครอบครัวและชีวิตในชุมชน / Family and Community Life
+
+หัวข้อ/Title:
+Thai: ปัญหาในบ้าน/ความรุนแรง
+English: Domestic Problems/Violence
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 11: แจ้งเกิดและเอกสารสำคัญ (Birth Registration and Important Documents)
+-------------------------------------------
+หมวดหมู่/Category: ครอบครัวและชีวิตในชุมชน / Family and Community Life
+
+หัวข้อ/Title:
+Thai: แจ้งเกิดและเอกสารสำคัญ
+English: Birth Registration and Important Documents
+Myanmar: [TRANSLATE HERE]
+
+-------------------------------------------
+## TOPIC 12: ป่วยแล้วไปหาหมอที่ไหน? (Where to See a Doctor When Sick?)
+-------------------------------------------
+หมวดหมู่/Category: ครอบครัวและชีวิตในชุมชน / Family and Community Life
+
+หัวข้อ/Title:
+Thai: ป่วยแล้วไปหาหมอที่ไหน?
+English: Where to See a Doctor When Sick?
+Myanmar: [TRANSLATE HERE]
+
+
+================================================================================
+NOTES FOR TRANSLATOR (หมายเหตุสำหรับผู้แปล)
+================================================================================
+
+1. กรุณาแปลให้เหมาะสมกับบริบทของแรงงานข้ามชาติในประเทศไทย
+   Please translate appropriately for the context of migrant workers in Thailand
+
+2. เนื้อหาเต็มของแต่ละหัวข้ออยู่ในไฟล์ data/source.csv 
+   Full content for each topic is in the file data/source.csv
+
+3. เมื่อแปลเสร็จแล้ว ส่งกลับมาให้ทีมพัฒนาเพื่อนำไปใส่ในระบบ
+   When translation is complete, send back to the development team to add to the system
+
+4. หากมีข้อสงสัยหรือต้องการบริบทเพิ่มเติม กรุณาติดต่อทีมพัฒนา
+   If you have questions or need more context, please contact the development team
+
+================================================================================
+END OF TRANSLATION FILE
+================================================================================
