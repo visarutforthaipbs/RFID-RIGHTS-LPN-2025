@@ -88,7 +88,7 @@ export function SearchBox({ data, onResults, placeholder }: SearchBoxProps) {
           value={query}
           onChange={handleInputChange}
           placeholder={searchPlaceholder}
-          className="w-full pl-12 pr-12 py-3 text-base border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white"
+          className="w-full pl-12 pr-12 py-3 text-base border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent bg-white"
           aria-label={searchPlaceholder}
         />
 

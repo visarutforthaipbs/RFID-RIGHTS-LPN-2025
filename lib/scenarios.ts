@@ -5,11 +5,12 @@ export const scenarios: Scenario[] = [
     id: "new-worker",
     title: "เพิ่งมาทำงานใหม่",
     titleEn: "New to Work",
-    titleMm: "အလုပ်အသစ်",
+    titleMm: "အလုပ်သစ်စဖို့",
     description: "ต้องการทราบสิทธิพื้นฐาน เอกสาร และการปรับตัว",
     descriptionEn: "Want to know basic rights, documents, and adaptation",
     descriptionMm:
-      "အခြေခံအခွင့်အရေးများ၊ စာရွက်စာတမ်းများနှင့် လိုက်လျောညီထွေဖြစ်ရန်",
+      
+      "အခြေခံရပိုင်ခွင့်တွေ၊ အထောက်အထားတွေနဲ့ လိုက်လျောညီထွေနေထိုင်မှု",
     icon: "/images/newjob-new.svg",
     iconType: "image",
     color: {
@@ -34,11 +35,12 @@ export const scenarios: Scenario[] = [
     id: "workplace-problem",
     title: "มีปัญหาที่ทำงาน",
     titleEn: "Workplace Problems",
-    titleMm: "အလုပ်ခွင်ပြဿနာများ",
+    titleMm: "လုပ်ငန်းခွင်ပြဿနာများ",
     description: "ค่าแรงไม่ได้รับ ทำงานหนัก หรือถูกปฏิบัติไม่ดี",
     descriptionEn: "Unpaid wages, hard work, or mistreatment",
     descriptionMm:
-      "လုပ်ခမရရှိခြင်း၊ လုပ်ငန်းခက်ခဲခြင်း သို့မဟုတ် အလွဲသုံးစားခံရခြင်း",
+      
+      "လစာမပေးတာ၊ အလုပ်ကြမ်းလုပ်ရတာ ဒါမှမဟုတ် မတရားဆက်ဆံတာ",
     icon: "/images/problem-job-new.svg",
     iconType: "image",
     color: {
@@ -58,11 +60,12 @@ export const scenarios: Scenario[] = [
     id: "document-expiring",
     title: "เอกสารใกล้หมดอายุ",
     titleEn: "Documents Expiring",
-    titleMm: "စာရွက်စာတမ်းများ သက်တမ်းကုန်ဆုံးမည်",
+    titleMm: "အထောက်အထားသက်တမ်းကုန်ခြင်း",
     description: "ต้องต่อใบอนุญาต วีซ่า หรือเอกสารสำคัญ",
     descriptionEn: "Need to renew permit, visa, or important documents",
     descriptionMm:
-      "ခွင့်ပြုမိန့်၊ ဗီဇာ သို့မဟုတ် အရေးကြီးစာရွက်စာတမ်းများ သက်တမ်းတိုးရန်",
+      
+      "ခွင့်ပြုချက်ပါမစ် ၊ ဗီဇာ သို့မဟုတ် အရေးကြီးစာရွက်စာတမ်းတွေ သက်တမ်းတိုးဖို့လိုတယ်",
     icon: "/images/expire-workpermit-new.svg",
     iconType: "image",
     color: {
@@ -87,11 +90,12 @@ export const scenarios: Scenario[] = [
     id: "family-issues",
     title: "เรื่องครอบครัว",
     titleEn: "Family Matters",
-    titleMm: "မိသားစုကိစ္စရပ်များ",
+    titleMm: "မိသားစုကိစ္စ",
     description: "การแต่งงาน การมีบุตร การศึกษา หรือปัญหาครอบครัว",
     descriptionEn: "Marriage, children, education, or family issues",
     descriptionMm:
-      "လက်ထပ်ခြင်း၊ သားသမီးများ၊ ပညာရေး သို့မဟုတ် မိသားစုပြဿနာများ",
+      
+      "အိမ်ထောင်ပြုခြင်း ၊ ကလေးယူခြင်း ၊ ပညာရေး သို့မဟုတ် မိသားစုပြဿနာများ",
     icon: "/images/family-new.svg",
     iconType: "image",
     color: {
@@ -114,7 +118,8 @@ export const scenarios: Scenario[] = [
     titleMm: "ကျန်းမာရေးပြဿနာများ",
     description: "ต้องการรักษา ประกันสุขภาพ หรือข้อมูลโรงพยาบาล",
     descriptionEn: "Need treatment, health insurance, or hospital information",
-    descriptionMm: "ကုသမှု၊ ကျန်းမာရေးအာမခံ သို့မဟုတ် ဆေးရုံအချက်အလက်များ",
+    descriptionMm: 
+      "ကုသမှု ၊ ကျန်းမာရေးအာမခံ သို့မဟုတ် ဆေးရုံအချက်အလက်များ လိုအပ်တယ်",
     icon: "/images/hospital-new.svg",
     iconType: "image",
     color: {
@@ -134,11 +139,12 @@ export const scenarios: Scenario[] = [
     id: "community-life",
     title: "ชีวิตในชุมชน",
     titleEn: "Community Life",
-    titleMm: "အသိုင်းအဝိုင်းဘဝ",
+    titleMm: "လူမှုဘဝ",
     description: "ปรับตัวเข้าสังคม ภาษา วัฒนธรรม และการอยู่ร่วมกัน",
     descriptionEn: "Social adaptation, language, culture, and living together",
     descriptionMm:
-      "လူမှုရေးလိုက်လျောညီထွေဖြစ်ခြင်း၊ ဘာသာစကား၊ ယဉ်ကျေးမှုနှင့် အတူနေထိုင်ခြင်း",
+      
+      "လူမှုဘဝလိုက်လျောညီထွေမှု၊ ဘာသာစကား၊ ရိုးရာဓလေ့နဲ့ အတူတကွနေထိုင်မှု",
     icon: "/images/community-new.svg",
     iconType: "image",
     color: {
@@ -163,11 +169,12 @@ export const scenarios: Scenario[] = [
     id: "emergency-help",
     title: "ฉุกเฉิน! ต้องการความช่วยเหลือ",
     titleEn: "Emergency! Need Help",
-    titleMm: "အရေးပေါ်! အကူအညီလိုအပ်သည်",
+    titleMm: "အရေးပေါ်အကူအညီ",
     description: "สถานการณ์ฉุกเฉิน ถูกคุกคาม หรือต้องการช่วยเหลือทันที",
     descriptionEn: "Emergency situation, threatened, or need immediate help",
     descriptionMm:
-      "အရေးပေါ်အခြေအနေ၊ ခြိမ်းခြောက်ခံရခြင်း သို့မဟုတ် ချက်ချင်းအကူအညီလိုအပ်ခြင်း",
+      
+      "အရေးပေါ်အခြေအနေ ၊ ခြိမ်းခြောက်ခံရခြင်း သို့မဟုတ် အ‌‌ရေးပေါ်အကူအညီလိုအပ်ရင်",
     icon: "/images/help-new.svg",
     iconType: "image",
     color: {
@@ -187,11 +194,12 @@ export const scenarios: Scenario[] = [
     id: "legal-rights",
     title: "ต้องการรู้สิทธิ",
     titleEn: "Know Your Rights",
-    titleMm: "သင့်အခွင့်အရေးများကို သိပါ",
+    titleMm: "ကိုယ့်အခွင့်အ‌ရေးကိုယ်သိပါ",
     description: "ศึกษาสิทธิตามกฎหมาย และวิธีการคุ้มครองตนเอง",
     descriptionEn: "Learn about legal rights and self-protection methods",
     descriptionMm:
-      "ဥပဒေအရအခွင့်အရေးများနှင့် မိမိကိုယ်ကို ကာကွယ်သောနည်းလမ်းများ",
+      
+      "ဥပဒေဆိုင်ရာအခွင့်အ‌ရေးတွေနဲ့ ကိုယ့်ကိုယ်ကိုကာကွယ်နိုင်မယ့်နည်းတွေကို လေ့လာပါ",
     icon: "/images/know-your-right-new.svg",
     iconType: "image",
     color: {

@@ -29,6 +29,12 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
+  // Apply Myanmar font class to body when locale is mm
+  useEffect(() => {
+    document.body.classList.toggle("font-myanmar", locale === "mm");
+    document.documentElement.lang = locale === "mm" ? "my" : locale === "en" ? "en" : locale === "km" ? "km" : "th";
+  }, [locale]);
+
   // Save locale to localStorage when it changes
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);

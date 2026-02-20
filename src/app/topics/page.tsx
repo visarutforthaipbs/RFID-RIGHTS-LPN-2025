@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Header } from "../components/Header";
+import { FunderLogos } from "../components/FunderLogos";
+import { SOSBar } from "../components/SOSBar";
 import { SearchBox } from "../components/SearchBox";
 import { TopicCard, TopicCardSkeleton } from "../components/TopicCard";
 import { FilterChips } from "../components/FilterChips";
@@ -86,12 +88,12 @@ export default function TopicsPage() {
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <header className="mb-8">
-            <nav className="mb-4">
-              <Link href="/" className="text-black hover:text-yellow-600">
+            <nav className="mb-6">
+              <Link href="/" className="text-gray-900 hover:text-yellow-600">
                 {t.home}
               </Link>
               <span className="mx-2 text-gray-400">/</span>
-              <span className="text-gray-700">{t.allTopics}</span>
+              <span className="text-gray-600">{t.allTopics}</span>
             </nav>
 
             <h1 className="text-3xl font-bold text-gray-900 mb-4">
@@ -181,6 +183,8 @@ export default function TopicsPage() {
           )}
         </div>
       </main>
+      <FunderLogos />
+      <SOSBar />
     </div>
   );
 }

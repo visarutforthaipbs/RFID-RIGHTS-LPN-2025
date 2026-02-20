@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Header } from "../components/Header";
+import { FunderLogos } from "../components/FunderLogos";
+import { SOSBar } from "../components/SOSBar";
 import { LanguageSwitcher } from "../components/LanguageSwitcher";
 import { useLanguage } from "../contexts/LanguageContext";
 import { messages } from "../../../lib/i18n";
@@ -176,14 +178,6 @@ export default function SettingsPage() {
                 </div>
 
                 <div>
-                  <p className="text-gray-700 font-medium">
-                    {t.appDescription}
-                  </p>
-                  <p className="text-gray-500 text-sm">
-                    {t.appDescriptionDetail}
-                  </p>
-                </div>
-                <div>
                   <p className="text-gray-700 font-medium">{t.designedBy}</p>
                   <p className="text-gray-500 text-sm">{t.designedByDetail}</p>
                 </div>
@@ -236,6 +230,8 @@ export default function SettingsPage() {
           </div>
         </div>
       </main>
+      <FunderLogos />
+      <SOSBar />
     </div>
   );
 }

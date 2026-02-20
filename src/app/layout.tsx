@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_Thai } from "next/font/google";
+import { Noto_Sans_Thai, Noto_Sans_Myanmar } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./contexts/LanguageContext";
 
@@ -7,6 +7,13 @@ const notoSansThai = Noto_Sans_Thai({
   subsets: ["thai", "latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-noto-sans-thai",
+  display: "swap",
+});
+
+const notoSansMyanmar = Noto_Sans_Myanmar({
+  subsets: ["myanmar"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-noto-sans-myanmar",
   display: "swap",
 });
 
@@ -66,7 +73,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th" className={notoSansThai.variable}>
+    <html lang="th" className={`${notoSansThai.variable} ${notoSansMyanmar.variable}`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -83,7 +90,7 @@ export default function RootLayout({
         className="min-h-screen bg-gray-50 text-black antialiased"
         style={{
           fontFamily:
-            "var(--font-noto-sans-thai), system-ui, -apple-system, sans-serif",
+            "var(--font-noto-sans-thai), var(--font-noto-sans-myanmar), system-ui, -apple-system, sans-serif",
         }}
       >
         <LanguageProvider>

@@ -5,6 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { TopicRow } from "../../../../lib/types";
 import { Header } from "../../components/Header";
+import { FunderLogos } from "../../components/FunderLogos";
+import { SOSBar } from "../../components/SOSBar";
 import { FormattedContent } from "../../components/FormattedContent";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { messages } from "../../../../lib/i18n";
@@ -117,13 +119,13 @@ export default function TopicPage({ params }: TopicPageProps) {
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-2xl font-bold text-gray-900 mb-4">
-              {error || "ไม่พบหัวข้อที่คุณต้องการ"}
+              {error || t.topicNotFound}
             </h1>
             <Link
               href="/"
-              className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+              className="inline-flex items-center px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-300 transition-colors"
             >
-              กลับสู่หน้าหลัก
+              {t.returnHome}
             </Link>
           </div>
         </main>
@@ -138,11 +140,11 @@ export default function TopicPage({ params }: TopicPageProps) {
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
           <nav className="mb-6">
-            <Link href="/" className="text-black hover:text-yellow-600">
+            <Link href="/" className="text-gray-900 hover:text-yellow-600">
               {t.home}
             </Link>
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-700">
+            <span className="text-gray-600">
               {getContent(topic.topic, topic.topicEn)}
             </span>
           </nav>
@@ -164,7 +166,7 @@ export default function TopicPage({ params }: TopicPageProps) {
                     )}
                   </span>
                 </div>
-                <h1 className="text-3xl font-bold text-black mb-4">
+                <h1 className="text-3xl font-bold text-gray-900 mb-4">
                   {getContent(topic.topic, topic.topicEn, topic.topicMm)}
                 </h1>
               </div>
@@ -199,7 +201,7 @@ export default function TopicPage({ params }: TopicPageProps) {
             {/* Law Section */}
             {(topic.law || topic.lawEn || topic.lawMm) && (
               <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-                <h2 className="text-xl font-semibold text-black mb-4 flex items-center">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                   <svg
                     className="h-6 w-6 text-yellow-600 mr-2"
                     fill="none"
@@ -287,7 +289,7 @@ export default function TopicPage({ params }: TopicPageProps) {
               topic.howToIdentifyEn ||
               topic.howToIdentifyMm) && (
               <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-                <h2 className="text-xl font-semibold text-black mb-4 flex items-center">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                   <svg
                     className="h-6 w-6 text-red-600 mr-2"
                     fill="none"
@@ -316,7 +318,7 @@ export default function TopicPage({ params }: TopicPageProps) {
             {/* Self Help Section */}
             {(topic.selfHelp || topic.selfHelpEn || topic.selfHelpMm) && (
               <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-                <h2 className="text-xl font-semibold text-black mb-4 flex items-center">
+                <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
                   <svg
                     className="h-6 w-6 text-yellow-600 mr-2"
                     fill="none"
@@ -392,6 +394,8 @@ export default function TopicPage({ params }: TopicPageProps) {
           </div>
         </div>
       </main>
+      <FunderLogos />
+      <SOSBar />
     </div>
   );
 }

@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { Header } from "../components/Header";
+import { FunderLogos } from "../components/FunderLogos";
+import { SOSBar } from "../components/SOSBar";
 import { useLanguage } from "../contexts/LanguageContext";
 import { messages } from "../../../lib/i18n";
 
@@ -152,11 +154,11 @@ export default function HelpPage() {
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
           <nav className="mb-6">
-            <Link href="/" className="text-black hover:text-yellow-600">
+            <Link href="/" className="text-gray-900 hover:text-yellow-600">
               {t.home}
             </Link>
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-700">{t.helpPageTitle}</span>
+            <span className="text-gray-600">{t.helpPageTitle}</span>
           </nav>
 
           {/* Page Header */}
@@ -334,7 +336,7 @@ export default function HelpPage() {
 
           {/* Additional Tips */}
           <section className="bg-yellow-50 rounded-2xl border border-yellow-200 p-6">
-            <h2 className="text-xl font-semibold text-black mb-4 flex items-center">
+            <h2 className="text-xl font-semibold text-yellow-900 mb-4 flex items-center">
               <svg
                 className="h-6 w-6 text-yellow-600 mr-2"
                 fill="none"
@@ -395,6 +397,8 @@ export default function HelpPage() {
           </section>
         </div>
       </main>
+      <FunderLogos />
+      <SOSBar />
     </div>
   );
 }

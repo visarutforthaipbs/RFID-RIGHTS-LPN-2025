@@ -40,8 +40,16 @@ const config: Config = {
       fontFamily: {
         sans: [
           "var(--font-noto-sans-thai)",
+          "var(--font-noto-sans-myanmar)",
           "system-ui",
           "-apple-system",
+          "sans-serif",
+        ],
+        myanmar: [
+          "var(--font-noto-sans-myanmar)",
+          "Myanmar Text",
+          "Padauk",
+          "system-ui",
           "sans-serif",
         ],
       },
