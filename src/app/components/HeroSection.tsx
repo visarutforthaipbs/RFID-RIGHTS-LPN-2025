@@ -16,7 +16,7 @@ export function HeroSection({ data, onResults }: HeroSectionProps) {
   const t = messages[locale];
 
   return (
-    <section className="relative w-full h-[480px] mb-12">
+    <section className="relative w-full h-[320px] sm:h-[400px] lg:h-[480px] mb-12">
       <Image
         src="/images/hero-new.svg"
         alt="RFID Rights Guide Cover"

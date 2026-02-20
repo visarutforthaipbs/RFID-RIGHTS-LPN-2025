@@ -306,7 +306,7 @@ export default function HelpPage() {
                         {resource.phone}
                       </a>
                       <a
-                        href={`https://${resource.website}`}
+                        href={resource.website.startsWith("http") ? resource.website : `https://${resource.website}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center px-3 py-1 bg-black text-yellow-400 rounded-lg text-sm font-medium hover:bg-gray-800 transition-colors justify-center"

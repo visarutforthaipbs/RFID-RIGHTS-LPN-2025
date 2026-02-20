@@ -136,8 +136,9 @@ export function FormattedContent({ content }: FormattedContentProps) {
   );
 }
 
-function ContentNode({ item }: { item: ContentItem }) {
-  const [isOpen, setIsOpen] = useState(false); // Start collapsed by default
+function ContentNode({ item, depth = 0 }: { item: ContentItem; depth?: number }) {
+  // Top-level items (depth 0) start expanded for better discoverability
+  const [isOpen, setIsOpen] = useState(depth === 0);
   const hasChildren = item.children.length > 0;
 
   // Plain text (no bullet)
@@ -189,7 +190,7 @@ function ContentNode({ item }: { item: ContentItem }) {
               className={`mt-2 ml-2 space-y-2 border-l-2 ${item.borderColor} pl-4`}
             >
               {item.children.map((child, index) => (
-                <ContentNode key={index} item={child} />
+                <ContentNode key={index} item={child} depth={depth + 1} />
               ))}
             </div>
           )}

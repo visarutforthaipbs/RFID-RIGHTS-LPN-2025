@@ -74,7 +74,7 @@ export function ScenarioCard({ scenario, onClick }: ScenarioCardProps) {
       className={`${scenario.color.bg} ${scenario.color.border} border-2 rounded-xl p-6 ${scenario.color.hoverBg} transition-all duration-300 cursor-pointer group hover:shadow-xl hover:-translate-y-2 relative transform-gpu w-full text-left`}
     >
       {urgencyBadge && (
-        <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg animate-pulse">
+        <div className="absolute -top-2 -right-2 bg-red-500 text-white text-xs px-3 py-1 rounded-full font-bold shadow-lg motion-safe:animate-pulse">
           {urgencyBadge}
         </div>
       )}

@@ -15,11 +15,33 @@ import { trackEvent } from "../../lib/analytics";
 import { useLanguage } from "./contexts/LanguageContext";
 import { messages } from "../../lib/i18n";
 
+function HomeSkeleton() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {Array.from({ length: 6 }).map((_, i) => (
+        <div
+          key={i}
+          className="bg-white border-2 border-gray-200 rounded-xl p-6 animate-pulse"
+        >
+          <div className="flex justify-center mb-4">
+            <div className="w-28 h-28 bg-gray-200 rounded-lg" />
+          </div>
+          <div className="h-6 bg-gray-200 rounded w-3/4 mx-auto mb-3" />
+          <div className="h-4 bg-gray-200 rounded w-full mb-2" />
+          <div className="h-4 bg-gray-200 rounded w-2/3 mx-auto" />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const [data, setData] = useState<TopicRow[]>([]);
   const [filteredData, setFilteredData] = useState<TopicRow[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedScenario, setSelectedScenario] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const { locale } = useLanguage();
   const t = messages[locale];
 
@@ -27,19 +49,25 @@ export default function Home() {
   useEffect(() => {
     const loadData = async () => {
       try {
+        setLoading(true);
+        setError(null);
         const response = await fetch("/api/topics", {
-          cache: "no-store", // Always get fresh data
+          cache: "no-store",
         });
+        if (!response.ok) throw new Error("Failed to load");
         const jsonData: TopicRow[] = await response.json();
         setData(jsonData);
         setFilteredData(jsonData);
-      } catch (error) {
-        console.error("Failed to load data:", error);
+      } catch (err) {
+        console.error("Failed to load data:", err);
+        setError(locale === "en" ? "Failed to load data. Please try again." : locale === "mm" ? "ဒေတာတင်၍မရပါ။ ထပ်ကြိုးစားပါ။" : "โหลดข้อมูลไม่สำเร็จ กรุณาลองใหม่");
+      } finally {
+        setLoading(false);
       }
     };
 
     loadData();
-  }, []);
+  }, [locale]);
 
   // Handle RFID UID from URL params
   useEffect(() => {
@@ -144,8 +172,24 @@ export default function Home() {
             </div>
           )}
 
+          {/* Loading skeleton */}
+          {loading && !selectedScenario && !searchQuery && <HomeSkeleton />}
+
+          {/* Error state */}
+          {error && !loading && (
+            <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6 text-center">
+              <p className="text-red-800 mb-3">{error}</p>
+              <button
+                onClick={() => window.location.reload()}
+                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium"
+              >
+                {locale === "en" ? "Try Again" : locale === "mm" ? "ထပ်ကြိုးစားပါ" : "ลองใหม่"}
+              </button>
+            </div>
+          )}
+
           {/* Scenarios Grid */}
-          {!selectedScenario && !searchQuery && (
+          {!loading && !error && !selectedScenario && !searchQuery && (
             <ScenarioGrid onScenarioSelect={handleScenarioSelect} />
           )}
 

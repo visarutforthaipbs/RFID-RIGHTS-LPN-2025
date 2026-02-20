@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Noto_Sans_Thai, Noto_Sans_Myanmar } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "./contexts/LanguageContext";
+import { GlobalUI } from "./components/GlobalUI";
 
 const notoSansThai = Noto_Sans_Thai({
   subsets: ["thai", "latin"],
@@ -75,15 +76,32 @@ export default function RootLayout({
   return (
     <html lang="th" className={`${notoSansThai.variable} ${notoSansMyanmar.variable}`}>
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="รู้สิทธิ" />
         <meta name="msapplication-TileColor" content="#ffc314" />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
-        <meta
-          httpEquiv="Referrer-Policy"
-          content="strict-origin-when-cross-origin"
+        <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@graph": [
+                {
+                  "@type": "WebSite",
+                  name: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
+                  url: "https://rfid-rights.vercel.app",
+                  description:
+                    "Complete offline guide for migrant workers' rights in Thailand. Know your rights, identify issues, get help.",
+                  inLanguage: ["th", "en", "my", "km"],
+                },
+                {
+                  "@type": "Organization",
+                  name: "Migrant Rights Guide",
+                  url: "https://rfid-rights.vercel.app",
+                  logo: "https://rfid-rights.vercel.app/favicon-new.svg",
+                },
+              ],
+            }),
+          }}
         />
       </head>
       <body
@@ -94,6 +112,7 @@ export default function RootLayout({
         }}
       >
         <LanguageProvider>
+          <GlobalUI />
           <a href="#main-content" className="skip-to-content">
             ข้ามไปยังเนื้อหาหลัก
           </a>
