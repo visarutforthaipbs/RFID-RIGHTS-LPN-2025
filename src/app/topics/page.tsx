@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Header } from "../components/Header";
-import { FunderLogos } from "../components/FunderLogos";
 import { SOSBar } from "../components/SOSBar";
 import { SearchBox } from "../components/SearchBox";
 import { TopicCard, TopicCardSkeleton } from "../components/TopicCard";
@@ -81,7 +80,7 @@ export default function TopicsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-24">
       <Header />
 
       <main className="container mx-auto px-4 py-8" id="main-content">
@@ -183,7 +182,6 @@ export default function TopicsPage() {
           )}
         </div>
       </main>
-      <FunderLogos />
       <SOSBar />
     </div>
   );

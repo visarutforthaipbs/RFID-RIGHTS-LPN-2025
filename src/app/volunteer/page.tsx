@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { Header } from "../components/Header";
-import { FunderLogos } from "../components/FunderLogos";
 import { SOSBar } from "../components/SOSBar";
 import { useLanguage } from "../contexts/LanguageContext";
 import { messages } from "../../../lib/i18n";
@@ -307,7 +306,7 @@ export default function VolunteerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-24">
       <Header />
 
       <main className="container mx-auto px-4 py-8" id="main-content">
@@ -864,7 +863,6 @@ export default function VolunteerPage() {
           </section>
         </div>
       </main>
-      <FunderLogos />
       <SOSBar />
     </div>
   );

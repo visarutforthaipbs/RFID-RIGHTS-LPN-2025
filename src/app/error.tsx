@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { useLanguage } from "./contexts/LanguageContext";
 import { messages } from "../../lib/i18n";
 import { Header } from "./components/Header";
-import { FunderLogos } from "./components/FunderLogos";
 import { SOSBar } from "./components/SOSBar";
 
 export default function Error({
@@ -22,7 +21,7 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-24">
       <Header />
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-4xl mx-auto">
@@ -42,7 +41,6 @@ export default function Error({
           </div>
         </div>
       </main>
-      <FunderLogos />
       <SOSBar />
     </div>
   );

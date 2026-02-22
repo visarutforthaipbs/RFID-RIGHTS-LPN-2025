@@ -5,7 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { TopicRow } from "../../../../lib/types";
 import { Header } from "../../components/Header";
-import { FunderLogos } from "../../components/FunderLogos";
 import { SOSBar } from "../../components/SOSBar";
 import { FormattedContent } from "../../components/FormattedContent";
 import { useLanguage } from "../../contexts/LanguageContext";
@@ -93,7 +92,7 @@ export default function TopicPage({ params }: TopicPageProps) {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 pb-24">
         <Header />
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto">
@@ -114,7 +113,7 @@ export default function TopicPage({ params }: TopicPageProps) {
 
   if (error || !topic) {
     return (
-      <div className="min-h-screen bg-gray-50">
+      <div className="min-h-screen bg-gray-50 pb-24">
         <Header />
         <main className="container mx-auto px-4 py-8">
           <div className="max-w-4xl mx-auto text-center">
@@ -394,7 +393,6 @@ export default function TopicPage({ params }: TopicPageProps) {
           </div>
         </div>
       </main>
-      <FunderLogos />
       <SOSBar />
     </div>
   );

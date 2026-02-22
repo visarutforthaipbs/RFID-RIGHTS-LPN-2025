@@ -137,7 +137,7 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 pb-24">
       <Header />
 
       <main id="main-content" className="min-h-screen pb-20">
