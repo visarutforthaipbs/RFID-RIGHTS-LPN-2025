@@ -35,7 +35,7 @@ export function Header() {
   const navLinks = [
     { href: "/topics", label: t.allTopics },
     { href: "/help", label: t.help },
-    { href: "/volunteer", label: t.volunteer },
+    // { href: "/volunteer", label: t.volunteer }, // Hidden: still concept idea
     { href: "/settings", label: t.settings },
   ];
 
