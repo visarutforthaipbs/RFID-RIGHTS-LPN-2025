@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useLanguage } from "../contexts/LanguageContext";
 
 interface FormattedContentProps {
   content: string;
@@ -200,8 +201,46 @@ function ContentNode({ item, depth = 0 }: { item: ContentItem; depth?: number })
   );
 }
 
-function LPNPopup() {
+// Translations for LPN popup and doc button
+const lpnLabels = {
+  th: {
+    contactTitle: "ติดต่อมูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน (LPN)",
+    myanmar: "ภาษาพม่า",
+    thai: "ภาษาไทย",
+    lao: "ภาษาลาว",
+    cambodian: "ภาษากัมพูชา",
+    viewDoc: "ดูเอกสาร",
+  },
+  en: {
+    contactTitle: "Contact Labour Rights Promotion Network Foundation (LPN)",
+    myanmar: "Myanmar",
+    thai: "Thai",
+    lao: "Lao",
+    cambodian: "Cambodian",
+    viewDoc: "View document",
+  },
+  mm: {
+    contactTitle: "အလုပ်သမားကာကွယ်ရေးကွန်ရက်ဖောင်ဒေးရှင်း (LPN) ဆက်သွယ်ရန်",
+    myanmar: "မြန်မာ",
+    thai: "ထိုင်း",
+    lao: "လာအို",
+    cambodian: "ကမ္ဘောဒီးယား",
+    viewDoc: "စာရွက်စာတမ်းကြည့်ရန်",
+  },
+  km: {
+    contactTitle: "ទាក់ទងមូលនិធិបណ្តាញលើកកម្ពស់គុណភាពជីវិតកម្មករ (LPN)",
+    myanmar: "មីយ៉ាន់ម៉ា",
+    thai: "ថៃ",
+    lao: "ឡាវ",
+    cambodian: "កម្ពុជា",
+    viewDoc: "មើលឯកសារ",
+  },
+} as const;
+
+function LPNPopup({ matchedText }: { matchedText: string }) {
   const [isOpen, setIsOpen] = useState(false);
+  const { locale } = useLanguage();
+  const labels = lpnLabels[locale] || lpnLabels.en;
 
   return (
     <span className="relative inline-block">
@@ -212,7 +251,7 @@ function LPNPopup() {
         }}
         className="text-yellow-600 hover:text-yellow-700 font-semibold underline decoration-2 decoration-yellow-400 hover:decoration-yellow-500 cursor-pointer transition-colors"
       >
-        มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน (LPN)
+        {matchedText}
       </button>
 
       {isOpen && (
@@ -230,7 +269,7 @@ function LPNPopup() {
           <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-2xl z-50 p-4 sm:p-6 max-w-md w-[calc(100%-2rem)] sm:w-full border-2 border-yellow-400 max-h-[90vh] overflow-y-auto">
             <div className="flex justify-between items-start mb-4 gap-2">
               <h3 className="text-base sm:text-lg font-bold text-gray-800 leading-tight">
-                ติดต่อมูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน (LPN)
+                {labels.contactTitle}
               </h3>
               <button
                 onClick={(e) => {
@@ -262,7 +301,7 @@ function LPNPopup() {
                 </span>
                 <div>
                   <p className="font-semibold text-gray-700 text-sm sm:text-base">
-                    ภาษาพม่า
+                    {labels.myanmar}
                   </p>
                   <a
                     href="tel:099-1865-587"
@@ -279,7 +318,7 @@ function LPNPopup() {
                 </span>
                 <div>
                   <p className="font-semibold text-gray-700 text-sm sm:text-base">
-                    ภาษาไทย
+                    {labels.thai}
                   </p>
                   <a
                     href="tel:084-121-1609"
@@ -296,7 +335,7 @@ function LPNPopup() {
                 </span>
                 <div>
                   <p className="font-semibold text-gray-700 text-sm sm:text-base">
-                    ภาษาลาว
+                    {labels.lao}
                   </p>
                   <a
                     href="tel:092-321-1516"
@@ -313,7 +352,7 @@ function LPNPopup() {
                 </span>
                 <div>
                   <p className="font-semibold text-gray-700 text-sm sm:text-base">
-                    ภาษากัมพูชา
+                    {labels.cambodian}
                   </p>
                   <a
                     href="tel:086-449-9413"
@@ -331,16 +370,19 @@ function LPNPopup() {
   );
 }
 
+// Combined regex for LPN organization name in Thai, English, and Myanmar
+const LPN_REGEX = /มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน\s*\(LPN\)|Labour (?:Rights Promotion|Protection) Network Foundation\s*\(LPN\)|[\u1000-\u109F][\u1000-\u109F\u200B\s]*\(LPN\)[\u1000-\u109F]*/;
+
 function LinkifiedText({ text }: { text: string }) {
+  const { locale } = useLanguage();
+  const labels = lpnLabels[locale] || lpnLabels.en;
   const parts: Array<{ type: "text" | "url" | "lpn"; content: string }> = [];
   let remaining = text;
 
   while (remaining.length > 0) {
     // Find the next URL or LPN match
     const urlMatch = remaining.match(/https?:\/\/[^\s]+/);
-    const lpnMatch = remaining.match(
-      /มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน \(LPN\)/
-    );
+    const lpnMatch = remaining.match(LPN_REGEX);
 
     // Determine which comes first
     const urlIndex = urlMatch ? remaining.indexOf(urlMatch[0]) : -1;
@@ -385,7 +427,7 @@ function LinkifiedText({ text }: { text: string }) {
     <>
       {parts.map((part, index) => {
         if (part.type === "lpn") {
-          return <LPNPopup key={index} />;
+          return <LPNPopup key={index} matchedText={part.content} />;
         }
 
         if (part.type === "url") {
@@ -413,7 +455,7 @@ function LinkifiedText({ text }: { text: string }) {
                     d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                   />
                 </svg>
-                <span>ดูเอกสาร</span>
+                <span>{labels.viewDoc}</span>
                 <svg
                   className="w-2.5 h-2.5 flex-shrink-0"
                   fill="none"
