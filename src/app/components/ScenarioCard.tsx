@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 import { Scenario } from "../../../lib/types";
-import { getLocalizedField } from "../../../lib/i18n";
+import { getLocalizedField, messages } from "../../../lib/i18n";
 
 interface ScenarioCardProps {
   scenario: Scenario;
@@ -18,6 +18,7 @@ export function ScenarioCard({ scenario, onClick }: ScenarioCardProps) {
   const title = getLocalizedField(scenario, locale, "title") as string;
   const description = getLocalizedField(scenario, locale, "description") as string;
   const keywords = getLocalizedField(scenario, locale, "keywords") as string[];
+  const t = messages[locale];
 
   const urgencyBadge =
     scenario.urgency === "high" ? (
@@ -34,9 +35,7 @@ export function ScenarioCard({ scenario, onClick }: ScenarioCardProps) {
             clipRule="evenodd"
           />
         </svg>
-        <span>
-          {locale === "en" ? "Urgent" : locale === "mm" ? "အရေးတကြီး" : "ด่วน"}
-        </span>
+        <span>{t.urgencyHigh}</span>
       </div>
     ) : scenario.urgency === "medium" ? (
       <div className="flex items-center gap-1">
@@ -52,13 +51,7 @@ export function ScenarioCard({ scenario, onClick }: ScenarioCardProps) {
             clipRule="evenodd"
           />
         </svg>
-        <span>
-          {locale === "en"
-            ? "Important"
-            : locale === "mm"
-            ? "အရေးကြီး"
-            : "สำคัญ"}
-        </span>
+        <span>{t.urgencyMedium}</span>
       </div>
     ) : null;
 

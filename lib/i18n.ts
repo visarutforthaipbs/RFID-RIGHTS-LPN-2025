@@ -128,6 +128,35 @@ export const messages = {
     cacheCleared: "ข้อมูลแคชถูกลบแล้ว",
     // Volunteer page
     volunteer: "สมัครอาสา",
+    // SOS Bar
+    sosHeading: "ต้องการความช่วยเหลือเร่งด่วน?",
+    sosSubtext: "ติดต่อหามูลนิธิ LPN",
+    sosCallAria: "โทร 084-121-1609",
+    sosHelpLinkAria: "ดูช่องทางช่วยเหลืออื่น ๆ",
+    sosHelpLinkLabel: "ช่วยเหลือ",
+    // Urgency badges
+    urgencyHigh: "ด่วน",
+    urgencyMedium: "สำคัญ",
+    // Help page contacts
+    helpContactPoliceName: "สายด่วนตำรวจ",
+    helpContactPoliceDesc: "เมื่อเกิดเหตุฉุกเฉิน อันตราย หรือต้องการความช่วยเหลือทันที",
+    helpContactEmploymentName: "กรมการจัดหางาน",
+    helpContactEmploymentDesc: "ปัญหาเกี่ยวกับการทำงาน แรงงาน หรือนายจ้าง",
+    helpContactImmigrationName: "สำนักงานตรวจคนเข้าเมือง",
+    helpContactImmigrationDesc: "ปัญหาเกี่ยวกับการเข้าเมือง วีซ่า หรือเอกสารการอยู่อาศัย",
+    helpContactMentalName: "สายด่วนสุขภาพจิต",
+    helpContactMentalDesc: "ปรึกษาปัญหาสุขภาพจิต ความเครียด หรือซึมเศร้า",
+    // Help page organizations
+    helpOrgCenterTitle: "ศูนย์ช่วยเหลือแรงงานต่างด้าว",
+    helpOrgCenterOrg: "กระทรวงแรงงาน",
+    helpOrgCenterDesc: "ให้คำปรึกษาและช่วยเหลือแรงงานต่างด้าวในทุกเรื่อง",
+    helpOrgLpnTitle: "มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน",
+    helpOrgLpnDesc: "ภาคประชาชนช่วยเหลือแรงงานข้ามชาติ",
+    // Help page tips
+    helpTipSaveNumbers: "เก็บเบอร์โทรศัพท์สำคัญไว้ในมือถือของคุณ",
+    helpTipRememberAddress: "จำที่อยู่ของคุณและสถานที่ทำงานให้ได้ เพื่อแจ้งเจ้าหน้าที่ในกรณีฉุกเฉิน",
+    helpTipKeepCopies: "เก็บสำเนาเอกสารสำคัญไว้ในมือถือ เช่น หนังสือเดินทาง ใบอนุญาตทำงาน",
+    helpTipAskTranslator: "หากไม่พูดภาษาไทยได้ ขอให้เพื่อนหรือคนรู้จักช่วยแปลเมื่อติดต่อหน่วยงาน",
     // Error & Not Found pages
     somethingWentWrong: "เกิดข้อผิดพลาด!",
     tryAgain: "ลองอีกครั้ง",
@@ -150,11 +179,11 @@ export const messages = {
     about: "မိမိတို့အကြောင်း",
     privacy: "ကိုယ်ရေးကိုယ်တာ",
     // Home page
-    chooseYourSituation: "ကိုယ့်ပြဿနာ ဒါမှမဟုတ် လိုအပ်ချက်နဲ့ကိုက်ညီတဲ့ အခြေနေတစ်ခုကိုရွေးပါ",
+    chooseYourSituation: "သင်၏အခြေအနေကိုရွေးချယ်ပါ",
     chooseDescription:
       "ကိုယ့်ပြဿနာ ဒါမှမဟုတ် လိုအပ်ချက်နဲ့ကိုက်ညီတဲ့ အခြေနေတစ်ခုကိုရွေးပါ။ ဒီလိုမှ အဖြေမှန်နဲ့ ဖြေရှင်းချက်ကို ကူညီရှာဖွေပေးနိုင်မှာဖြစ်ပါတယ်။",
-    orSearchDirectly: "ဒါမှမဟုတ် တိုက်ရိုက်ရှာဖွေပါ",
-    orChooseBelow: "ဒါမှမဟုတ် ‌အောက်ကအခြေအနေတစ်ခုခုကိုရွေးချယ်ပါ",
+    orSearchDirectly: "သို့မဟုတ် တိုက်ရိုက်ရှာဖွေပါ",
+    orChooseBelow: "သို့မဟုတ် အောက်ကအခြေအနေတစ်ခုခုကိုရွေးချယ်ပါ",
     commonSituations: "ဖြစ်တတ်တဲ့အခြေအနေ",
     chooseClosest: "ကိုယ်နဲ့အနီးစပ်ဆုံးအခြေအနေတစ်ခုကိုရွေးပါ",
     backToSituations: "ကိုယ့်အခြေအနေကိုရွေးချယ်ရန်ပြန်သွားပါ",
@@ -206,8 +235,8 @@ export const messages = {
     searchTopicsPlaceholder: "ခေါင်းစဥ်ရှာရန်",
     all: "အားလုံး",
     totalTopics: "စုစုပေါင်း",
-    foundTopicsOf: "တွေ့ရှိ",
-    topicsOf: "ခေါင်းစဉ်မှ",
+    foundTopicsOf: "တွေ့သည်",
+    topicsOf: "ခေါင်းစဉ်",
     noTopicsFound: "မတွေ့ပါ",
     tryDifferentSearchOrCategory:
       "အခြားရှာဖွေမှုတစ်ခုကို ရှာဖွေပါ သို့မဟုတ် အခြားအမျိုးအစားကိုရွေးချယ်ပါ",
@@ -261,12 +290,41 @@ export const messages = {
     cacheCleared: "စက်ကျန်အချက်အလက်တွေရှင်းပြီး",
     // Volunteer page
     volunteer: "စေတနာ့ဝန်ထမ်း",
+    // SOS Bar
+    sosHeading: "အရေးပေါ်ကူညီတောင်းခံရန်",
+    sosSubtext: "LPN ဖောင်ဒေးရှင်းကို ဆက်သွယ်ပါ",
+    sosCallAria: "ဖုန်း 084-121-1609",
+    sosHelpLinkAria: "အခြားအကူအညီရွေးချယ်စရာများကို ကြည့်ပါ",
+    sosHelpLinkLabel: "ကူညီပါ",
+    // Urgency badges
+    urgencyHigh: "အရေးပေါ်",
+    urgencyMedium: "အရေးကြီးသည်",
+    // Help page contacts
+    helpContactPoliceName: "အရေးပေါ်ရဲဌာန",
+    helpContactPoliceDesc: "အရေးပေါ်အခြေအနေ၊ အန္တရာယ်ရှိချိန် သို့မဟုတ် ချက်ချင်းအကူအညီလိုအပ်နေချိန်။",
+    helpContactEmploymentName: "အလုပ်အကိုင်ရှာဖွေးရေးရုံး",
+    helpContactEmploymentDesc: "အလုပ်၊ အလုပ်သမား သို့မဟုတ် အလုပ်ရှင်များနှင့် ပတ်သက်သော ပြဿနာများ",
+    helpContactImmigrationName: "လူဝန်မှုကြီးကြပ်ရေးရုံး",
+    helpContactImmigrationDesc: "လူဝင်မှုကြီးကြပ်ရေး၊ ဗီဇာ သို့မဟုတ် နေထိုင်ခွင့်စာရွက်စာတမ်းများနှင့် ပတ်သက်သည့် ပြဿနာများ",
+    helpContactMentalName: "စိတ်ကျန်းမာရေး ဟော့လိုင်း",
+    helpContactMentalDesc: "စိတ်ကျန်းမာရေးပြဿနာများ၊ စိတ်ဖိစီးမှု သို့မဟုတ် စိတ်ဓာတ်ကျခြင်းအတွက် တိုင်ပင်ဆွေးနွေးပါ",
+    // Help page organizations
+    helpOrgCenterTitle: "နိုင်ငံခြားအလုပ်သမားကူညီရေးဌာန",
+    helpOrgCenterOrg: "အလုပ်သမားဝန်ကြီးဌာန",
+    helpOrgCenterDesc: "ရွှေ့ပြောင်းအလုပ်သမားများအား ကိစ္စရပ်တိုင်းတွင် အကြံဉာဏ်နှင့် အကူအညီများ ပေးအပ်ခြင်း",
+    helpOrgLpnTitle: "အလုပ်သမားဘဝ အရည်အသွေးမြှင့်တင်ရေးကွန်ရက်ဖောင်ဒေးရှင်း",
+    helpOrgLpnDesc: "အရပ်ဘက်အဖွဲ့အစည်းရွှေ့ပြောင်းအလုပ်သမားအကူအညီပေးဌာန",
+    // Help page tips
+    helpTipSaveNumbers: "သင့်မိုဘိုင်းဖုန်းတွင် အရေးကြီးသောဖုန်းနံပါတ်များကို သိမ်းဆည်းထားပါ",
+    helpTipRememberAddress: "အရေးပေါ်အခြေအနေတွင် အာဏာပိုင်များကို အကြောင်းကြားနိုင်ရန် သင့်လိပ်စာနှင့် လုပ်ငန်းခွင်ကို မှတ်သားထားပါ",
+    helpTipKeepCopies: "သင့်ပတ်စ်ပို့နှင့် အလုပ်ပါမစ်ကဲ့သို့သော အရေးကြီးစာရွက်စာတမ်းများကို သင့်ဖုန်းထဲတွင် သိမ်းဆည်းထားပါ",
+    helpTipAskTranslator: "ထိုင်းစကား မပြောတတ်ပါက ဌာနဆိုင်ရာကိုဆက်သွယ်သည့်အခါ ဘာသာပြန်ရန် သူငယ်ချင်း သို့မဟုတ် အသိမိတ်ဆွေကို အကူညီတောင်းပါ",
     // Error & Not Found pages
-    somethingWentWrong: "တစ်ခုခုမှားသွားပါပြီ!",
-    tryAgain: "ထပ်ကြိုးစားပါ",
-    pageNotFound: "စာမျက်နှာမတွေ့ပါ",
-    notFoundDescription: "သင်ရှာနေသောစာမျက်နှာကိုမတွေ့ပါ",
-    returnHome: "ပင်မစာမျက်နှာသို့ပြန်သွားပါ",
+    somethingWentWrong: "အမှားအယွင်းတစ်ခု ဖြစ်ပွါးခဲ့လျှင်",
+    tryAgain: "ထပ်ကြိုးစားပါ။",
+    pageNotFound: "သင်ရှာဖွေနေသောစာမျက်နှာကို ရှာမတွေ့ပါ။",
+    notFoundDescription: "သင်ရှာဖွေနေသည့် စာမျက်နှာကို ရှာမတွေ့ပါ",
+    returnHome: "ပင်မစာမျက်နှာသို့ ပြန်သွားရန်",
   },
   km: {
     title: "ដឹងសិទ្ធិ ចាំទុកក្នុងកាបូប",
@@ -391,6 +449,35 @@ export const messages = {
     cacheCleared: "ទិន្នន័យ Cache ត្រូវបានលុបហើយ",
     // Volunteer page
     volunteer: "ស្ម័គ្រចិត្ត",
+    // SOS Bar
+    sosHeading: "ត្រូវការជំនួយបន្ទាន់?",
+    sosSubtext: "ទាក់ទង មូលនិធិ LPN",
+    sosCallAria: "ហៅ 084-121-1609",
+    sosHelpLinkAria: "មើលបណ្តាញជំនួយផ្សេងទៀត",
+    sosHelpLinkLabel: "ជំនួយ",
+    // Urgency badges
+    urgencyHigh: "បន្ទាន់",
+    urgencyMedium: "សំខាន់",
+    // Help page contacts
+    helpContactPoliceName: "ខ្សែទូរស័ព្ទប៉ូលីស",
+    helpContactPoliceDesc: "សម្រាប់ករណីបន្ទាន់ គ្រោះថ្នាក់ ឬត្រូវការជំនួយភ្លាមៗ",
+    helpContactEmploymentName: "នាយកដ្ឋានការងារ",
+    helpContactEmploymentDesc: "បញ្ហាការងារ ពលករ ឬនិយោជក",
+    helpContactImmigrationName: "ការិយាល័យអន្តោប្រវេសន៍",
+    helpContactImmigrationDesc: "បញ្ហាអន្តោប្រវេសន៍ ទិដ្ឋាការ ឬឯកសារស្នាក់នៅ",
+    helpContactMentalName: "ខ្សែទូរស័ព្ទសុខភាពផ្លូវចិត្ត",
+    helpContactMentalDesc: "ការប្រឹក្សាសុខភាពផ្លូវចិត្ត ភាពតានតឹង ឬការធ្លាក់ទឹកចិត្ត",
+    // Help page organizations
+    helpOrgCenterTitle: "មជ្ឈមណ្ឌលជំនួយកម្មករអន្តោប្រវេសន៍",
+    helpOrgCenterOrg: "ក្រសួងការងារ",
+    helpOrgCenterDesc: "ផ្តល់ដំបូន្មាននិងជំនួយដល់កម្មករអន្តោប្រវេសន៍លើបញ្ហាទាំងអស់",
+    helpOrgLpnTitle: "មូលនិធិបណ្តាញការពារកម្មករ",
+    helpOrgLpnDesc: "អង្គការសង្គមស៊ីវិលជួយកម្មករអន្តោប្រវេសន៍",
+    // Help page tips
+    helpTipSaveNumbers: "រក្សាទុកលេខទូរស័ព្ទសំខាន់ៗក្នុងទូរស័ព្ទរបស់អ្នក",
+    helpTipRememberAddress: "ចងចាំអាសយដ្ឋាននិងទីតាំងកន្លែងធ្វើការរបស់អ្នក ដើម្បីជូនដំណឹងដល់អាជ្ញាធរក្នុងករណីបន្ទាន់",
+    helpTipKeepCopies: "រក្សាទុកច្បាប់ចំលងនៃឯកសារសំខាន់ៗក្នុងទូរស័ព្ទរបស់អ្នក ដូចជាលិខិតឆ្លងដែន និងអាជ្ញាប័ណ្ណការងារ",
+    helpTipAskTranslator: "ប្រសិនបើអ្នកមិននិយាយភាសាថៃបាន សូមស្នើឱ្យមិត្តភក្តិ ឬអ្នកស្គាល់ជួយបកប្រែពេលទាក់ទងទៅស្ថាប័ន",
     // Error & Not Found pages
     somethingWentWrong: "មានអ្វីខុសប្រក្រតី!",
     tryAgain: "ព្យាយាមម្ដងទៀត",
@@ -521,6 +608,35 @@ export const messages = {
     cacheCleared: "Cache data has been cleared",
     // Volunteer page
     volunteer: "Volunteer",
+    // SOS Bar
+    sosHeading: "Need Urgent Help?",
+    sosSubtext: "Contact LPN Foundation",
+    sosCallAria: "Call 084-121-1609",
+    sosHelpLinkAria: "View other help channels",
+    sosHelpLinkLabel: "Help",
+    // Urgency badges
+    urgencyHigh: "Urgent",
+    urgencyMedium: "Important",
+    // Help page contacts
+    helpContactPoliceName: "Police Hotline",
+    helpContactPoliceDesc: "For emergencies, danger, or immediate assistance needed",
+    helpContactEmploymentName: "Department of Employment",
+    helpContactEmploymentDesc: "Work-related issues, labor, or employer problems",
+    helpContactImmigrationName: "Immigration Bureau",
+    helpContactImmigrationDesc: "Immigration, visa, or residence document issues",
+    helpContactMentalName: "Mental Health Hotline",
+    helpContactMentalDesc: "Mental health counseling, stress, or depression",
+    // Help page organizations
+    helpOrgCenterTitle: "Migrant Worker Assistance Center",
+    helpOrgCenterOrg: "Ministry of Labour",
+    helpOrgCenterDesc: "Provides advice and assistance to migrant workers on all matters",
+    helpOrgLpnTitle: "Labor Protection Network Foundation",
+    helpOrgLpnDesc: "Civil society organization helping migrant workers",
+    // Help page tips
+    helpTipSaveNumbers: "Save important phone numbers in your mobile phone",
+    helpTipRememberAddress: "Remember your address and workplace location to inform authorities in emergencies",
+    helpTipKeepCopies: "Keep copies of important documents on your phone, such as passport and work permit",
+    helpTipAskTranslator: "If you don't speak Thai, ask a friend or acquaintance to help translate when contacting agencies",
     // Error & Not Found pages
     somethingWentWrong: "Something went wrong!",
     tryAgain: "Try again",

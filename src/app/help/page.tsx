@@ -12,136 +12,45 @@ export default function HelpPage() {
 
   const emergencyContacts = [
     {
-      name:
-        locale === "en"
-          ? "Police Hotline"
-          : locale === "mm"
-          ? "ရဲဖုန်းလိုင်း"
-          : locale === "km"
-          ? "ខ្សែទូរស័ព្ទប៉ូលីស"
-          : "สายด่วนตำรวจ",
+      name: t.helpContactPoliceName,
       number: "191",
-      description:
-        locale === "en"
-          ? "For emergencies, danger, or immediate assistance needed"
-          : locale === "mm"
-          ? "အရေးပေါ်အခြေအနေ၊ အန္တရာယ် သို့မဟုတ်ချက်ချင်းအကူအညီလိုအပ်သည့်အခါ"
-          : locale === "km"
-          ? "សម្រាប់ករណីបន្ទាន់ គ្រោះថ្នាក់ ឬត្រូវការជំនួយភ្លាមៗ"
-          : "เมื่อเกิดเหตุฉุกเฉิน อันตราย หรือต้องการความช่วยเหลือทันที",
+      description: t.helpContactPoliceDesc,
       available: t.hours24,
     },
     {
-      name:
-        locale === "en"
-          ? "Department of Employment"
-          : locale === "mm"
-          ? "အလုပ်အကိုင်ဌာန"
-          : locale === "km"
-          ? "នាយកដ្ឋានការងារ"
-          : "กรมการจัดหางาน",
+      name: t.helpContactEmploymentName,
       number: "1694",
-      description:
-        locale === "en"
-          ? "Work-related issues, labor, or employer problems"
-          : locale === "mm"
-          ? "အလုပ်နှင့်ပတ်သက်သောပြဿနာများ၊ အလုပ်သမား သို့မဟုတ်အလုပ်ရှင်"
-          : locale === "km"
-          ? "បញ្ហាការងារ ពលករ ឬនិយោជក"
-          : "ปัญหาเกี่ยวกับการทำงาน แรงงาน หรือนายจ้าง",
+      description: t.helpContactEmploymentDesc,
       available: t.weekdayHours,
     },
     {
-      name:
-        locale === "en"
-          ? "Immigration Bureau"
-          : locale === "mm"
-          ? "လူဝင်မှုကြီးကြပ်ရေးဗျူရို"
-          : locale === "km"
-          ? "ការិយាល័យអន្តោប្រវេសន៍"
-          : "สำนักงานตรวจคนเข้าเมือง",
+      name: t.helpContactImmigrationName,
       number: "1178",
-      description:
-        locale === "en"
-          ? "Immigration, visa, or residence document issues"
-          : locale === "mm"
-          ? "လူဝင်မှု၊ ဗီဇာ သို့မဟုတ်နေထိုင်ခွင့်စာရွက်စာတမ်းပြဿနာများ"
-          : locale === "km"
-          ? "បញ្ហាអន្តោប្រវេសន៍ ទិដ្ឋាការ ឬឯកសារស្នាក់នៅ"
-          : "ปัญหาเกี่ยวกับการเข้าเมือง วีซ่า หรือเอกสารการอยู่อาศัย",
+      description: t.helpContactImmigrationDesc,
       available: t.hours24,
     },
     {
-      name:
-        locale === "en"
-          ? "Mental Health Hotline"
-          : locale === "mm"
-          ? "စိတ်ကျန်းမာရေးဖုန်းလိုင်း"
-          : locale === "km"
-          ? "ខ្សែទូរស័ព្ទសុខភាពផ្លូវចិត្ត"
-          : "สายด่วนสุขภาพจิต",
+      name: t.helpContactMentalName,
       number: "1323",
-      description:
-        locale === "en"
-          ? "Mental health counseling, stress, or depression"
-          : locale === "mm"
-          ? "စိတ်ကျန်းမာရေးအကြံဉာဏ်၊ စိတ်ဖိစီးမှု သို့မဟုတ်စိတ်ဓာတ်ကျခြင်း"
-          : locale === "km"
-          ? "ការប្រឹក្សាសុខភាពផ្លូវចិត្ត ភាពតានតឹង ឬការធ្លាក់ទឹកចិត្ត"
-          : "ปรึกษาปัญหาสุขภาพจิต ความเครียด หรือซึมเศร้า",
+      description: t.helpContactMentalDesc,
       available: t.hours24,
     },
   ];
 
   const helpfulResources = [
     {
-      title:
-        locale === "en"
-          ? "Migrant Worker Assistance Center"
-          : locale === "mm"
-          ? "ရွှေ့ပြောင်းအလုပ်သမားအကူအညီဌာန"
-          : locale === "km"
-          ? "មជ្ឈមណ្ឌលជំនួយកម្មករអន្តោប្រវេសន៍"
-          : "ศูนย์ช่วยเหลือแรงงานต่างด้าว",
-      organization:
-        locale === "en"
-          ? "Ministry of Labour"
-          : locale === "mm"
-          ? "အလုပ်သမားဝန်ကြီးဌာန"
-          : locale === "km"
-          ? "ក្រសួងការងារ"
-          : "กระทรวงแรงงาน",
+      title: t.helpOrgCenterTitle,
+      organization: t.helpOrgCenterOrg,
       phone: "02-354-9999",
       website: "www.mol.go.th",
-      description:
-        locale === "en"
-          ? "Provides advice and assistance to migrant workers on all matters"
-          : locale === "mm"
-          ? "ရွှေ့ပြောင်းအလုပ်သမားများကိုကိစ္စရပ်အားလုံးအတွက်အကြံဉာဏ်နှင့်အကူအညီပေးသည်"
-          : locale === "km"
-          ? "ផ្តល់ដំបូន្មាននិងជំនួយដល់កម្មករអន្តោប្រវេសន៍លើបញ្ហាទាំងអស់"
-          : "ให้คำปรึกษาและช่วยเหลือแรงงานต่างด้าวในทุกเรื่อง",
+      description: t.helpOrgCenterDesc,
     },
     {
-      title:
-        locale === "en"
-          ? "Labor Protection Network Foundation"
-          : locale === "mm"
-          ? "အလုပ်သမားကာကွယ်ရေးကွန်ရက်ဖောင်ဒေးရှင်း"
-          : locale === "km"
-          ? "មូលនិធិបណ្តាញការពារកម្មករ"
-          : "มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน",
+      title: t.helpOrgLpnTitle,
       organization: "Labor Protection Network",
       phone: "084-121-1609",
       website: "https://www.lpnfoundation.org/th",
-      description:
-        locale === "en"
-          ? "Civil society organization helping migrant workers"
-          : locale === "mm"
-          ? "ရွှေ့ပြောင်းအလုပ်သမားများကိုကူညီသောအရပ်ဘက်အဖွဲ့အစည်း"
-          : locale === "km"
-          ? "អង្គការសង្គមស៊ីវិលជួយកម្មករអន្តោប្រវេសន៍"
-          : "ภาคประชาชนช่วยเหลือแรงงานข้ามชาติ",
+      description: t.helpOrgLpnDesc,
     },
   ];
 
@@ -354,43 +263,19 @@ export default function HelpPage() {
             <ul className="text-black space-y-2">
               <li className="flex items-start">
                 <span className="inline-block w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                {locale === "en"
-                  ? "Save important phone numbers in your mobile phone"
-                  : locale === "mm"
-                  ? "သင့်မိုဘိုင်းဖုန်းတွင်အရေးကြီးသောဖုန်းနံပါတ်များကိုသိမ်းဆည်းပါ"
-                  : locale === "km"
-                  ? "រក្សាទុកលេខទូរស័ព្ទសំខាន់ៗក្នុងទូរស័ព្ទរបស់អ្នក"
-                  : "เก็บเบอร์โทรศัพท์สำคัญไว้ในมือถือของคุณ"}
+                {t.helpTipSaveNumbers}
               </li>
               <li className="flex items-start">
                 <span className="inline-block w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                {locale === "en"
-                  ? "Remember your address and workplace location to inform authorities in emergencies"
-                  : locale === "mm"
-                  ? "အရေးပေါ်အခြေအနေများတွင်အာဏာပိုင်များကိုအကြောင်းကြားရန်သင့်လိပ်စာနှင့်အလုပ်ခွင်တည်နေရာကိုမှတ်ထားပါ"
-                  : locale === "km"
-                  ? "ចងចាំអាសយដ្ឋាននិងទីតាំងកន្លែងធ្វើការរបស់អ្នក ដើម្បីជូនដំណឹងដល់អាជ្ញាធរក្នុងករណីបន្ទាន់"
-                  : "จำที่อยู่ของคุณและสถานที่ทำงานให้ได้ เพื่อแจ้งเจ้าหน้าที่ในกรณีฉุกเฉิน"}
+                {t.helpTipRememberAddress}
               </li>
               <li className="flex items-start">
                 <span className="inline-block w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                {locale === "en"
-                  ? "Keep copies of important documents on your phone, such as passport and work permit"
-                  : locale === "mm"
-                  ? "သင့်ဖုန်းတွင်အရေးကြီးသောစာရွက်စာတမ်းများဖြစ်သောနိုင်ငံကူးလက်မှတ်၊ အလုပ်ခွင့်ပြုလက်မှတ်စသည်တို့ကိုသိမ်းဆည်းထားပါ"
-                  : locale === "km"
-                  ? "រក្សាទុកច្បាប់ចំលងនៃឯកសារសំខាន់ៗក្នុងទូរស័ព្ទរបស់អ្នក ដូចជាលិខិតឆ្លងដែន និងអាជ្ញាប័ណ្ណការងារ"
-                  : "เก็บสำเนาเอกสารสำคัญไว้ในมือถือ เช่น หนังสือเดินทาง ใบอนุญาตทำงาน"}
+                {t.helpTipKeepCopies}
               </li>
               <li className="flex items-start">
                 <span className="inline-block w-2 h-2 bg-yellow-600 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                {locale === "en"
-                  ? "If you don't speak Thai, ask a friend or acquaintance to help translate when contacting agencies"
-                  : locale === "mm"
-                  ? "သင်ထိုင်းဘာသာမပြောနိုင်ပါက အေဂျင်စီများကိုဆက်သွယ်သည့်အခါ သူငယ်ချင်း သို့မဟုတ်အသိများအားဘာသာပြန်ပေးရန်တောင်းပါ"
-                  : locale === "km"
-                  ? "ប្រសិនបើអ្នកមិននិយាយភាសាថៃបាន សូមស្នើឱ្យមិត្តភក្តិ ឬអ្នកស្គាល់ជួយបកប្រែពេលទាក់ទងទៅស្ថាប័ន"
-                  : "หากไม่พูดภาษาไทยได้ ขอให้เพื่อนหรือคนรู้จักช่วยแปลเมื่อติดต่อหน่วยงาน"}
+                {t.helpTipAskTranslator}
               </li>
             </ul>
           </section>
