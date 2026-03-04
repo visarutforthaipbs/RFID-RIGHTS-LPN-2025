@@ -61,7 +61,7 @@ export default function HelpPage() {
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="mb-6">
+          <nav className="mb-6" aria-label="Breadcrumb">
             <Link href="/" className="text-gray-900 hover:text-yellow-600">
               {t.home}
             </Link>
@@ -78,7 +78,7 @@ export default function HelpPage() {
           </header>
 
           {/* Emergency Alert */}
-          <div className="bg-red-50 border border-red-200 rounded-2xl p-6 mb-8">
+          <div className="bg-red-50 border border-red-200 rounded-2xl p-6 mb-8" role="alert">
             <div className="flex items-center mb-3">
               <svg
                 className="h-6 w-6 text-red-600 mr-2"

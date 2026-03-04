@@ -31,7 +31,13 @@ export function ResultsSection({
   if (!searchQuery && !selectedScenarioData) return null;
 
   return (
-    <section>
+    <section aria-label={searchQuery ? t.searchResults : t.relatedTopics}>
+      {/* Screen reader live region for results count */}
+      <div className="sr-only" aria-live="polite" role="status">
+        {filteredData.length > 0
+          ? `${t.found} ${filteredData.length} ${searchQuery ? t.resultsCount : t.topicsCount}`
+          : t.noResults}
+      </div>
       {/* Selected Scenario Header */}
       {selectedScenarioData && (
         <div className="mb-8 p-6 bg-gradient-to-r from-white to-gray-50 border border-gray-200 rounded-xl shadow-sm">

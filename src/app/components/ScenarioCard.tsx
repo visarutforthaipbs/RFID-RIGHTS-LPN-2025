@@ -64,6 +64,7 @@ export function ScenarioCard({ scenario, onClick }: ScenarioCardProps) {
     <button
       type="button"
       onClick={onClick}
+      aria-label={`${title} — ${description}`}
       className={`${scenario.color.bg} ${scenario.color.border} border-2 rounded-xl p-6 ${scenario.color.hoverBg} transition-all duration-300 cursor-pointer group hover:shadow-xl hover:-translate-y-2 relative transform-gpu w-full text-left`}
     >
       {urgencyBadge && (

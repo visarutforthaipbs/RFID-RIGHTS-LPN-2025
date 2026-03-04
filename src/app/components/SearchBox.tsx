@@ -14,6 +14,7 @@ interface SearchBoxProps {
 
 export function SearchBox({ data, onResults, placeholder }: SearchBoxProps) {
   const [query, setQuery] = useState("");
+  const [resultCount, setResultCount] = useState(0);
   const { locale } = useLanguage();
   const t = messages[locale];
 
@@ -55,6 +56,7 @@ export function SearchBox({ data, onResults, placeholder }: SearchBoxProps) {
         results_count: results.length,
       });
 
+      setResultCount(results.length);
       onResults(results, searchQuery);
     },
     [data, onResults]
@@ -81,7 +83,7 @@ export function SearchBox({ data, onResults, placeholder }: SearchBoxProps) {
   };
 
   return (
-    <div className="relative">
+    <search role="search" aria-label={locale === "en" ? "Search topics" : locale === "mm" ? "ခေါင္းစဥ္ရှာရန်" : "ค้นหาหัวข้อ"}>
       <div className="relative">
         <input
           type="text"
@@ -93,12 +95,13 @@ export function SearchBox({ data, onResults, placeholder }: SearchBoxProps) {
         />
 
         {/* Search icon */}
-        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none" aria-hidden="true">
           <svg
             className="h-5 w-5 text-gray-400"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -138,9 +141,11 @@ export function SearchBox({ data, onResults, placeholder }: SearchBoxProps) {
       <div className="sr-only" aria-live="polite" role="status">
         {query &&
           (locale === "en"
-            ? `Found ${data.length} search results`
-            : `พบผลลัพธ์การค้นหา ${data.length} รายการ`)}
+            ? `Found ${resultCount} search results`
+            : locale === "mm"
+            ? `ရှာဖွေရလာဒ် ${resultCount} ခု`
+            : `พบผลลัพธ์การค้นหา ${resultCount} รายการ`)}
       </div>
-    </div>
+    </search>
   );
 }

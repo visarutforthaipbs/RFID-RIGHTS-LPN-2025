@@ -99,11 +99,11 @@ export function Header() {
               aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             >
               {mobileMenuOpen ? (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                 </svg>
               ) : (
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
                 </svg>
               )}
@@ -115,6 +115,9 @@ export function Header() {
       {/* Mobile menu drawer */}
       <div
         id="mobile-menu"
+        role="region"
+        aria-label={t.allTopics}
+        hidden={!mobileMenuOpen}
         className={`lg:hidden overflow-hidden transition-all duration-200 ease-in-out ${
           mobileMenuOpen ? "max-h-64 border-t border-gray-200" : "max-h-0"
         }`}

@@ -87,7 +87,7 @@ export default function TopicsPage() {
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <header className="mb-8">
-            <nav className="mb-6">
+            <nav className="mb-6" aria-label="Breadcrumb">
               <Link href="/" className="text-gray-900 hover:text-yellow-600">
                 {t.home}
               </Link>

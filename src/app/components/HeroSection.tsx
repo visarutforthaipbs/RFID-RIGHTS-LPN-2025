@@ -19,19 +19,21 @@ export function HeroSection({ data, onResults }: HeroSectionProps) {
     <section className="relative w-full min-h-[440px] sm:min-h-[450px] lg:min-h-[520px] mb-12">
       <Image
         src="/images/hero-new.svg"
-        alt="RFID Rights Guide Cover"
+        alt=""
         fill
         className="object-cover brightness-75"
         priority
+        aria-hidden="true"
       />
       <div className="absolute inset-0 flex flex-col justify-center items-center text-center px-4 py-6 z-10">
         <div className="flex items-center justify-center gap-3 mb-6">
           <Image
             src="/favicon-new.svg"
-            alt="Icon"
+            alt=""
             width={48}
             height={48}
             className="w-8 h-8 sm:w-12 sm:h-12 drop-shadow-lg"
+            aria-hidden="true"
           />
           <h1 className="text-2xl sm:text-5xl font-bold text-white drop-shadow-lg max-w-4xl">
             {t.chooseYourSituation}

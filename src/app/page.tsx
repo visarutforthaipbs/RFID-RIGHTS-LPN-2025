@@ -17,7 +17,7 @@ import { messages } from "../../lib/i18n";
 
 function HomeSkeleton() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" aria-busy="true" aria-label="Loading content">
       {Array.from({ length: 6 }).map((_, i) => (
         <div
           key={i}
@@ -159,6 +159,7 @@ export default function Home() {
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
+                  aria-hidden="true"
                 >
                   <path
                     strokeLinecap="round"
@@ -177,7 +178,7 @@ export default function Home() {
 
           {/* Error state */}
           {error && !loading && (
-            <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6 text-center">
+            <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6 text-center" role="alert">
               <p className="text-red-800 mb-3">{error}</p>
               <button
                 onClick={() => window.location.reload()}

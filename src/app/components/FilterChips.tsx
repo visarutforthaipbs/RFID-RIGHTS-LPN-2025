@@ -28,7 +28,7 @@ export function FilterChips({
   };
 
   return (
-    <div className="flex flex-wrap gap-2 mb-6">
+    <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label={locale === "en" ? "Filter by category" : locale === "mm" ? "အမျိုးအစားဖြင့် စစ်ထုတ်ရန်" : "กรองตามหมวดหมู่"}>
       <button
         onClick={() => onCategoryChange(null)}
         className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${

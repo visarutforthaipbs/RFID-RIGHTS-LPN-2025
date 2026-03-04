@@ -26,7 +26,7 @@ export default function Error({
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 max-w-md w-full">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 max-w-md w-full" role="alert">
               <svg className="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
               </svg>

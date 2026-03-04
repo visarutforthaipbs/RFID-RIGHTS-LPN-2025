@@ -112,10 +112,10 @@ export default function RootLayout({
         }}
       >
         <LanguageProvider>
-          <GlobalUI />
           <a href="#main-content" className="skip-to-content">
-            ข้ามไปยังเนื้อหาหลัก
+            Skip to main content / ข้ามไปยังเนื้อหาหลัก
           </a>
+          <GlobalUI />
           <div className="flex flex-col min-h-screen">{children}</div>
         </LanguageProvider>
       </body>

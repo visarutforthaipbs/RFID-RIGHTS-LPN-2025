@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLanguage } from "../contexts/LanguageContext";
 
 interface FormattedContentProps {
@@ -141,6 +141,11 @@ function ContentNode({ item, depth = 0 }: { item: ContentItem; depth?: number })
   // Top-level items (depth 0) start expanded for better discoverability
   const [isOpen, setIsOpen] = useState(depth === 0);
   const hasChildren = item.children.length > 0;
+  const { locale } = useLanguage();
+
+  const toggleLabel = isOpen
+    ? (locale === "en" ? "Collapse" : locale === "mm" ? "ချုံ့ရန်" : "ย่อ")
+    : (locale === "en" ? "Expand" : locale === "mm" ? "ချဲ့ရန်" : "ขยาย");
 
   // Plain text (no bullet)
   if (item.level === 0) {
@@ -163,9 +168,9 @@ function ContentNode({ item, depth = 0 }: { item: ContentItem; depth?: number })
                 item.level === 1 ? "text-lg" : "text-base"
               } hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 rounded p-0.5`}
               aria-expanded={isOpen}
-              title={isOpen ? "Click to collapse" : "Click to expand"}
+              aria-label={`${toggleLabel}: ${item.text.substring(0, 50)}`}
             >
-              {isOpen ? "▼" : "▶"}
+              <span aria-hidden="true">{isOpen ? "▼" : "▶"}</span>
             </button>
           ) : (
             <span
@@ -183,6 +188,15 @@ function ContentNode({ item, depth = 0 }: { item: ContentItem; depth?: number })
               hasChildren ? "cursor-pointer hover:text-gray-900" : ""
             }`}
             onClick={() => hasChildren && setIsOpen(!isOpen)}
+            onKeyDown={(e) => {
+              if (hasChildren && (e.key === "Enter" || e.key === " ")) {
+                e.preventDefault();
+                setIsOpen(!isOpen);
+              }
+            }}
+            role={hasChildren ? "button" : undefined}
+            tabIndex={hasChildren ? 0 : undefined}
+            aria-expanded={hasChildren ? isOpen : undefined}
           >
             <LinkifiedText text={item.text} />
           </div>
@@ -241,15 +255,69 @@ function LPNPopup({ matchedText }: { matchedText: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const { locale } = useLanguage();
   const labels = lpnLabels[locale] || lpnLabels.en;
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
+
+  // Close on Escape and manage focus trap
+  const handleClose = useCallback(() => {
+    setIsOpen(false);
+    triggerRef.current?.focus();
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        handleClose();
+        return;
+      }
+
+      // Focus trap
+      if (e.key === "Tab" && dialogRef.current) {
+        const focusable = dialogRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last?.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first?.focus();
+        }
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    // Focus the dialog when opened
+    const timer = setTimeout(() => {
+      const firstFocusable = dialogRef.current?.querySelector<HTMLElement>(
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+      );
+      firstFocusable?.focus();
+    }, 50);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      clearTimeout(timer);
+    };
+  }, [isOpen, handleClose]);
 
   return (
     <span className="relative inline-block">
       <button
+        ref={triggerRef}
         onClick={(e) => {
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
         className="text-yellow-600 hover:text-yellow-700 font-semibold underline decoration-2 decoration-yellow-400 hover:decoration-yellow-500 cursor-pointer transition-colors"
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
       >
         {matchedText}
       </button>
@@ -261,12 +329,19 @@ function LPNPopup({ matchedText }: { matchedText: string }) {
             className="fixed inset-0 bg-black bg-opacity-10 z-40"
             onClick={(e) => {
               e.stopPropagation();
-              setIsOpen(false);
+              handleClose();
             }}
+            aria-hidden="true"
           />
 
           {/* Popup Modal */}
-          <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-2xl z-50 p-4 sm:p-6 max-w-md w-[calc(100%-2rem)] sm:w-full border-2 border-yellow-400 max-h-[90vh] overflow-y-auto">
+          <div
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-label={labels.contactTitle}
+            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-2xl z-50 p-4 sm:p-6 max-w-md w-[calc(100%-2rem)] sm:w-full border-2 border-yellow-400 max-h-[90vh] overflow-y-auto"
+          >
             <div className="flex justify-between items-start mb-4 gap-2">
               <h3 className="text-base sm:text-lg font-bold text-gray-800 leading-tight">
                 {labels.contactTitle}
@@ -274,9 +349,10 @@ function LPNPopup({ matchedText }: { matchedText: string }) {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  setIsOpen(false);
+                  handleClose();
                 }}
                 className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
+                aria-label={locale === "en" ? "Close dialog" : locale === "mm" ? "ပိတ်ရန်" : "ปิด"}
               >
                 <svg
                   className="w-5 h-5 sm:w-6 sm:h-6"

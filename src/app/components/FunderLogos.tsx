@@ -14,7 +14,7 @@ export function FunderLogos() {
   };
 
   return (
-    <div className="bg-white border-t border-gray-200 py-8 mb-24">
+    <footer className="bg-white border-t border-gray-200 py-8 mb-24" role="contentinfo">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-center text-sm text-gray-600 mb-6 font-medium">
           {supportedByText[locale] || supportedByText.en}
@@ -49,6 +49,6 @@ export function FunderLogos() {
           </div>
         </div>
       </div>
-    </div>
+    </footer>
   );
 }

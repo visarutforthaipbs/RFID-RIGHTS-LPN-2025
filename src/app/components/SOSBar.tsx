@@ -15,7 +15,11 @@ export function SOSBar() {
   };
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-[#FFC314] text-black p-4 shadow-lg z-50">
+    <div
+      className="fixed bottom-0 left-0 right-0 bg-[#FFC314] text-black p-4 shadow-lg z-50"
+      role="region"
+      aria-label={locale === "en" ? "Emergency contacts" : locale === "mm" ? "အရေးပေါ်ဆက်သွယ်ရန်" : "ช่องทางฉุกเฉิน"}
+    >
       <div className="max-w-4xl mx-auto flex items-center justify-between">
         <div className="flex-1">
           <h3 className="font-semibold text-sm text-black">
@@ -38,6 +42,7 @@ export function SOSBar() {
               viewBox="0 0 24 24"
               fill="currentColor"
               className="w-4 h-4 mr-2"
+              aria-hidden="true"
             >
               <path
                 fillRule="evenodd"
@@ -54,7 +59,7 @@ export function SOSBar() {
             className="bg-white text-black px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-100 transition-colors min-w-[48px] min-h-[48px] flex items-center justify-center gap-1.5"
             aria-label={t.sosHelpLinkAria}
           >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span className="hidden sm:inline">

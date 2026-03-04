@@ -74,7 +74,7 @@ export function TopicCard({ row }: TopicCardProps) {
             {category}
           </span>
           <div className="w-12 h-12 relative flex-shrink-0 opacity-80 group-hover:opacity-100 transition-opacity">
-            <Image src={iconPath} alt={topic} fill className="object-contain" />
+            <Image src={iconPath} alt="" fill className="object-contain" aria-hidden="true" />
           </div>
         </div>
 
@@ -93,6 +93,7 @@ export function TopicCard({ row }: TopicCardProps) {
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"

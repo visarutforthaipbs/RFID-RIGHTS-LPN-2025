@@ -138,7 +138,7 @@ export default function TopicPage({ params }: TopicPageProps) {
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="mb-6">
+          <nav className="mb-6" aria-label="Breadcrumb">
             <Link href="/" className="text-gray-900 hover:text-yellow-600">
               {t.home}
             </Link>
@@ -188,7 +188,7 @@ export default function TopicPage({ params }: TopicPageProps) {
                 <div className="relative w-full aspect-video">
                   <iframe
                     src={getYoutubeEmbedUrl(topic.videoUrl) || ""}
-                    title="Video content"
+                    title={`${getContent(topic.topic, topic.topicEn, topic.topicMm)} - Video`}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="absolute top-0 left-0 w-full h-full"

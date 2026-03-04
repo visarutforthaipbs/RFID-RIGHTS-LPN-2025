@@ -53,7 +53,7 @@ export default function SettingsPage() {
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-2xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="mb-6">
+          <nav className="mb-6" aria-label="Breadcrumb">
             <Link href="/" className="text-black hover:text-yellow-600">
               {t.home}
             </Link>
@@ -125,7 +125,7 @@ export default function SettingsPage() {
                 <label className="block text-gray-700 font-medium mb-2">
                   {t.fontSize}
                 </label>
-                <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-3 gap-2" role="group" aria-label={t.fontSize}>
                   {[
                     { value: "small", label: t.small, size: "text-sm" },
                     { value: "medium", label: t.medium, size: "text-base" },
@@ -138,6 +138,7 @@ export default function SettingsPage() {
                           option.value as "small" | "medium" | "large"
                         )
                       }
+                      aria-pressed={fontSize === option.value}
                       className={`p-3 rounded-lg border text-center transition-colors ${
                         fontSize === option.value
                           ? "border-yellow-400 bg-yellow-50 text-black"
