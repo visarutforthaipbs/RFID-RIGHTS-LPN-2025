@@ -105,15 +105,15 @@ export async function GET() {
           // Myanmar translations
           categoryMm: mmRow["အမျိုးအစား"]?.trim() || undefined,
           topicMm:
-            mmRow["ချို့တဲ့ချက် / ချို့သောအကြောင်းအရာ"]?.trim() || undefined,
-          lawMm: mmRow["အခွင့်အရေးပေးသည့်ဥပဒေ"]?.trim() || undefined,
+            mmRow["ကြုံရတဲ့အကြောင်းအရာ"]?.trim() || undefined,
+          lawMm: mmRow["အခွင့်အရေးရနိုင်တဲ့ဥပဒေတွေ"]?.trim() || undefined,
           knowYourRightsMm:
-            mmRow["သင်၏အခွင့်အရေးများကို သိရှိပါ"]?.trim() || undefined,
+            mmRow["ကိုယ့်အခွင့်အရေးကိုယ်သိပါ"]?.trim() || undefined,
           howToIdentifyMm:
-            mmRow["ချိုးဖောက်မှုလက္ခဏာများကို မည်သို့သိနိုင်မလဲ"]?.trim() ||
+            mmRow["အခွင့်အရေးချိုးဖောက်တဲ့လက္ခဏာရပ်တွေ"]?.trim() ||
             undefined,
           selfHelpMm:
-            mmRow["ကိုယ်တိုင်ကယ်နိုင်သောနည်းလမ်းများ"]?.trim() || undefined,
+            mmRow["ကိုယ့်ကိုယ်ကိုကူနိုင်မယ့်နည်းလမ်းတွေ"]?.trim() || undefined,
         };
       });
 
