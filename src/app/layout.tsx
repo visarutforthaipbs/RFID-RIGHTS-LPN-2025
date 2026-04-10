@@ -1,8 +1,11 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans_Thai, Noto_Sans_Myanmar } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import { GlobalUI } from "./components/GlobalUI";
+
+const GA_MEASUREMENT_ID = "G-4733EDMP26";
 
 const notoSansThai = Noto_Sans_Thai({
   subsets: ["thai", "latin"],
@@ -76,6 +79,18 @@ export default function RootLayout({
   return (
     <html lang="th" className={`${notoSansThai.variable} ${notoSansMyanmar.variable}`}>
       <head>
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_MEASUREMENT_ID}');
+          `}
+        </Script>
         <meta name="msapplication-TileColor" content="#ffc314" />
         <meta httpEquiv="X-Content-Type-Options" content="nosniff" />
         <meta httpEquiv="Referrer-Policy" content="strict-origin-when-cross-origin" />
