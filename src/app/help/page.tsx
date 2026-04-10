@@ -157,6 +157,7 @@ export default function HelpPage() {
                     </h3>
                     <a
                       href={`tel:${contact.number}`}
+                      aria-label={`${locale === 'en' ? 'Call' : 'โทร'} ${contact.name} ${contact.number}`}
                       className="inline-flex items-center px-3 py-1 bg-yellow-400 text-black rounded-full text-sm font-medium hover:bg-yellow-300 transition-colors"
                     >
                       {contact.number}
@@ -196,6 +197,7 @@ export default function HelpPage() {
                     <div className="flex flex-col sm:flex-row gap-2 mt-2 sm:mt-0">
                       <a
                         href={`tel:${resource.phone}`}
+                        aria-label={`${locale === 'en' ? 'Call' : 'โทร'} ${resource.title} ${resource.phone}`}
                         className="inline-flex items-center px-3 py-1 bg-green-600 text-white rounded-lg text-sm font-medium hover:bg-green-700 transition-colors justify-center"
                       >
                         <svg
@@ -233,6 +235,7 @@ export default function HelpPage() {
                           />
                         </svg>
                         {t.website}
+                        <span className="sr-only"> ({locale === 'en' ? 'opens in new tab' : locale === 'mm' ? 'tab အသစ်ဖွင့်သည်' : 'เปิดในแท็บใหม่'})</span>
                       </a>
                     </div>
                   </div>

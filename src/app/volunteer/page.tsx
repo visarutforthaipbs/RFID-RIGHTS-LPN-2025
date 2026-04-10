@@ -312,7 +312,7 @@ export default function VolunteerPage() {
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="mb-6">
+          <nav className="mb-6" aria-label="Breadcrumb">
             <Link href="/" className="text-black hover:text-yellow-600">
               {t.home}
             </Link>
@@ -648,7 +648,7 @@ export default function VolunteerPage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {error && (
-                  <div className="bg-red-50 border border-red-200 rounded-xl p-4">
+                  <div className="bg-red-50 border border-red-200 rounded-xl p-4" role="alert">
                     <p className="text-red-800 text-sm">{error}</p>
                   </div>
                 )}
@@ -658,10 +658,11 @@ export default function VolunteerPage() {
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-name" className="block text-sm font-medium text-gray-700 mb-1">
                         {vt.name} *
                       </label>
                       <input
+                        id="volunteer-name"
                         type="text"
                         name="name"
                         value={formData.name}
@@ -671,10 +672,11 @@ export default function VolunteerPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-age" className="block text-sm font-medium text-gray-700 mb-1">
                         {vt.age} *
                       </label>
                       <input
+                        id="volunteer-age"
                         type="number"
                         name="age"
                         value={formData.age}
@@ -685,10 +687,11 @@ export default function VolunteerPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-nationality" className="block text-sm font-medium text-gray-700 mb-1">
                         {vt.nationality} *
                       </label>
                       <input
+                        id="volunteer-nationality"
                         type="text"
                         name="nationality"
                         value={formData.nationality}
@@ -698,10 +701,11 @@ export default function VolunteerPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-languages" className="block text-sm font-medium text-gray-700 mb-1">
                         {vt.languages} *
                       </label>
                       <input
+                        id="volunteer-languages"
                         type="text"
                         name="languages"
                         value={formData.languages}
@@ -721,10 +725,11 @@ export default function VolunteerPage() {
                 <div className="bg-gray-50 rounded-xl p-4">
                   <div className="grid md:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-phone" className="block text-sm font-medium text-gray-700 mb-1">
                         {vt.phone} *
                       </label>
                       <input
+                        id="volunteer-phone"
                         type="tel"
                         name="phone"
                         value={formData.phone}
@@ -734,10 +739,11 @@ export default function VolunteerPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-contact" className="block text-sm font-medium text-gray-700 mb-1">
                         {vt.contact}
                       </label>
                       <input
+                        id="volunteer-contact"
                         type="text"
                         name="contact"
                         value={formData.contact}
@@ -747,10 +753,11 @@ export default function VolunteerPage() {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="volunteer-address" className="block text-sm font-medium text-gray-700 mb-1">
                       {vt.address} *
                     </label>
                     <input
+                      id="volunteer-address"
                       type="text"
                       name="address"
                       value={formData.address}
@@ -762,10 +769,11 @@ export default function VolunteerPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="volunteer-reason" className="block text-sm font-medium text-gray-700 mb-1">
                     {vt.reason} *
                   </label>
                   <textarea
+                    id="volunteer-reason"
                     name="reason"
                     value={formData.reason}
                     onChange={handleChange}
@@ -776,10 +784,11 @@ export default function VolunteerPage() {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="volunteer-experience" className="block text-sm font-medium text-gray-700 mb-1">
                     {vt.experience}
                   </label>
                   <textarea
+                    id="volunteer-experience"
                     name="experience"
                     value={formData.experience}
                     onChange={handleChange}
@@ -821,6 +830,7 @@ export default function VolunteerPage() {
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="tel:084-121-1609"
+                aria-label="โทรหามูลนิธิ LPN 084-121-1609"
                 className="inline-flex items-center px-5 py-3 bg-yellow-400 text-black rounded-xl font-medium hover:bg-yellow-300 transition-colors"
               >
                 <svg
@@ -842,6 +852,7 @@ export default function VolunteerPage() {
                 href="https://www.lpnfoundation.org/th"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="เว็บไซต์มูลนิธิ LPN (เปิดในแท็บใหม่)"
                 className="inline-flex items-center px-5 py-3 bg-white text-black rounded-xl font-medium hover:bg-gray-100 transition-colors"
               >
                 <svg
@@ -858,6 +869,7 @@ export default function VolunteerPage() {
                   />
                 </svg>
                 lpnfoundation.org
+                <span className="sr-only"> (เปิดในแท็บใหม่)</span>
               </a>
             </div>
           </section>

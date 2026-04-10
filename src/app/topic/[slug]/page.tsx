@@ -245,6 +245,7 @@ export default function TopicPage({ params }: TopicPageProps) {
                         {topic.lawUrls && topic.lawUrls.length === 1
                           ? t.readFullLaw
                           : `${t.readFullLaw} ${index + 1}`}
+                        <span className="sr-only"> ({locale === 'en' ? 'opens in new tab' : locale === 'mm' ? 'tab အသစ်ဖွင့်သည်' : 'เปิดในแท็บใหม่'})</span>
                       </a>
                     ))}
                   </div>
