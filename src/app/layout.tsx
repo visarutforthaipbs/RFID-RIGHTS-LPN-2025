@@ -23,11 +23,22 @@ const notoSansMyanmar = Noto_Sans_Myanmar({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://rfid-rights.vercel.app"),
-  title: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
+  title: {
+    default: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
+    template: "%s | รู้สิทธิ ติดกระเป๋า",
+  },
   description:
     "Complete offline guide for migrant workers' rights in Thailand. Know your rights, identify issues, get help.",
   keywords:
-    "migrant rights, Thailand, workers rights, labor law, ผู้ใช้แรงงาน, สิทธิแรงงาน",
+    "migrant rights, Thailand, workers rights, labor law, ผู้ใช้แรงงาน, สิทธิแรงงาน, แรงงานข้ามชาติ, สิทธิแรงงานข้ามชาติ, Myanmar workers, migrant workers Thailand",
+  alternates: {
+    canonical: "https://rfid-rights.vercel.app",
+    languages: {
+      "th": "https://rfid-rights.vercel.app",
+      "en": "https://rfid-rights.vercel.app",
+      "my": "https://rfid-rights.vercel.app",
+    },
+  },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -106,13 +117,40 @@ export default function RootLayout({
                   url: "https://rfid-rights.vercel.app",
                   description:
                     "Complete offline guide for migrant workers' rights in Thailand. Know your rights, identify issues, get help.",
-                  inLanguage: ["th", "en", "my", "km"],
+                  inLanguage: ["th", "en", "my"],
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: {
+                      "@type": "EntryPoint",
+                      urlTemplate: "https://rfid-rights.vercel.app/topics?q={search_term_string}",
+                    },
+                    "query-input": "required name=search_term_string",
+                  },
                 },
                 {
                   "@type": "Organization",
-                  name: "Migrant Rights Guide",
-                  url: "https://rfid-rights.vercel.app",
+                  name: "Labor Protection Network Foundation (LPN)",
+                  alternateName: "มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน",
+                  url: "https://www.lpnfoundation.org",
                   logo: "https://rfid-rights.vercel.app/favicon-new.svg",
+                  contactPoint: {
+                    "@type": "ContactPoint",
+                    telephone: "+66-84-121-1609",
+                    contactType: "customer support",
+                    availableLanguage: ["Thai", "Burmese", "English"],
+                  },
+                },
+                {
+                  "@type": "WebApplication",
+                  name: "รู้สิทธิ ติดกระเป๋า",
+                  url: "https://rfid-rights.vercel.app",
+                  applicationCategory: "ReferenceApplication",
+                  operatingSystem: "All",
+                  offers: {
+                    "@type": "Offer",
+                    price: "0",
+                    priceCurrency: "THB",
+                  },
                 },
               ],
             }),

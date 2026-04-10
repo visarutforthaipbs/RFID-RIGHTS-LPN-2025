@@ -56,11 +56,23 @@ export async function generateMetadata({
     `ข้อมูลเกี่ยวกับ${topicName} สิทธิแรงงานข้ามชาติในประเทศไทย`;
 
   return {
-    title: `${topicName} - รู้สิทธิ ติดกระเป๋า`,
+    title: topicName,
     description,
+    alternates: {
+      canonical: `https://rfid-rights.vercel.app/topic/${slug}`,
+    },
     openGraph: {
       title: `${topicName} - ${category}`,
       description,
+      url: `https://rfid-rights.vercel.app/topic/${slug}`,
+      images: [
+        {
+          url: "/images/thumnail-image.png",
+          width: 1200,
+          height: 630,
+          alt: topicName,
+        },
+      ],
     },
   };
 }

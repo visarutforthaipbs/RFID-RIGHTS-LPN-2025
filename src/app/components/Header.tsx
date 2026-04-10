@@ -60,7 +60,7 @@ export function Header() {
               className="w-8 h-8 flex-shrink-0"
             />
             <div className="min-w-0">
-              <h1 className="text-base font-bold text-black leading-tight truncate">{t.title}</h1>
+              <span className="text-base font-bold text-black leading-tight truncate block">{t.title}</span>
               <p className="text-xs text-gray-600 leading-tight">Migrant Rights Guide</p>
             </div>
           </Link>
@@ -77,6 +77,7 @@ export function Header() {
                 <Link
                   key={link.href}
                   href={link.href}
+                  aria-current={pathname === link.href ? "page" : undefined}
                   className={`text-xs px-2 py-1 rounded transition-all whitespace-nowrap ${
                     pathname === link.href
                       ? "text-black bg-yellow-400 bg-opacity-30 font-semibold"
@@ -127,6 +128,7 @@ export function Header() {
             <Link
               key={link.href}
               href={link.href}
+              aria-current={pathname === link.href ? "page" : undefined}
               className={`block px-4 py-3 rounded-lg text-sm font-medium transition-colors ${
                 pathname === link.href
                   ? "text-black bg-yellow-400 bg-opacity-30"
