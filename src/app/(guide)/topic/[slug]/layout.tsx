@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SITE_URL } from "../../../../../lib/site";
 import fs from "fs";
 import path from "path";
 import { parse } from "csv-parse/sync";
@@ -59,12 +60,12 @@ export async function generateMetadata({
     title: topicName,
     description,
     alternates: {
-      canonical: `https://rfid-rights.vercel.app/topic/${slug}`,
+      canonical: `${SITE_URL}/topic/${slug}`,
     },
     openGraph: {
       title: `${topicName} - ${category}`,
       description,
-      url: `https://rfid-rights.vercel.app/topic/${slug}`,
+      url: `${SITE_URL}/topic/${slug}`,
       images: [
         {
           url: "/images/thumnail-image.png",

@@ -1,51 +1,143 @@
+/* ==========================================================================
+   รู้สิทธิ ติดกระเป๋า — guide route group styles (LPN One CI)
+   Source of truth: LPN/brand/BRAND.md + brand/tokens/lpn-tokens.css
+   (vendored as ./lpn-tokens.css, imported by BOTH root layouts).
+   Rules in one line: yellow #FFC314 has three jobs (one primary action,
+   selection, focus ring); labels/surfaces/separators come from tokens; radius
+   8 control / 12 card / 16 sheet / pill chip; no gradients or shadows beyond a
+   1 px separator; glass only in the sticky header and the bottom SOS bar.
+   ========================================================================== */
 @import "tailwindcss";
+/* Tokens go into the `base` layer so Tailwind utilities (and .btn/.card in
+   `components`) can still override the script rules (:lang(th) line-height,
+   font-family) where a control needs tighter leading or the mono face. */
+@import "./lpn-tokens.css" layer(base);
 
-/* Organization Color Variables */
+/* ---- Tailwind v4 mapping: semantic utilities on top of the tokens ---------
+   bg-surface / bg-elevated / text-label / border-separator / bg-accent …
+   `inline` keeps the var() reference so Dark Mode follows the media query. */
+@theme inline {
+  --color-accent: var(--accent);
+  --color-accent-pressed: var(--accent-pressed);
+  --color-on-accent: var(--on-accent);
+  --color-brand: var(--lpn-yellow);
+
+  --color-surface: var(--bg);
+  --color-surface-secondary: var(--bg-secondary);
+  --color-surface-tertiary: var(--bg-tertiary);
+  --color-elevated: var(--bg-elevated);
+  --color-inverse: var(--bg-inverse);
+  --color-inverse-elevated: var(--bg-inverse-elevated);
+
+  --color-label: var(--label);
+  --color-label-secondary: var(--label-secondary);
+  --color-label-tertiary: var(--label-tertiary);
+  --color-on-inverse: var(--on-inverse);
+  --color-on-inverse-secondary: var(--on-inverse-secondary);
+
+  --color-separator: var(--separator);
+  --color-separator-strong: var(--separator-strong);
+
+  --color-critical: var(--critical-fill);
+  --color-critical-ink: var(--critical-ink);
+  --color-critical-tint: var(--critical-tint);
+  --color-high: var(--high-fill);
+  --color-high-ink: var(--high-ink);
+  --color-high-tint: var(--high-tint);
+  --color-medium: var(--medium-fill);
+  --color-medium-ink: var(--medium-ink);
+  --color-medium-tint: var(--medium-tint);
+  --color-low: var(--low-fill);
+  --color-low-ink: var(--low-ink);
+  --color-low-tint: var(--low-tint);
+  --color-success: var(--success-fill);
+  --color-success-ink: var(--success-ink);
+  --color-success-tint: var(--success-tint);
+  --color-emergency: var(--emergency);
+
+  --font-sans: var(--font-sans);
+  --font-reading: var(--font-thai-reading);
+  --font-myanmar: var(--font-myanmar);
+  --font-mono: var(--font-mono);
+
+  /* Worker-facing scale: body 18, floor 13 (text-xs), Thai leading 1.7. */
+  --text-xs: 0.8125rem;   --text-xs--line-height: 1.5;
+  --text-sm: 0.9375rem;   --text-sm--line-height: 1.6;
+  --text-base: 1.125rem;  --text-base--line-height: 1.7;
+  --text-lg: 1.25rem;     --text-lg--line-height: 1.55;
+  --text-xl: 1.5rem;      --text-xl--line-height: 1.45;
+  --text-2xl: 1.75rem;    --text-2xl--line-height: 1.4;
+  --text-3xl: 2rem;       --text-3xl--line-height: 1.35;
+
+  /* Shape: rounded-lg = control 8, rounded-xl = card 12, rounded-2xl = sheet 16.
+     rounded-3xl is retired — it resolves to the sheet radius so a stray call
+     site can never produce a 24 px corner. */
+  --radius-lg: var(--radius-control);
+  --radius-xl: var(--radius-card);
+  --radius-2xl: var(--radius-sheet);
+  --radius-3xl: var(--radius-sheet);
+}
+
+/* ---- Legacy variable names → tokens (older call sites keep working) ------ */
 :root {
-  --color-primary: #ffc314;
-  --color-primary-dark: #f5b800;
-  --color-primary-light: #fff3b8;
-  --color-secondary: #000000;
-  --color-background: #fafafa;
-  --color-surface: #ffffff;
-  --color-text: #000000;
-  --color-text-muted: #6d6d6d;
-  --color-text-light: #888888;
-  --color-border: #d1d1d1;
-  --color-border-light: #e7e7e7;
+  --color-primary: var(--accent);
+  --color-primary-dark: var(--accent-pressed);
+  --color-primary-light: var(--bg-secondary);
+  --color-secondary: var(--label);
+  --color-background: var(--bg);
+  --color-surface: var(--bg-elevated);
+  --color-text: var(--label);
+  --color-text-muted: var(--label-secondary);
+  --color-text-light: var(--label-secondary);
+  --color-border: var(--separator-strong);
+  --color-border-light: var(--separator);
 }
 
-/* Base styles */
+/* ---- Fonts: next/font variables → brand token names ----------------------
+   Latin = IBM Plex Sans, Thai = IBM Plex Sans Thai, long reading (topic
+   articles, class .reading) = IBM Plex Sans Thai Looped, Myanmar = Noto. */
 html {
-  font-size: 16px;
-  line-height: 1.6;
+  --font-latin: var(--font-plex-sans), 'IBM Plex Sans', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-thai: var(--font-plex-thai), 'IBM Plex Sans Thai', 'Noto Sans Thai', system-ui, sans-serif;
+  --font-thai-reading: var(--font-plex-sans), var(--font-plex-thai-looped), 'IBM Plex Sans Thai Looped', var(--font-thai);
+  --font-sans: var(--font-plex-sans), var(--font-plex-thai), 'IBM Plex Sans', 'IBM Plex Sans Thai', -apple-system, system-ui, sans-serif;
+  --font-myanmar: var(--font-noto-myanmar), 'Noto Sans Myanmar', 'Myanmar Text', 'Padauk', system-ui, sans-serif;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
+/* ---- Base ------------------------------------------------------------------ */
+@layer base {
 body {
-  font-family: var(--font-noto-sans-thai), var(--font-noto-sans-myanmar), system-ui, -apple-system, sans-serif;
-  background-color: #fafafa;
-  color: #000000;
+  font-family: var(--font-sans);
+  font-size: var(--text-body-worker); /* 18 px */
+  line-height: var(--leading-thai-body); /* 1.7 — never tighter on Thai */
+  background-color: var(--bg);
+  color: var(--label);
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Accessibility - Minimum touch targets */
-button,
-a,
-input,
-select,
-textarea {
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  line-height: var(--leading-thai-heading);
+  letter-spacing: normal; /* no tracking on Thai, ever */
+}
+
+/* Article prose (topic bodies) reads in the looped face. */
+.reading { font-family: var(--font-thai-reading); }
+.font-myanmar, [lang="my"], [lang="my"] .reading { font-family: var(--font-myanmar); line-height: 1.9; }
+}
+
+/* Accessibility — every control is at least 48 px (brand minimum is 44). */
+button, a, input, select, textarea, [role="button"] {
   min-height: 48px;
   min-width: 48px;
 }
+/* Inline text links inside prose and breadcrumbs are not blocks; let them flow. */
+p a, li a, .reading a, .crumb a { min-height: 0; min-width: 0; }
 
-/* Focus styles for accessibility — visible ring with dark offset for contrast */
-*:focus-visible {
-  outline: 2px solid #000000;
-  outline-offset: 2px;
-  box-shadow: 0 0 0 4px #ffc314;
-  border-radius: 4px;
-}
-
-/* Remove default outline only when :focus-visible is supported */
+/* Focus ring comes from lpn-tokens.css (yellow ring + dark halo). Only strip
+   the ring for mouse focus. */
 *:focus:not(:focus-visible) {
   outline: none;
   box-shadow: none;
@@ -56,23 +148,18 @@ textarea {
   position: absolute;
   top: -100px;
   left: 6px;
-  background: #000000;
-  color: #ffc314;
+  background: var(--label);
+  color: var(--bg);
   padding: 12px 16px;
-  border-radius: 4px;
+  border-radius: var(--radius-control);
   text-decoration: none;
   transition: top 0.3s;
   z-index: 9999;
   font-weight: 600;
-  font-size: 14px;
+  font-size: var(--text-footnote);
 }
-
 .skip-to-content:focus,
-.skip-to-content:focus-visible {
-  top: 6px;
-  outline: 2px solid #ffc314;
-  outline-offset: 2px;
-}
+.skip-to-content:focus-visible { top: 6px; }
 
 /* Screen reader only utility */
 .sr-only {
@@ -87,27 +174,116 @@ textarea {
   border-width: 0;
 }
 
-/* Headings */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-weight: 600;
+/* ---- Shared components (kept in @layer so utilities still win) ------------ */
+@layer components {
+  /* Glass: ONLY the sticky header and the bottom SOS bar. */
+  .glass {
+    background: var(--glass-bg);
+    -webkit-backdrop-filter: var(--glass-blur);
+    backdrop-filter: var(--glass-blur);
+  }
+
+  /* Buttons — one .btn-primary per screen. */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 48px;
+    padding: 0 1rem;
+    border-radius: var(--radius-control);
+    border: 1.5px solid transparent;
+    background: var(--bg-tertiary);
+    color: var(--label);
+    font-weight: 600;
+    font-size: var(--text-body-worker);
+    line-height: 1.3;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color var(--dur-fast) var(--ease), border-color var(--dur-fast) var(--ease);
+  }
+  .btn-primary { background: var(--accent); color: var(--on-accent); }
+  .btn-primary:hover { background: var(--accent-pressed); }
+  .btn-secondary { background: transparent; border-color: var(--separator-strong); }
+  .btn-secondary:hover { background: var(--bg-secondary); }
+  .btn-plain { background: transparent; }
+  .btn-plain:hover { background: var(--bg-secondary); }
+  .btn-inverse { background: var(--label); color: var(--bg); }
+  /* External emergency numbers and critical actions only — never yellow. */
+  .btn-emergency { background: var(--emergency); color: #ffffff; }
+  .btn-emergency:hover { filter: brightness(0.92); }
+  .btn:disabled { opacity: 0.45; cursor: not-allowed; }
+  .btn-lg { min-height: var(--target-worker); }
+
+  /* Card: solid elevated surface + 1 px separator, radius 12. */
+  .card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--separator);
+    border-radius: var(--radius-card);
+  }
+
+  /* Chip / badge: pill, neutral by default. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    min-height: 28px;
+    padding: 0.125rem 0.75rem;
+    border-radius: var(--radius-pill);
+    background: var(--bg-secondary);
+    color: var(--label-secondary);
+    font-size: var(--text-caption); /* 13 — the floor */
+    font-weight: 500;
+    line-height: 1.5;
+  }
+  /* Selectable chip (filters): yellow = selected state. */
+  .chip-select {
+    min-height: 44px;
+    padding: 0 1rem;
+    font-size: var(--text-footnote);
+    font-weight: 600;
+    color: var(--label);
+    border: 1.5px solid var(--separator);
+    background: var(--bg-elevated);
+    cursor: pointer;
+  }
+  .chip-select[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); border-color: var(--accent); }
+
+  /* Status badges: word + dot, never colour alone (brand rule 3). */
+  .status { display: inline-flex; align-items: center; gap: 0.375rem; padding: 0.125rem 0.625rem; border-radius: var(--radius-pill); font-size: var(--text-caption); font-weight: 600; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; flex: none; }
+  .status-critical { background: var(--critical-tint); color: var(--critical-ink); }
+  .status-medium { background: var(--medium-tint); color: var(--medium-ink); }
+  .status-success { background: var(--success-tint); color: var(--success-ink); }
+
+  /* Inputs */
+  .field-input {
+    width: 100%;
+    min-height: 48px;
+    border-radius: var(--radius-control);
+    border: 1.5px solid var(--separator-strong);
+    background: var(--bg-elevated);
+    color: var(--label);
+    font-size: var(--text-body-worker);
+  }
+  .field-input::placeholder { color: var(--label-tertiary); }
+
+  /* Phosphor duotone: paint the 20 % second layer in brand yellow (rule 10). */
+  .duo-accent svg path[opacity] { fill: var(--accent); opacity: 1; }
+
+  /* Inline text link */
+  .link { color: var(--label); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-color: var(--separator-strong); }
+  .link:hover { text-decoration-color: currentColor; }
+
+  /* Page breadcrumb */
+  .crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: var(--text-footnote); color: var(--label-secondary); }
+  .crumb a { color: var(--label); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-color: var(--separator-strong); }
+  .crumb a:hover { text-decoration-color: currentColor; }
 }
 
-/* Myanmar Unicode font - applied when locale is mm */
-.font-myanmar,
-[lang="my"] {
-  font-family: var(--font-noto-sans-myanmar), "Myanmar Text", "Padauk", system-ui, sans-serif;
-}
-
-/* Reduced motion support */
+/* ---- Reduced motion -------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
