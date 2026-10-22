@@ -134,7 +134,7 @@ export const messages = {
     // Volunteer page
     volunteer: "สมัครอาสา",
     // SOS Bar
-    sosHeading: "ต้องการความช่วยเหลือเร่งด่วน?",
+    sosHeading: "ต้องการความช่วย\u2060เหลือเร่งด่วน?", // U+2060 keeps ช่วยเหลือ on one line in the narrow SOS bar,
     sosSubtext: "ติดต่อหามูลนิธิ LPN",
     sosCallAria: "โทร 084-121-1609",
     sosHelpLinkAria: "ดูช่องทางช่วยเหลืออื่น ๆ",

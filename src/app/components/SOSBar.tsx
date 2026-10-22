@@ -31,7 +31,7 @@ export function SOSBar() {
     >
       <div className="max-w-4xl mx-auto flex items-center justify-between gap-3">
         <div className="flex-1 min-w-0">
-          <h3 className="font-semibold text-sm sm:text-base leading-snug break-words">{t.sosHeading}</h3>
+          <h3 className="font-semibold text-sm sm:text-base leading-snug">{t.sosHeading}</h3>
           <p className="hidden sm:block text-xs text-label-secondary leading-snug">{t.sosSubtext}</p>
         </div>
 

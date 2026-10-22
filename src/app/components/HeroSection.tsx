@@ -28,7 +28,7 @@ export function HeroSection({ data, onResults }: HeroSectionProps) {
             <Image src="/favicon-new.svg" alt="" width={48} height={48} className="w-10 h-10 sm:w-12 sm:h-12 flex-shrink-0" aria-hidden="true" />
             <h1 className="text-2xl sm:text-3xl font-bold text-label">{t.chooseYourSituation}</h1>
           </div>
-          <p className="text-base sm:text-lg text-label-secondary mb-6 max-w-2xl mx-auto lg:mx-0 whitespace-normal sm:whitespace-pre-line">
+          <p className="text-base sm:text-lg text-label-secondary mb-6 max-w-2xl mx-auto lg:mx-0">
             {t.chooseDescription}
           </p>
 

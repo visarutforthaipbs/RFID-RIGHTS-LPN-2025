@@ -4,13 +4,18 @@
 
 Use these **exact symbols** at the start of each line in your CSV data:
 
-| Symbol | Name         | Level | Color     | Usage                            |
-| ------ | ------------ | ----- | --------- | -------------------------------- |
-| `•`    | Bullet       | 1     | 🟢 Green  | Main collapsible sections        |
-| `◦`    | White Bullet | 2     | 🔵 Blue   | Sub-sections (can also collapse) |
-| `▪`    | Small Square | 3     | 🟣 Purple | Detail points                    |
-| `‣`    | Triangle     | 4     | ⚫ Gray   | Sub-details                      |
-| (none) | Plain text   | 0     | Black     | Regular text without bullets     |
+| Symbol | Name         | Level | Rendering (LPN One CI)                         | Usage                            |
+| ------ | ------------ | ----- | ---------------------------------------------- | -------------------------------- |
+| `•`    | Bullet       | 1     | semibold label, collapsible row ≥ 44 px        | Main collapsible sections        |
+| `◦`    | White Bullet | 2     | secondary label, collapsible row               | Sub-sections (can also collapse) |
+| `▪`    | Small Square | 3     | secondary label, 2 px separator rail           | Detail points                    |
+| `‣`    | Triangle     | 4     | secondary label, 2 px separator rail           | Sub-details                      |
+| (none) | Plain text   | 0     | label                                          | Regular text without bullets     |
+
+Levels are told apart by indentation, weight and the caret — **not by colour**
+(brand rule: no hashed/level colours, yellow is reserved for the one primary
+action, selection and focus). The whole block reads in IBM Plex Sans Thai
+Looped (`.reading`).
 
 ---
 
@@ -47,8 +52,7 @@ Plain text without any symbol
 ### ✅ Auto-Collapse
 
 - **Level 1** (`•`) and **Level 2** (`◦`) items with children automatically become collapsible
-- Click the **▶** arrow to expand
-- Click the **▼** arrow to collapse
+- The whole row is one button (Phosphor `caret-right` / `caret-down`), 44 px tall
 
 ### ✅ Auto-Link Detection
 
@@ -57,9 +61,8 @@ Plain text without any symbol
 
 ### ✅ Visual Hierarchy
 
-- Each level has its own color and indentation
-- Colored left borders show parent-child relationships
-- Hover effects for better interactivity
+- Each level has its own indentation and weight; a 2 px separator rail shows parent-child relationships
+- Hover = secondary surface tint only (no motion, no colour change)
 
 ---
 
@@ -134,7 +137,7 @@ No need to run `npm run build:data` anymore!
 Visit any topic page and check:
 
 - ✅ Main points have collapse arrows if they have children
-- ✅ Colors match the levels (green → blue → purple → gray)
+- ✅ Level 1 rows are semibold; deeper levels are indented behind a separator rail
 - ✅ Indentation shows parent-child relationships
 - ✅ URLs are clickable
 - ✅ Clicking anywhere on the line toggles collapse
@@ -157,5 +160,5 @@ Visit any topic page and check:
 
 ---
 
-Created: 2025-10-22
+Created: 2025-10-22 · Restyled for LPN One CI (see DESIGN_SYSTEM.md)
 Component: `/src/app/components/FormattedContent.tsx`

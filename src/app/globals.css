@@ -134,7 +134,7 @@ button, a, input, select, textarea, [role="button"] {
   min-width: 48px;
 }
 /* Inline text links inside prose and breadcrumbs are not blocks; let them flow. */
-p a, li a, .reading a, .crumb a { min-height: 0; min-width: 0; }
+p a, li a, .reading a { min-height: 0; min-width: 0; }
 
 /* Focus ring comes from lpn-tokens.css (yellow ring + dark halo). Only strip
    the ring for mouse focus. */
@@ -277,7 +277,8 @@ p a, li a, .reading a, .crumb a { min-height: 0; min-width: 0; }
 
   /* Page breadcrumb */
   .crumb { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; font-size: var(--text-footnote); color: var(--label-secondary); }
-  .crumb a { color: var(--label); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-color: var(--separator-strong); }
+  /* crumb links are real targets: 44 px tall hit area, text stays small */
+  .crumb a { display: inline-flex; align-items: center; min-height: 44px; min-width: 44px; color: var(--label); text-decoration: underline; text-underline-offset: 0.2em; text-decoration-color: var(--separator-strong); }
   .crumb a:hover { text-decoration-color: currentColor; }
 }
 
