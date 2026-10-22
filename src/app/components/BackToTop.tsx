@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { ArrowUp } from "@phosphor-icons/react/dist/ssr/ArrowUp";
 import { useLanguage } from "../contexts/LanguageContext";
 
 export function BackToTop() {
@@ -33,22 +34,10 @@ export function BackToTop() {
   return (
     <button
       onClick={scrollToTop}
-      className="fixed bottom-20 right-4 z-40 bg-white text-gray-700 w-10 h-10 rounded-full shadow-lg border border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:shadow-xl transition-all duration-200"
+      className="fixed bottom-24 right-4 z-40 bg-elevated text-label w-12 h-12 rounded-full border border-separator-strong flex items-center justify-center hover:bg-surface-secondary transition-colors"
       aria-label={locale === "en" ? "Back to top" : locale === "mm" ? "အပေါ်သို့ ပြန်သွားရန်" : "กลับขึ้นด้านบน"}
     >
-      <svg
-        className="w-5 h-5"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M5 15l7-7 7 7"
-        />
-      </svg>
+      <ArrowUp size={22} weight="bold" aria-hidden="true" />
     </button>
   );
 }

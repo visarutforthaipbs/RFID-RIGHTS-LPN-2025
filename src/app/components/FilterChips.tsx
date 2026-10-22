@@ -31,11 +31,7 @@ export function FilterChips({
     <div className="flex flex-wrap gap-2 mb-6" role="group" aria-label={locale === "en" ? "Filter by category" : locale === "mm" ? "အမျိုးအစားဖြင့် စစ်ထုတ်ရန်" : "กรองตามหมวดหมู่"}>
       <button
         onClick={() => onCategoryChange(null)}
-        className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-          selectedCategory === null
-            ? "bg-yellow-400 text-black"
-            : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-        }`}
+        className="chip chip-select"
         aria-pressed={selectedCategory === null}
         type="button"
       >
@@ -46,11 +42,7 @@ export function FilterChips({
         <button
           key={category}
           onClick={() => onCategoryChange(category)}
-          className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-            selectedCategory === category
-              ? "bg-yellow-400 text-black"
-              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-          }`}
+          className="chip chip-select"
           aria-pressed={selectedCategory === category}
           type="button"
         >
