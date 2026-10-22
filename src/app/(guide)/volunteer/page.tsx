@@ -2,11 +2,22 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { HandHeart } from "@phosphor-icons/react/dist/ssr/HandHeart";
+import { Lightbulb } from "@phosphor-icons/react/dist/ssr/Lightbulb";
+import { CheckCircle } from "@phosphor-icons/react/dist/ssr/CheckCircle";
+import { UsersThree } from "@phosphor-icons/react/dist/ssr/UsersThree";
+import { ShieldCheck } from "@phosphor-icons/react/dist/ssr/ShieldCheck";
+import { Check } from "@phosphor-icons/react/dist/ssr/Check";
+import { GraduationCap } from "@phosphor-icons/react/dist/ssr/GraduationCap";
+import { Certificate } from "@phosphor-icons/react/dist/ssr/Certificate";
+import { NotePencil } from "@phosphor-icons/react/dist/ssr/NotePencil";
+import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
+import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr/ArrowSquareOut";
 import { Header } from "../../components/Header";
 import { SOSBar } from "../../components/SOSBar";
 import { useLanguage } from "../../contexts/LanguageContext";
 import { messages } from "../../../../lib/i18n";
-import { supabase } from "../../../../lib/supabaseClient";
+import { getSupabase } from "../../../../lib/supabaseClient";
 
 export default function VolunteerPage() {
   const { locale } = useLanguage();
@@ -250,7 +261,7 @@ export default function VolunteerPage() {
     setError(null);
 
     try {
-      const { error: supabaseError } = await supabase
+      const { error: supabaseError } = await getSupabase()
         .from("volunteers")
         .insert([
           {
@@ -306,68 +317,42 @@ export default function VolunteerPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
+    <div className="min-h-screen bg-surface pb-24">
       <Header />
 
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-4xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="mb-6" aria-label="Breadcrumb">
-            <Link href="/" className="text-black hover:text-yellow-600">
-              {t.home}
-            </Link>
-            <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-700">{vt.pageTitle}</span>
+          <nav className="crumb mb-6" aria-label="Breadcrumb">
+            <Link href="/">{t.home}</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{vt.pageTitle}</span>
           </nav>
 
           {/* Hero Section */}
-          <header className="bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-3xl p-8 mb-8 text-center">
+          <header className="bg-surface-secondary border border-separator rounded-xl p-8 mb-8 text-center">
             <div className="flex justify-center mb-4">
-              <div className="bg-white rounded-full p-4 shadow-lg">
-                <svg
-                  className="h-12 w-12 text-yellow-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                  />
-                </svg>
+              <div className="duo-accent text-label inline-flex p-2">
+                <HandHeart size={48} weight="duotone" aria-hidden="true" />
               </div>
             </div>
-            <h1 className="text-3xl md:text-4xl font-bold text-black mb-3">
+            <h1 className="text-3xl font-bold text-label mb-3">
               {vt.pageTitle}
             </h1>
-            <p className="text-lg text-black/80">{vt.pageSubtitle}</p>
+            <p className="text-lg text-label-secondary">{vt.pageSubtitle}</p>
           </header>
 
           {/* Philosophy Section */}
-          <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
+          <section className="card p-6 mb-6">
             <div className="flex items-start gap-4">
-              <div className="bg-yellow-100 rounded-full p-3 flex-shrink-0">
-                <svg
-                  className="h-6 w-6 text-yellow-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                  />
-                </svg>
+              <div className="text-label flex-shrink-0 pt-1">
+                <Lightbulb size={26} aria-hidden="true" />
               </div>
               <div>
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">
+                <h2 className="text-xl font-semibold text-label mb-2">
                   {vt.philosophy}
                 </h2>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-label-secondary">
                   {vt.philosophyText}
                 </p>
               </div>
@@ -375,27 +360,15 @@ export default function VolunteerPage() {
           </section>
 
           {/* Spirit of Giving */}
-          <section className="bg-gradient-to-r from-black to-gray-800 rounded-2xl p-6 mb-6 text-center">
+          <section className="bg-surface-secondary border border-separator rounded-xl p-6 mb-6 text-center">
             <div className="flex items-center justify-center gap-2 mb-3">
-              <svg
-                className="h-6 w-6 text-yellow-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-              </svg>
-              <h3 className="text-xl font-semibold text-yellow-400">
+              
+              <h3 className="text-xl font-semibold text-label">
                 {vt.spiritOfGiving}
               </h3>
-              <svg
-                className="h-6 w-6 text-yellow-400"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
-              </svg>
+              
             </div>
-            <p className="text-white text-lg italic">
+            <p className="reading text-label-secondary text-lg">
               &quot;{vt.spiritText}&quot;
             </p>
           </section>
@@ -403,22 +376,10 @@ export default function VolunteerPage() {
           {/* Why Volunteer & Roles - Side by Side on Desktop */}
           <div className="grid md:grid-cols-2 gap-6 mb-6">
             {/* Why Volunteer */}
-            <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <span className="bg-yellow-100 rounded-full p-2 mr-3">
-                  <svg
-                    className="h-5 w-5 text-yellow-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
+            <section className="card p-6">
+              <h2 className="text-xl font-semibold text-label mb-4 flex items-center gap-2">
+                <span className="text-label inline-flex">
+                  <CheckCircle size={22} aria-hidden="true" />
                 </span>
                 {vt.whyVolunteer}
               </h2>
@@ -431,30 +392,18 @@ export default function VolunteerPage() {
                   vt.benefit5,
                 ].map((benefit, index) => (
                   <li key={index} className="flex items-start">
-                    <span className="inline-block w-2 h-2 bg-yellow-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
-                    <span className="text-gray-700">{benefit}</span>
+                    <span className="inline-block w-2 h-2 bg-label-secondary rounded-full mt-3 mr-3 flex-shrink-0"></span>
+                    <span className="text-label">{benefit}</span>
                   </li>
                 ))}
               </ul>
             </section>
 
             {/* Volunteer Roles */}
-            <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <span className="bg-black rounded-full p-2 mr-3">
-                  <svg
-                    className="h-5 w-5 text-yellow-400"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
+            <section className="card p-6">
+              <h2 className="text-xl font-semibold text-label mb-4 flex items-center gap-2">
+                <span className="text-label inline-flex">
+                  <UsersThree size={22} aria-hidden="true" />
                 </span>
                 {vt.roles}
               </h2>
@@ -462,10 +411,10 @@ export default function VolunteerPage() {
                 {[vt.role1, vt.role2, vt.role3, vt.role4, vt.role5].map(
                   (role, index) => (
                     <li key={index} className="flex items-start">
-                      <span className="inline-block w-6 h-6 bg-black text-yellow-400 rounded-full text-center text-sm font-medium mr-3 flex-shrink-0">
+                      <span className="inline-flex items-center justify-center w-7 h-7 bg-surface-tertiary text-label rounded-full text-sm font-semibold mr-3 mt-0.5 flex-shrink-0">
                         {index + 1}
                       </span>
-                      <span className="text-gray-700">{role}</span>
+                      <span className="text-label">{role}</span>
                     </li>
                   )
                 )}
@@ -474,46 +423,22 @@ export default function VolunteerPage() {
           </div>
 
           {/* Volunteer Rights */}
-          <section className="bg-yellow-50 rounded-2xl border border-yellow-200 p-6 mb-6">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-              <svg
-                className="h-6 w-6 text-yellow-600 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
-                />
-              </svg>
+          <section className="card p-6 mb-6">
+            <h2 className="text-xl font-semibold text-label mb-4 flex items-center gap-2">
+              <ShieldCheck size={26} aria-hidden="true" />
               {vt.volunteerRights}
             </h2>
             <div className="grid md:grid-cols-3 gap-4">
               {[vt.right1, vt.right2, vt.right3].map((right, index) => (
                 <div
                   key={index}
-                  className="bg-white rounded-xl p-4 border border-yellow-100"
+                  className="bg-surface-secondary rounded-xl p-4"
                 >
                   <div className="flex items-center gap-3">
-                    <span className="bg-yellow-400 text-black rounded-full w-8 h-8 flex items-center justify-center">
-                      <svg
-                        className="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={3}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
+                    <span className="bg-success-tint text-success-ink rounded-full w-8 h-8 flex items-center justify-center flex-shrink-0">
+                      <Check size={18} weight="bold" aria-hidden="true" />
                     </span>
-                    <span className="text-gray-800">{right}</span>
+                    <span className="text-label">{right}</span>
                   </div>
                 </div>
               ))}
@@ -521,63 +446,27 @@ export default function VolunteerPage() {
           </section>
 
           {/* Training Section */}
-          <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-              <span className="bg-yellow-100 rounded-full p-2 mr-3">
-                <svg
-                  className="h-5 w-5 text-yellow-600"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
+          <section className="card p-6 mb-8">
+            <h2 className="text-xl font-semibold text-label mb-4 flex items-center gap-2">
+              <span className="text-label inline-flex">
+                <GraduationCap size={26} aria-hidden="true" />
               </span>
               {vt.training}
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
-              <div className="bg-yellow-50 rounded-xl p-4 border border-yellow-100">
-                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <svg
-                    className="h-5 w-5 text-yellow-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                    />
-                  </svg>
+              <div className="bg-surface-secondary rounded-xl p-4">
+                <h3 className="font-semibold text-label mb-2 flex items-center gap-2">
+                  <GraduationCap size={22} aria-hidden="true" />
                   {vt.basicTraining}
                 </h3>
-                <p className="text-gray-700 text-sm">{vt.basicTrainingDesc}</p>
+                <p className="text-label-secondary text-sm">{vt.basicTrainingDesc}</p>
               </div>
-              <div className="bg-yellow-50 rounded-xl p-4 border border-yellow-100">
-                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <svg
-                    className="h-5 w-5 text-yellow-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                    />
-                  </svg>
+              <div className="bg-surface-secondary rounded-xl p-4">
+                <h3 className="font-semibold text-label mb-2 flex items-center gap-2">
+                  <Certificate size={22} aria-hidden="true" />
                   {vt.advancedTraining}
                 </h3>
-                <p className="text-gray-700 text-sm">
+                <p className="text-label-secondary text-sm">
                   {vt.advancedTrainingDesc}
                 </p>
               </div>
@@ -585,45 +474,21 @@ export default function VolunteerPage() {
           </section>
 
           {/* Application Form */}
-          <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-8">
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6 text-center flex items-center justify-center gap-2">
-              <svg
-                className="h-7 w-7 text-yellow-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
+          <section className="card p-6 mb-8">
+            <h2 className="text-2xl font-semibold text-label mb-6 text-center flex items-center justify-center gap-2">
+              <NotePencil size={26} aria-hidden="true" />
               {vt.applyForm}
             </h2>
 
             {submitted ? (
               <div className="text-center py-8">
-                <div className="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                  <svg
-                    className="h-10 w-10 text-green-600"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
+                <div className="bg-success-tint text-success-ink rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
+                  <Check size={40} weight="bold" aria-hidden="true" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                <h3 className="text-xl font-semibold text-label mb-2">
                   {vt.thankYou}
                 </h3>
-                <p className="text-gray-600 mb-6">{vt.thankYouText}</p>
+                <p className="text-label-secondary mb-6">{vt.thankYouText}</p>
                 <button
                   onClick={() => {
                     setSubmitted(false);
@@ -640,7 +505,7 @@ export default function VolunteerPage() {
                       agreed: false,
                     });
                   }}
-                  className="px-6 py-3 bg-yellow-400 text-black rounded-xl font-medium hover:bg-yellow-300 transition-colors"
+                  className="btn btn-secondary"
                 >
                   {vt.submitAnother}
                 </button>
@@ -648,17 +513,17 @@ export default function VolunteerPage() {
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 {error && (
-                  <div className="bg-red-50 border border-red-200 rounded-xl p-4" role="alert">
-                    <p className="text-red-800 text-sm">{error}</p>
+                  <div className="bg-critical-tint border border-critical rounded-xl p-4" role="alert">
+                    <p className="text-critical-ink text-sm">{error}</p>
                   </div>
                 )}
-                <div className="bg-gray-50 rounded-xl p-4 mb-4">
-                  <h3 className="font-semibold text-gray-800 mb-4">
+                <div className="bg-surface-secondary rounded-xl p-4 mb-4">
+                  <h3 className="font-semibold text-label mb-4">
                     {vt.personalInfo}
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4">
                     <div>
-                      <label htmlFor="volunteer-name" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-name" className="block text-sm font-medium text-label mb-1">
                         {vt.name} *
                       </label>
                       <input
@@ -668,11 +533,11 @@ export default function VolunteerPage() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                        className="field-input px-4 py-3"
                       />
                     </div>
                     <div>
-                      <label htmlFor="volunteer-age" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-age" className="block text-sm font-medium text-label mb-1">
                         {vt.age} *
                       </label>
                       <input
@@ -683,11 +548,11 @@ export default function VolunteerPage() {
                         onChange={handleChange}
                         required
                         min="18"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                        className="field-input px-4 py-3"
                       />
                     </div>
                     <div>
-                      <label htmlFor="volunteer-nationality" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-nationality" className="block text-sm font-medium text-label mb-1">
                         {vt.nationality} *
                       </label>
                       <input
@@ -697,11 +562,11 @@ export default function VolunteerPage() {
                         value={formData.nationality}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                        className="field-input px-4 py-3"
                       />
                     </div>
                     <div>
-                      <label htmlFor="volunteer-languages" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-languages" className="block text-sm font-medium text-label mb-1">
                         {vt.languages} *
                       </label>
                       <input
@@ -716,16 +581,16 @@ export default function VolunteerPage() {
                             ? "เช่น ไทย, พม่า, อังกฤษ"
                             : "e.g., Thai, Myanmar, English"
                         }
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                        className="field-input px-4 py-3"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-xl p-4">
+                <div className="bg-surface-secondary rounded-xl p-4">
                   <div className="grid md:grid-cols-2 gap-4 mb-4">
                     <div>
-                      <label htmlFor="volunteer-phone" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-phone" className="block text-sm font-medium text-label mb-1">
                         {vt.phone} *
                       </label>
                       <input
@@ -735,11 +600,11 @@ export default function VolunteerPage() {
                         value={formData.phone}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                        className="field-input px-4 py-3"
                       />
                     </div>
                     <div>
-                      <label htmlFor="volunteer-contact" className="block text-sm font-medium text-gray-700 mb-1">
+                      <label htmlFor="volunteer-contact" className="block text-sm font-medium text-label mb-1">
                         {vt.contact}
                       </label>
                       <input
@@ -748,12 +613,12 @@ export default function VolunteerPage() {
                         name="contact"
                         value={formData.contact}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                        className="field-input px-4 py-3"
                       />
                     </div>
                   </div>
                   <div>
-                    <label htmlFor="volunteer-address" className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="volunteer-address" className="block text-sm font-medium text-label mb-1">
                       {vt.address} *
                     </label>
                     <input
@@ -763,13 +628,13 @@ export default function VolunteerPage() {
                       value={formData.address}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all"
+                      className="field-input px-4 py-3"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="volunteer-reason" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="volunteer-reason" className="block text-sm font-medium text-label mb-1">
                     {vt.reason} *
                   </label>
                   <textarea
@@ -779,12 +644,12 @@ export default function VolunteerPage() {
                     onChange={handleChange}
                     required
                     rows={3}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all resize-none"
+                    className="field-input px-4 py-3 resize-none"
                   />
                 </div>
 
                 <div>
-                  <label htmlFor="volunteer-experience" className="block text-sm font-medium text-gray-700 mb-1">
+                  <label htmlFor="volunteer-experience" className="block text-sm font-medium text-label mb-1">
                     {vt.experience}
                   </label>
                   <textarea
@@ -793,11 +658,11 @@ export default function VolunteerPage() {
                     value={formData.experience}
                     onChange={handleChange}
                     rows={3}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all resize-none"
+                    className="field-input px-4 py-3 resize-none"
                   />
                 </div>
 
-                <div className="bg-yellow-50 rounded-xl p-4 border border-yellow-200">
+                <div className="bg-surface-secondary rounded-xl p-4">
                   <label className="flex items-start gap-3 cursor-pointer">
                     <input
                       type="checkbox"
@@ -805,16 +670,16 @@ export default function VolunteerPage() {
                       checked={formData.agreed}
                       onChange={handleChange}
                       required
-                      className="mt-1 w-5 h-5 text-yellow-500 border-gray-300 rounded focus:ring-yellow-400"
+                      className="mt-1 w-6 h-6 min-w-0 min-h-0 accent-[var(--accent)] rounded"
                     />
-                    <span className="text-gray-800">{vt.agreement}</span>
+                    <span className="text-label">{vt.agreement}</span>
                   </label>
                 </div>
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full py-4 bg-yellow-400 text-black rounded-xl font-semibold text-lg hover:bg-yellow-300 transition-colors shadow-lg hover:shadow-xl disabled:bg-gray-400 disabled:cursor-not-allowed"
+                  className="btn btn-primary btn-lg w-full text-lg"
                 >
                   {submitting ? "ส่งข้อมูล..." : vt.submit}
                 </button>
@@ -823,29 +688,17 @@ export default function VolunteerPage() {
           </section>
 
           {/* Contact LPN */}
-          <section className="bg-black rounded-2xl p-6 text-center">
-            <h2 className="text-xl font-semibold text-yellow-400 mb-4">
+          <section className="card p-6 text-center">
+            <h2 className="text-xl font-semibold text-label mb-4">
               {vt.contactLPN}
             </h2>
             <div className="flex flex-wrap justify-center gap-4">
               <a
                 href="tel:084-121-1609"
                 aria-label="โทรหามูลนิธิ LPN 084-121-1609"
-                className="inline-flex items-center px-5 py-3 bg-yellow-400 text-black rounded-xl font-medium hover:bg-yellow-300 transition-colors"
+                className="btn btn-secondary"
               >
-                <svg
-                  className="h-5 w-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
+                <Phone size={20} weight="fill" aria-hidden="true" />
                 084-121-1609
               </a>
               <a
@@ -853,21 +706,9 @@ export default function VolunteerPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="เว็บไซต์มูลนิธิ LPN (เปิดในแท็บใหม่)"
-                className="inline-flex items-center px-5 py-3 bg-white text-black rounded-xl font-medium hover:bg-gray-100 transition-colors"
+                className="btn btn-plain"
               >
-                <svg
-                  className="h-5 w-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
-                  />
-                </svg>
+                <ArrowSquareOut size={20} aria-hidden="true" />
                 lpnfoundation.org
                 <span className="sr-only"> (เปิดในแท็บใหม่)</span>
               </a>

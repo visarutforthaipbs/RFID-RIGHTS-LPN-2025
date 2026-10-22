@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { ArrowLeft } from "@phosphor-icons/react/dist/ssr/ArrowLeft";
 import { Header } from "../components/Header";
 import { SOSBar } from "../components/SOSBar";
 import { HeroSection } from "../components/HeroSection";
@@ -21,14 +22,14 @@ function HomeSkeleton() {
       {Array.from({ length: 6 }).map((_, i) => (
         <div
           key={i}
-          className="bg-white border-2 border-gray-200 rounded-xl p-6 animate-pulse"
+          className="card p-6 animate-pulse"
         >
           <div className="flex justify-center mb-4">
-            <div className="w-28 h-28 bg-gray-200 rounded-lg" />
+            <div className="w-28 h-28 bg-surface-tertiary rounded-xl" />
           </div>
-          <div className="h-6 bg-gray-200 rounded w-3/4 mx-auto mb-3" />
-          <div className="h-4 bg-gray-200 rounded w-full mb-2" />
-          <div className="h-4 bg-gray-200 rounded w-2/3 mx-auto" />
+          <div className="h-6 bg-surface-tertiary rounded w-3/4 mx-auto mb-3" />
+          <div className="h-4 bg-surface-tertiary rounded w-full mb-2" />
+          <div className="h-4 bg-surface-tertiary rounded w-2/3 mx-auto" />
         </div>
       ))}
     </div>
@@ -137,10 +138,10 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
+    <div className="min-h-screen bg-surface pb-24">
       <Header />
 
-      <main id="main-content" className="min-h-screen pb-20">
+      <main id="main-content" className="min-h-screen pb-12">
         {/* Hero section */}
         {!selectedScenario && !searchQuery && (
           <HeroSection data={data} onResults={handleSearchResults} />
@@ -150,24 +151,8 @@ export default function Home() {
           {/* Back button for scenario/search */}
           {(selectedScenario || searchQuery) && (
             <div className="mb-6">
-              <button
-                onClick={clearScenario}
-                className="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <svg
-                  className="w-4 h-4 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 19l-7-7 7-7"
-                  />
-                </svg>
+              <button type="button" onClick={clearScenario} className="btn btn-secondary">
+                <ArrowLeft size={20} weight="bold" aria-hidden="true" />
                 {t.backToSituations}
               </button>
             </div>
@@ -178,11 +163,12 @@ export default function Home() {
 
           {/* Error state */}
           {error && !loading && (
-            <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6 text-center" role="alert">
-              <p className="text-red-800 mb-3">{error}</p>
+            <div className="bg-critical-tint border border-critical rounded-xl p-6 mb-6 text-center" role="alert">
+              <p className="text-critical-ink mb-3">{error}</p>
               <button
+                type="button"
                 onClick={() => window.location.reload()}
-                className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors text-sm font-medium"
+                className="btn btn-primary"
               >
                 {locale === "en" ? "Try Again" : locale === "mm" ? "ထပ်ကြိုးစားပါ" : "ลองใหม่"}
               </button>

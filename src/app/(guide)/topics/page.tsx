@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr/MagnifyingGlass";
 import { Header } from "../../components/Header";
 import { SOSBar } from "../../components/SOSBar";
 import { SearchBox } from "../../components/SearchBox";
@@ -80,25 +81,23 @@ export default function TopicsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
+    <div className="min-h-screen bg-surface pb-24">
       <Header />
 
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-4xl mx-auto">
           {/* Page Header */}
           <header className="mb-8">
-            <nav className="mb-6" aria-label="Breadcrumb">
-              <Link href="/" className="text-gray-900 hover:text-yellow-600">
-                {t.home}
-              </Link>
-              <span className="mx-2 text-gray-400">/</span>
-              <span className="text-gray-600">{t.allTopics}</span>
+            <nav className="crumb mb-6" aria-label="Breadcrumb">
+              <Link href="/">{t.home}</Link>
+              <span aria-hidden="true">/</span>
+              <span aria-current="page">{t.allTopics}</span>
             </nav>
 
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl font-bold text-label mb-3">
               {t.allTopics}
             </h1>
-            <p className="text-gray-600 mb-6">{t.topicsPageDescription}</p>
+            <p className="text-label-secondary mb-6">{t.topicsPageDescription}</p>
           </header>
 
           {/* Search */}
@@ -125,9 +124,9 @@ export default function TopicsPage() {
           {/* Results Summary */}
           <div className="mb-6">
             {loading ? (
-              <div className="h-6 w-32 bg-gray-200 rounded animate-pulse"></div>
+              <div className="h-6 w-32 bg-surface-tertiary rounded animate-pulse"></div>
             ) : (
-              <p className="text-gray-600">
+              <p className="text-label-secondary">
                 {filteredData.length === data.length
                   ? `${t.totalTopics} ${data.length} ${t.topicsCount}`
                   : `${t.foundTopicsOf} ${filteredData.length} ${t.topicsOf} ${data.length} ${t.topicsCount}`}
@@ -150,23 +149,11 @@ export default function TopicsPage() {
             </div>
           ) : (
             <div className="text-center py-12">
-              <svg
-                className="mx-auto h-12 w-12 text-gray-400 mb-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={1}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-              <h3 className="text-lg font-medium text-gray-900 mb-2">
+              <MagnifyingGlass size={48} className="mx-auto text-label-secondary mb-4" aria-hidden="true" />
+              <h3 className="text-lg font-semibold text-label mb-2">
                 {t.noTopicsFound}
               </h3>
-              <p className="text-gray-500 mb-4">
+              <p className="text-label-secondary mb-4">
                 {t.tryDifferentSearchOrCategory}
               </p>
               <button
@@ -174,7 +161,7 @@ export default function TopicsPage() {
                   setSearchQuery("");
                   setSelectedCategory(null);
                 }}
-                className="inline-flex items-center px-4 py-2 bg-yellow-400 text-black rounded-lg hover:bg-yellow-300 transition-colors"
+                className="btn btn-primary"
               >
                 {t.showAllTopics}
               </button>

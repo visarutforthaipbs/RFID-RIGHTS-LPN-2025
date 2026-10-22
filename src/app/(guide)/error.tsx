@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { Warning } from "@phosphor-icons/react/dist/ssr/Warning";
 import { useLanguage } from "../contexts/LanguageContext";
 import { messages } from "../../../lib/i18n";
 import { Header } from "../components/Header";
@@ -21,19 +22,17 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
+    <div className="min-h-screen bg-surface pb-24">
       <Header />
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-4xl mx-auto">
           <div className="flex flex-col items-center justify-center py-20 text-center">
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8 max-w-md w-full" role="alert">
-              <svg className="w-16 h-16 text-red-500 mx-auto mb-4" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
-              </svg>
-              <h2 className="text-xl font-bold text-gray-900 mb-4">{t.somethingWentWrong}</h2>
+            <div className="card p-8 max-w-md w-full" role="alert">
+              <Warning size={64} className="text-critical mx-auto mb-4" aria-hidden="true" />
+              <h1 className="text-xl font-bold text-label mb-4">{t.somethingWentWrong}</h1>
               <button
                 onClick={() => reset()}
-                className="px-6 py-3 bg-yellow-400 text-black rounded-lg hover:bg-yellow-300 font-medium transition-colors"
+                className="btn btn-primary"
               >
                 {t.tryAgain}
               </button>
