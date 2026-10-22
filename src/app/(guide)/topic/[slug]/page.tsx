@@ -3,13 +3,13 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { TopicRow } from "../../../../lib/types";
-import { Header } from "../../components/Header";
-import { SOSBar } from "../../components/SOSBar";
-import { FormattedContent } from "../../components/FormattedContent";
-import { useLanguage } from "../../contexts/LanguageContext";
-import { messages } from "../../../../lib/i18n";
-import { getTopicIcon } from "../../../../lib/topic-icons";
+import { TopicRow } from "../../../../../lib/types";
+import { Header } from "../../../components/Header";
+import { SOSBar } from "../../../components/SOSBar";
+import { FormattedContent } from "../../../components/FormattedContent";
+import { useLanguage } from "../../../contexts/LanguageContext";
+import { messages } from "../../../../../lib/i18n";
+import { getTopicIcon } from "../../../../../lib/topic-icons";
 
 interface TopicPageProps {
   params: Promise<{ slug: string }>;

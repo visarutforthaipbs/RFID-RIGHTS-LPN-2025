@@ -3,6 +3,8 @@ User-agent: *
 Allow: /
 Disallow: /api/
 Disallow: /settings
+Disallow: /voice-report
+Disallow: /track
 
 # Sitemaps
 Sitemap: https://rfid-rights.vercel.app/sitemap.xml

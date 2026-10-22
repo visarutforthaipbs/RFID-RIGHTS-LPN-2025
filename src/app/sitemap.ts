@@ -18,6 +18,12 @@ function slugify(text: string): string {
 
 const BASE_URL = "https://rfid-rights.vercel.app";
 
+// Worker-facing intake pages are noindex and must never appear in the sitemap
+// (PRD v1.1 §6, BRAND.md rule 9). Any route listed here is filtered out.
+const EXCLUDED_PATHS = ["/voice-report", "/track"];
+const notExcluded = (entry: MetadataRoute.Sitemap[number]) =>
+  !EXCLUDED_PATHS.some((p) => new URL(entry.url).pathname === p || new URL(entry.url).pathname.startsWith(p + "/"));
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -73,11 +79,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
           priority: 0.7,
         }));
 
-      return [...staticRoutes, ...topicRoutes];
+      return [...staticRoutes, ...topicRoutes].filter(notExcluded);
     }
   } catch (error) {
     console.error("Error generating sitemap topic routes:", error);
   }
 
-  return staticRoutes;
+  return staticRoutes.filter(notExcluded);
 }

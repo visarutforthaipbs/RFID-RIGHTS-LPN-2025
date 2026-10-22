@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useLanguage } from "./contexts/LanguageContext";
-import { messages } from "../../lib/i18n";
-import { Header } from "./components/Header";
-import { SOSBar } from "./components/SOSBar";
+import { useLanguage } from "../contexts/LanguageContext";
+import { messages } from "../../../lib/i18n";
+import { Header } from "../components/Header";
+import { SOSBar } from "../components/SOSBar";
 
 export default function NotFound() {
   const { locale } = useLanguage();

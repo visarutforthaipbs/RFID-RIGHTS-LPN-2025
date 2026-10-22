@@ -1,0 +1,162 @@
+/* ==========================================================================
+   LPN — One CI design tokens  v1.0 (draft for owner approval)
+   Source of truth for: lpnfoundation.org (LPN-website), รู้สิทธิ ติดกระเป๋า
+   (Right Guide + /voice-report + /track), and LPN Intake (staff dashboard).
+   Framework-agnostic CSS custom properties. Tailwind v4 mapping: tailwind-theme.css
+   Guideline: ../guideline.html   ·   Rules: ../BRAND.md
+   ========================================================================== */
+
+:root {
+  color-scheme: light dark;
+
+  /* --- 1. Brand palette (locked) ---------------------------------------
+     ONE yellow. #FFC314 is the yellow in LPN's original agency artwork
+     (bracket assets, Right Guide mark). Retired: #FFD43B (website),
+     #F1C232 (brandbook slide swatch), #FEC700 (Right Guide SVG/badges). */
+  --lpn-yellow: #ffc314;        /* black on it 13.07:1 */
+  --lpn-yellow-pressed: #e6ac00;
+  --lpn-yellow-deep: #d89f12;   /* shading inside the Right Guide mark only — never text */
+  --lpn-black: #000000;
+  --lpn-white: #ffffff;
+
+  /* --- 2. Accent roles: yellow has THREE jobs, nothing else -------------
+     (1) the one prominent action  (2) selection  (3) focus ring.
+     Brand marks (brackets, hairlines) are allowed on marketing surfaces. */
+  --accent: var(--lpn-yellow);
+  --accent-pressed: var(--lpn-yellow-pressed);
+  --on-accent: #000000;          /* label on yellow — always black, never white (1.61:1) */
+  --focus-ring: var(--lpn-yellow);
+  --focus-halo: rgba(0, 0, 0, 0.9);
+
+  /* --- 3. Semantic surfaces & labels (light) ---------------------------- */
+  --bg: #ffffff;
+  --bg-secondary: #f5f5f7;
+  --bg-tertiary: #ebebef;
+  --bg-elevated: #ffffff;
+  --bg-inverse: #000000;          /* brand "black stage": hero, footer, quick-exit */
+  --bg-inverse-elevated: #1c1c1e;
+
+  --label: #0a0a0a;
+  --label-secondary: rgba(10, 10, 10, 0.72);   /* 8.5:1 on white */
+  --label-tertiary: rgba(10, 10, 10, 0.5);     /* placeholders/disabled only — never body text */
+  --on-inverse: #ffffff;
+  --on-inverse-secondary: rgba(255, 255, 255, 0.72);
+
+  --separator: rgba(0, 0, 0, 0.14);
+  --separator-strong: rgba(0, 0, 0, 0.32);    /* input borders: ≥3:1 non-text */
+
+  /* --- 4. Status (dashboards, alerts, emergency) — never yellow ---------
+     Each status = fill (icons/bars/badge bg) + ink (text, ≥4.5:1) + tint (row bg). */
+  --critical-fill: #d70015;  --critical-ink: #b42318;  --critical-tint: #fef3f2;
+  --high-fill: #e8590c;      --high-ink: #b54708;      --high-tint: #fff6ed;
+  --medium-fill: #175cd3;    --medium-ink: #175cd3;    --medium-tint: #eff4ff;
+  --low-fill: #6b6b70;       --low-ink: #52525b;       --low-tint: #f4f4f5;
+  --success-fill: #12b76a;   --success-ink: #067647;   --success-tint: #ecfdf3;
+  --emergency: #d70015;   /* 191 / 1669 buttons, white label 5.38:1 — same in dark mode on purpose */
+
+  /* --- 5. Typography -----------------------------------------------------
+     One superfamily, all free (SIL OFL): IBM Plex. Load ../assets/fonts/fonts.css.
+     Thai = IBM Plex Sans Thai (loopless, modern). Long reading text for workers
+     (Right Guide topic articles, consent text) = IBM Plex Sans Thai Looped.
+     DB Helvethaica X is retired — LPN holds no licence. */
+  --font-latin: 'IBM Plex Sans', -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-thai: 'IBM Plex Sans Thai', 'Noto Sans Thai', system-ui, sans-serif;
+  --font-thai-reading: 'IBM Plex Sans Thai Looped', 'Noto Sans Thai Looped', 'IBM Plex Sans Thai', system-ui, sans-serif;
+  --font-myanmar: 'Noto Sans Myanmar', 'Myanmar Text', 'Padauk', system-ui, sans-serif;
+  --font-khmer: 'Noto Sans Khmer', 'Khmer OS', system-ui, sans-serif;
+  --font-sans: 'IBM Plex Sans', 'IBM Plex Sans Thai', -apple-system, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', Menlo, monospace; /* tracking codes */
+
+  /* Scale (px at 1x). Plex Thai sits on the normal scale — no size lift needed. */
+  --text-display: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);  /* 40 -> 72 */
+  --text-title1: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);  /* 32 -> 52 */
+  --text-title2: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);/* 28 -> 40 */
+  --text-title3: 1.5rem;     /* 24 */
+  --text-headline: 1.25rem;  /* 20, semibold */
+  --text-body: 1.0625rem;    /* 17 — website + dashboard reading text */
+  --text-body-worker: 1.125rem; /* 18 — recorder, track, Right Guide */
+  --text-body-dense: 0.9375rem; /* 15 — staff dashboard tables only */
+  --text-callout: 1rem;      /* 16 */
+  --text-footnote: 0.875rem; /* 14 */
+  --text-caption: 0.8125rem; /* 13 — the floor. Nothing smaller, anywhere. */
+
+  --leading-thai-body: 1.7;
+  --leading-thai-heading: 1.45;
+  --leading-latin-body: 1.55;
+  --tracking-latin-display: -0.022em; /* Latin only; Thai/Myanmar/Khmer always normal */
+
+  /* --- 6. Shape, space, targets ------------------------------------------ */
+  --radius-control: 8px;    /* buttons, inputs */
+  --radius-card: 12px;
+  --radius-sheet: 16px;     /* bottom sheets, modals */
+  --radius-pill: 999px;     /* chips, badges */
+
+  --space-1: 4px;  --space-2: 8px;  --space-3: 12px; --space-4: 16px;
+  --space-5: 24px; --space-6: 32px; --space-7: 48px; --space-8: 80px;
+
+  --target-min: 44px;        /* every control, every module */
+  --target-worker: 56px;     /* primary buttons on worker-facing tools (recorder, track, help bar) */
+  --record-button: 96px;     /* the voice-report record button */
+
+  --measure: 42rem;          /* ~672 px reading width */
+  --container: 72rem;
+
+  /* --- 7. Bracket device (brand mark) ------------------------------------ */
+  --bracket-stroke: 4px;
+  --bracket-arm: 0.6em;
+
+  /* --- 8. Motion ----------------------------------------------------------- */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+
+  /* --- 9. Glass: functional layer only (sticky header, bottom help bar) --- */
+  --glass-bg: rgba(255, 255, 255, 0.78);
+  --glass-blur: saturate(180%) blur(20px);
+}
+
+/* Dark appearance follows the system. No in-app toggle. Yellow does not change. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-appearance='light']) {
+    --bg: #000000;
+    --bg-secondary: #1c1c1e;
+    --bg-tertiary: #2c2c2e;
+    --bg-elevated: #1c1c1e;
+    --bg-inverse: #1c1c1e;
+    --bg-inverse-elevated: #2c2c2e;
+
+    --label: #f5f5f7;
+    --label-secondary: rgba(245, 245, 247, 0.72);
+    --label-tertiary: rgba(245, 245, 247, 0.5);
+    --on-inverse: #f5f5f7;
+    --on-inverse-secondary: rgba(245, 245, 247, 0.72);
+    --separator: rgba(255, 255, 255, 0.16);
+    --separator-strong: rgba(255, 255, 255, 0.36);
+
+    --critical-fill: #ff453a; --critical-ink: #ff8a80; --critical-tint: #3a1210;
+    --high-fill: #ff9f0a;     --high-ink: #ffb35c;     --high-tint: #3a2410;
+    --medium-fill: #4c8dff;   --medium-ink: #84adff;   --medium-tint: #10203a;
+    --low-fill: #8e8e93;      --low-ink: #c7c7cc;      --low-tint: #2c2c2e;
+    --success-fill: #32d74b;  --success-ink: #6ce9a6;  --success-tint: #0f2e1c;
+
+    --glass-bg: rgba(28, 28, 30, 0.72);
+  }
+}
+
+/* Script rules — apply to every module */
+:lang(th) { font-family: var(--font-sans); letter-spacing: normal !important; line-height: var(--leading-thai-body); }
+:lang(th) :is(h1, h2, h3, h4) { line-height: var(--leading-thai-heading); }
+.reading:lang(th), :lang(th) .reading { font-family: 'IBM Plex Sans', var(--font-thai-reading); }
+:lang(my) { font-family: var(--font-myanmar); letter-spacing: normal !important; line-height: 1.9; }
+:lang(km) { font-family: var(--font-khmer); letter-spacing: normal !important; line-height: 1.9; }
+
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px var(--focus-halo);
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}
