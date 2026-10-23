@@ -1,19 +1,19 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Header } from "./components/Header";
-import { SOSBar } from "./components/SOSBar";
-import { HeroSection } from "./components/HeroSection";
-import { ScenarioGrid } from "./components/ScenarioGrid";
-import { ResultsSection } from "./components/ResultsSection";
-import { QuickHelp } from "./components/QuickHelp";
-import { FunderLogos } from "./components/FunderLogos";
-import { TopicRow } from "../../lib/types";
-import { scenarios } from "../../lib/scenarios";
-import { hashUid } from "../../lib/rfidhash";
-import { trackEvent } from "../../lib/analytics";
-import { useLanguage } from "./contexts/LanguageContext";
-import { messages } from "../../lib/i18n";
+import { Header } from "../components/Header";
+import { SOSBar } from "../components/SOSBar";
+import { HeroSection } from "../components/HeroSection";
+import { ScenarioGrid } from "../components/ScenarioGrid";
+import { ResultsSection } from "../components/ResultsSection";
+import { QuickHelp } from "../components/QuickHelp";
+import { FunderLogos } from "../components/FunderLogos";
+import { TopicRow } from "../../../lib/types";
+import { scenarios } from "../../../lib/scenarios";
+import { hashUid } from "../../../lib/rfidhash";
+import { trackEvent } from "../../../lib/analytics";
+import { useLanguage } from "../contexts/LanguageContext";
+import { messages } from "../../../lib/i18n";
 
 function HomeSkeleton() {
   return (

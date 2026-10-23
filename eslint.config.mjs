@@ -18,6 +18,11 @@ const eslintConfig = [
       "out/**",
       "build/**",
       "next-env.d.ts",
+      // CommonJS Node build scripts (legitimate require()) — pre-existing, not app code
+      "scripts/*.js",
+      "update-csv.js",
+      "public/sw.js",
+      "public/workbox-*.js",
     ],
   },
 ];

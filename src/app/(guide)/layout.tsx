@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans_Thai, Noto_Sans_Myanmar } from "next/font/google";
 import Script from "next/script";
-import "./globals.css";
-import { LanguageProvider } from "./contexts/LanguageContext";
-import { GlobalUI } from "./components/GlobalUI";
+import "../globals.css";
+import { LanguageProvider } from "../contexts/LanguageContext";
+import { GlobalUI } from "../components/GlobalUI";
 
 const GA_MEASUREMENT_ID = "G-4733EDMP26";
 

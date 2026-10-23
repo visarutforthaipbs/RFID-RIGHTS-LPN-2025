@@ -2,11 +2,11 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Header } from "../components/Header";
-import { SOSBar } from "../components/SOSBar";
-import { useLanguage } from "../contexts/LanguageContext";
-import { messages } from "../../../lib/i18n";
-import { supabase } from "../../../lib/supabaseClient";
+import { Header } from "../../components/Header";
+import { SOSBar } from "../../components/SOSBar";
+import { useLanguage } from "../../contexts/LanguageContext";
+import { messages } from "../../../../lib/i18n";
+import { supabase } from "../../../../lib/supabaseClient";
 
 export default function VolunteerPage() {
   const { locale } = useLanguage();

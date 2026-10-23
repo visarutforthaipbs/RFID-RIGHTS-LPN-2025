@@ -2,14 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Header } from "../components/Header";
-import { SOSBar } from "../components/SOSBar";
-import { SearchBox } from "../components/SearchBox";
-import { TopicCard, TopicCardSkeleton } from "../components/TopicCard";
-import { FilterChips } from "../components/FilterChips";
-import { TopicRow } from "../../../lib/types";
-import { useLanguage } from "../contexts/LanguageContext";
-import { messages } from "../../../lib/i18n";
+import { Header } from "../../components/Header";
+import { SOSBar } from "../../components/SOSBar";
+import { SearchBox } from "../../components/SearchBox";
+import { TopicCard, TopicCardSkeleton } from "../../components/TopicCard";
+import { FilterChips } from "../../components/FilterChips";
+import { TopicRow } from "../../../../lib/types";
+import { useLanguage } from "../../contexts/LanguageContext";
+import { messages } from "../../../../lib/i18n";
 
 export default function TopicsPage() {
   const [data, setData] = useState<TopicRow[]>([]);

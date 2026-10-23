@@ -3,11 +3,11 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Header } from "../components/Header";
-import { SOSBar } from "../components/SOSBar";
-import { LanguageSwitcher } from "../components/LanguageSwitcher";
-import { useLanguage } from "../contexts/LanguageContext";
-import { messages } from "../../../lib/i18n";
+import { Header } from "../../components/Header";
+import { SOSBar } from "../../components/SOSBar";
+import { LanguageSwitcher } from "../../components/LanguageSwitcher";
+import { useLanguage } from "../../contexts/LanguageContext";
+import { messages } from "../../../../lib/i18n";
 
 export default function SettingsPage() {
   const [fontSize, setFontSize] = useState<"small" | "medium" | "large">(
