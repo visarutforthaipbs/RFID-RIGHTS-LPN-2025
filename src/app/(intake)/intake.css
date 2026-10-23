@@ -1,5 +1,5 @@
 /* Styles for the worker-facing intake pages only: /voice-report, /track.
-   Built on ../intake-tokens.css (LPN One CI). No Tailwind here — the guide's
+   Built on ../lpn-tokens.css (LPN One CI). No Tailwind here — the guide's
    globals.css is NOT loaded in this route group, so nothing below leaks into
    the guide and nothing from the guide leaks in. */
 

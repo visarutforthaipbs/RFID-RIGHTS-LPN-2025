@@ -3,6 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { Translate } from "@phosphor-icons/react/dist/ssr/Translate";
+import { TextAa } from "@phosphor-icons/react/dist/ssr/TextAa";
+import { Info } from "@phosphor-icons/react/dist/ssr/Info";
 import { Header } from "../../components/Header";
 import { SOSBar } from "../../components/SOSBar";
 import { LanguageSwitcher } from "../../components/LanguageSwitcher";
@@ -47,53 +50,39 @@ export default function SettingsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pb-24">
+    <div className="min-h-screen bg-surface pb-24">
       <Header />
 
       <main className="container mx-auto px-4 py-8" id="main-content">
         <div className="max-w-2xl mx-auto">
           {/* Breadcrumb */}
-          <nav className="mb-6" aria-label="Breadcrumb">
-            <Link href="/" className="text-black hover:text-yellow-600">
-              {t.home}
-            </Link>
-            <span className="mx-2 text-gray-400">/</span>
-            <span className="text-gray-700">{t.settings}</span>
+          <nav className="crumb mb-6" aria-label="Breadcrumb">
+            <Link href="/">{t.home}</Link>
+            <span aria-hidden="true">/</span>
+            <span aria-current="page">{t.settings}</span>
           </nav>
 
           {/* Page Header */}
           <header className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl font-bold text-label mb-3">
               {t.settingsPageTitle}
             </h1>
-            <p className="text-gray-600">{t.settingsPageDescription}</p>
+            <p className="text-label-secondary">{t.settingsPageDescription}</p>
           </header>
 
           <div className="space-y-6">
             {/* Language Settings */}
-            <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <svg
-                  className="h-6 w-6 text-yellow-600 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"
-                  />
-                </svg>
+            <section className="card p-5 sm:p-6">
+              <h2 className="text-xl font-semibold text-label mb-4 flex items-center gap-2">
+                <Translate size={26} aria-hidden="true" />
                 {t.language}
               </h2>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between gap-4">
                 <div>
-                  <p className="text-gray-700 font-medium mb-1">
+                  <p className="text-label font-medium mb-1">
                     {t.selectLanguage}
                   </p>
-                  <p className="text-gray-500 text-sm">
+                  <p className="text-label-secondary text-sm">
                     {t.changeLanguageDisplay}
                   </p>
                 </div>
@@ -102,30 +91,18 @@ export default function SettingsPage() {
             </section>
 
             {/* Display Settings */}
-            <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <svg
-                  className="h-6 w-6 text-yellow-600 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
+            <section className="card p-5 sm:p-6">
+              <h2 className="text-xl font-semibold text-label mb-4 flex items-center gap-2">
+                <TextAa size={26} aria-hidden="true" />
                 {t.display}
               </h2>
 
               {/* Font Size */}
               <div>
-                <label className="block text-gray-700 font-medium mb-2">
+                <p className="block text-label font-medium mb-2" id="font-size-label">
                   {t.fontSize}
-                </label>
-              <div className="grid grid-cols-3 gap-2" role="group" aria-label={t.fontSize}>
+                </p>
+              <div className="grid grid-cols-3 gap-2" role="group" aria-labelledby="font-size-label">
                   {[
                     { value: "small", label: t.small, size: "text-sm" },
                     { value: "medium", label: t.medium, size: "text-base" },
@@ -139,10 +116,11 @@ export default function SettingsPage() {
                         )
                       }
                       aria-pressed={fontSize === option.value}
-                      className={`p-3 rounded-lg border text-center transition-colors ${
+                      type="button"
+                      className={`p-3 min-h-12 rounded-lg border text-center font-medium transition-colors ${
                         fontSize === option.value
-                          ? "border-yellow-400 bg-yellow-50 text-black"
-                          : "border-gray-200 hover:border-gray-300"
+                          ? "border-accent bg-accent text-on-accent"
+                          : "border-separator-strong bg-elevated text-label hover:bg-surface-secondary"
                       }`}
                     >
                       <span className={option.size}>{option.label}</span>
@@ -153,47 +131,35 @@ export default function SettingsPage() {
             </section>
 
             {/* About & Reset */}
-            <section className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4 flex items-center">
-                <svg
-                  className="h-6 w-6 text-yellow-600 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
+            <section className="card p-5 sm:p-6">
+              <h2 className="text-xl font-semibold text-label mb-4 flex items-center gap-2">
+                <Info size={26} aria-hidden="true" />
                 {t.aboutSection}
               </h2>
 
               <div className="space-y-4">
                 <div>
-                  <p className="text-gray-700 font-medium">{t.appName}</p>
-                  <p className="text-gray-500 text-sm">{t.version}</p>
+                  <p className="text-label font-medium">{t.appName}</p>
+                  <p className="text-label-secondary text-sm">{t.version}</p>
                 </div>
 
                 <div>
-                  <p className="text-gray-700 font-medium">{t.designedBy}</p>
-                  <p className="text-gray-500 text-sm">{t.designedByDetail}</p>
+                  <p className="text-label font-medium">{t.designedBy}</p>
+                  <p className="text-label-secondary text-sm">{t.designedByDetail}</p>
                 </div>
 
                 <div>
-                  <p className="text-gray-700 font-medium mb-3">
+                  <p className="text-label font-medium mb-3">
                     {t.supportedBy}
                   </p>
-                  <div className="flex flex-wrap items-center gap-8 bg-gray-50 p-6 rounded-lg justify-center">
+                  <div className="flex flex-wrap items-center gap-8 bg-inverse p-6 rounded-xl justify-center">
                     <div className="relative h-20 w-auto">
                       <Image
                         src="/logos/AGO_001 - LPN Foundation - Final Logo Small- LPN Initials Small - No Background.png"
                         alt="LPN Foundation"
                         height={80}
                         width={180}
-                        className="object-contain h-20 w-auto"
+                        className="object-contain h-16 w-auto brightness-0 invert"
                       />
                     </div>
                     <div className="relative h-20 w-auto">
@@ -202,7 +168,7 @@ export default function SettingsPage() {
                         alt="IJM"
                         height={80}
                         width={200}
-                        className="object-contain h-20 w-auto"
+                        className="object-contain h-16 w-auto brightness-0 invert"
                       />
                     </div>
                     <div className="relative h-8 w-auto">
@@ -211,16 +177,17 @@ export default function SettingsPage() {
                         alt="KOICA"
                         height={32}
                         width={100}
-                        className="object-contain h-8 w-auto"
+                        className="object-contain h-7 w-auto brightness-0 invert"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div className="pt-4 border-t border-gray-200">
+                <div className="pt-4 border-t border-separator">
                   <button
+                    type="button"
                     onClick={resetSettings}
-                    className="w-full px-4 py-3 bg-red-50 text-red-700 rounded-lg hover:bg-red-100 transition-colors border border-red-200"
+                    className="btn btn-secondary w-full text-critical-ink border-critical"
                   >
                     {t.resetAllSettings}
                   </button>

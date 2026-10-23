@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { IBM_Plex_Sans_Thai, IBM_Plex_Sans_Thai_Looped, IBM_Plex_Mono, Noto_Sans_Myanmar } from "next/font/google";
-import "../intake-tokens.css";
+import "../lpn-tokens.css";
 import "./intake.css";
 import { IntakeLangProvider } from "./_lib/IntakeLangContext";
 

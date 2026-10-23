@@ -31,7 +31,7 @@ export function RouteProgress() {
 
   return (
     <div
-      className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-yellow-200"
+      className="fixed top-0 left-0 right-0 z-50 h-0.5 bg-surface-tertiary"
       role="progressbar"
       aria-valuenow={progress}
       aria-valuemin={0}
@@ -39,7 +39,7 @@ export function RouteProgress() {
       aria-label="Page loading progress"
     >
       <div
-        className="h-full bg-yellow-500 transition-all duration-200 ease-out"
+        className="h-full bg-accent transition-all duration-200 ease-out"
         style={{ width: `${progress}%` }}
       />
     </div>

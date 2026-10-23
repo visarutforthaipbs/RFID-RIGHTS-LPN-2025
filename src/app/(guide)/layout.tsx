@@ -1,28 +1,46 @@
 import type { Metadata, Viewport } from "next";
-import { Noto_Sans_Thai, Noto_Sans_Myanmar } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Sans_Thai, IBM_Plex_Sans_Thai_Looped, Noto_Sans_Myanmar } from "next/font/google";
 import Script from "next/script";
 import "../globals.css";
+import { SITE_URL } from "../../../lib/site";
 import { LanguageProvider } from "../contexts/LanguageContext";
 import { GlobalUI } from "../components/GlobalUI";
 
 const GA_MEASUREMENT_ID = "G-4733EDMP26";
 
-const notoSansThai = Noto_Sans_Thai({
-  subsets: ["thai", "latin"],
+/* LPN One CI type (all SIL OFL, see LPN/brand/BRAND.md rule 5):
+   UI = IBM Plex Sans (Latin) + IBM Plex Sans Thai; topic article bodies
+   (class .reading) = IBM Plex Sans Thai Looped; lang=my = Noto Sans Myanmar. */
+const plexSans = IBM_Plex_Sans({
+  subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-noto-sans-thai",
+  variable: "--font-plex-sans",
   display: "swap",
 });
 
-const notoSansMyanmar = Noto_Sans_Myanmar({
+const plexThai = IBM_Plex_Sans_Thai({
+  subsets: ["thai", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plex-thai",
+  display: "swap",
+});
+
+const plexThaiLooped = IBM_Plex_Sans_Thai_Looped({
+  subsets: ["thai", "latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-plex-thai-looped",
+  display: "swap",
+});
+
+const notoMyanmar = Noto_Sans_Myanmar({
   subsets: ["myanmar"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-noto-sans-myanmar",
+  variable: "--font-noto-myanmar",
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://rfid-rights.vercel.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
     template: "%s | รู้สิทธิ ติดกระเป๋า",
@@ -32,11 +50,11 @@ export const metadata: Metadata = {
   keywords:
     "migrant rights, Thailand, workers rights, labor law, ผู้ใช้แรงงาน, สิทธิแรงงาน, แรงงานข้ามชาติ, สิทธิแรงงานข้ามชาติ, Myanmar workers, migrant workers Thailand",
   alternates: {
-    canonical: "https://rfid-rights.vercel.app",
+    canonical: SITE_URL,
     languages: {
-      "th": "https://rfid-rights.vercel.app",
-      "en": "https://rfid-rights.vercel.app",
-      "my": "https://rfid-rights.vercel.app",
+      "th": SITE_URL,
+      "en": SITE_URL,
+      "my": SITE_URL,
     },
   },
   manifest: "/manifest.json",
@@ -54,7 +72,7 @@ export const metadata: Metadata = {
     title: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
     description:
       "Complete offline guide for migrant workers' rights in Thailand. Know your rights, identify issues, get help.",
-    url: "https://rfid-rights.vercel.app",
+    url: SITE_URL,
     siteName: "Migrant Rights Guide",
     images: [
       {
@@ -79,7 +97,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#ffc314",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
 };
 
 export default function RootLayout({
@@ -88,7 +109,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th" className={`${notoSansThai.variable} ${notoSansMyanmar.variable}`}>
+    <html
+      lang="th"
+      className={`${plexSans.variable} ${plexThai.variable} ${plexThaiLooped.variable} ${notoMyanmar.variable}`}
+    >
       <head>
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
@@ -114,7 +138,7 @@ export default function RootLayout({
                 {
                   "@type": "WebSite",
                   name: "รู้สิทธิ ติดกระเป๋า - Migrant Rights Guide",
-                  url: "https://rfid-rights.vercel.app",
+                  url: SITE_URL,
                   description:
                     "Complete offline guide for migrant workers' rights in Thailand. Know your rights, identify issues, get help.",
                   inLanguage: ["th", "en", "my"],
@@ -122,7 +146,7 @@ export default function RootLayout({
                     "@type": "SearchAction",
                     target: {
                       "@type": "EntryPoint",
-                      urlTemplate: "https://rfid-rights.vercel.app/topics?q={search_term_string}",
+                      urlTemplate: `${SITE_URL}/topics?q={search_term_string}`,
                     },
                     "query-input": "required name=search_term_string",
                   },
@@ -132,7 +156,7 @@ export default function RootLayout({
                   name: "Labor Protection Network Foundation (LPN)",
                   alternateName: "มูลนิธิเครือข่ายส่งเสริมคุณภาพชีวิตแรงงาน",
                   url: "https://www.lpnfoundation.org",
-                  logo: "https://rfid-rights.vercel.app/favicon-new.svg",
+                  logo: `${SITE_URL}/favicon-new.svg`,
                   contactPoint: {
                     "@type": "ContactPoint",
                     telephone: "+66-84-121-1609",
@@ -143,7 +167,7 @@ export default function RootLayout({
                 {
                   "@type": "WebApplication",
                   name: "รู้สิทธิ ติดกระเป๋า",
-                  url: "https://rfid-rights.vercel.app",
+                  url: SITE_URL,
                   applicationCategory: "ReferenceApplication",
                   operatingSystem: "All",
                   offers: {
@@ -157,13 +181,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className="min-h-screen bg-gray-50 text-black antialiased"
-        style={{
-          fontFamily:
-            "var(--font-noto-sans-thai), var(--font-noto-sans-myanmar), system-ui, -apple-system, sans-serif",
-        }}
-      >
+      <body className="min-h-screen bg-surface text-label antialiased">
         <LanguageProvider>
           <a href="#main-content" className="skip-to-content">
             Skip to main content / ข้ามไปยังเนื้อหาหลัก

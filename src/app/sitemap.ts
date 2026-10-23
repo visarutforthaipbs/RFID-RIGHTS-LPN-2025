@@ -1,3 +1,4 @@
+import { SITE_URL } from "../../lib/site";
 import { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
@@ -16,7 +17,7 @@ function slugify(text: string): string {
     .replace(/-+$/, "");
 }
 
-const BASE_URL = "https://rfid-rights.vercel.app";
+const BASE_URL = SITE_URL;
 
 // Worker-facing intake pages are noindex and must never appear in the sitemap
 // (PRD v1.1 §6, BRAND.md rule 9). Any route listed here is filtered out.

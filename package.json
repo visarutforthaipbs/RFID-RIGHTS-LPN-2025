@@ -2,8 +2,9 @@
   "name": "rfid-rights",
   "version": "0.1.0",
   "private": true,
+  "//dev": "webpack dev server on purpose: `next dev --turbopack` spawned a process storm that rebooted the 16 GB build Mac twice; next-pwa is webpack-only too.",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build:data": "node scripts/build-data.js",
     "prebuild": "npm run build:data",
     "build": "next build",

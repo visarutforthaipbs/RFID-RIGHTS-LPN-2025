@@ -3,6 +3,8 @@
 import { useState, useCallback, useMemo } from "react";
 import { TopicRow } from "../../../lib/types";
 import { trackEvent } from "../../../lib/analytics";
+import { MagnifyingGlass } from "@phosphor-icons/react/dist/ssr/MagnifyingGlass";
+import { X } from "@phosphor-icons/react/dist/ssr/X";
 import { useLanguage } from "../contexts/LanguageContext";
 import { messages } from "../../../lib/i18n";
 
@@ -90,49 +92,24 @@ export function SearchBox({ data, onResults, placeholder }: SearchBoxProps) {
           value={query}
           onChange={handleInputChange}
           placeholder={searchPlaceholder}
-          className="w-full pl-12 pr-12 py-3 text-base border-2 border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent bg-white"
+          className="field-input pl-12 pr-14 py-3 text-base"
           aria-label={searchPlaceholder}
         />
 
         {/* Search icon */}
-        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none" aria-hidden="true">
-          <svg
-            className="h-5 w-5 text-gray-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-            />
-          </svg>
+        <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-label-secondary" aria-hidden="true">
+          <MagnifyingGlass size={22} />
         </div>
 
         {/* Clear button */}
         {query && (
           <button
             onClick={clearSearch}
-            className="absolute inset-y-0 right-0 pr-4 flex items-center text-gray-400 hover:text-gray-600"
+            className="absolute inset-y-0 right-0 w-12 flex items-center justify-center text-label-secondary hover:text-label rounded-lg"
             aria-label={locale === "en" ? "Clear search" : "ล้างการค้นหา"}
             type="button"
           >
-            <svg
-              className="h-5 w-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+            <X size={22} aria-hidden="true" />
           </button>
         )}
       </div>

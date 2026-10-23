@@ -1,6 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef, useCallback } from "react";
+import { CaretDown } from "@phosphor-icons/react/dist/ssr/CaretDown";
+import { CaretRight } from "@phosphor-icons/react/dist/ssr/CaretRight";
+import { X } from "@phosphor-icons/react/dist/ssr/X";
+import { Phone } from "@phosphor-icons/react/dist/ssr/Phone";
+import { FileText } from "@phosphor-icons/react/dist/ssr/FileText";
+import { ArrowSquareOut } from "@phosphor-icons/react/dist/ssr/ArrowSquareOut";
 import { useLanguage } from "../contexts/LanguageContext";
 
 interface FormattedContentProps {
@@ -12,10 +18,14 @@ interface FormattedContentProps {
  * =====================================
  * Use these symbols at the start of each line in your CSV:
  *
- * • (Bullet)       - Level 1: Main collapsible point (yellow)
- * ◦ (White Bullet) - Level 2: Sub-collapsible point (yellow)
- * ▪ (Small Square) - Level 3: Detail point (yellow)
- * ‣ (Triangle)     - Level 4: Sub-detail (yellow)
+ * • (Bullet)       - Level 1: Main collapsible point
+ * ◦ (White Bullet) - Level 2: Sub-collapsible point
+ * ▪ (Small Square) - Level 3: Detail point
+ * ‣ (Triangle)     - Level 4: Sub-detail
+ *
+ * Styling (LPN One CI): bullets and rails are ink/separator, never yellow;
+ * the whole block reads in IBM Plex Sans Thai Looped (class .reading);
+ * collapsible rows are real buttons ≥ 44 px.
  *
  * No symbol        - Plain text (no bullet)
  *
@@ -37,10 +47,10 @@ interface ContentItem {
 }
 
 const HIERARCHY_CONFIG = {
-  "•": { level: 1, color: "text-yellow-600", borderColor: "border-yellow-200" },
-  "◦": { level: 2, color: "text-yellow-600", borderColor: "border-yellow-200" },
-  "▪": { level: 3, color: "text-yellow-600", borderColor: "border-yellow-200" },
-  "‣": { level: 4, color: "text-yellow-600", borderColor: "border-yellow-200" },
+  "•": { level: 1, color: "text-label", borderColor: "border-separator-strong" },
+  "◦": { level: 2, color: "text-label-secondary", borderColor: "border-separator" },
+  "▪": { level: 3, color: "text-label-secondary", borderColor: "border-separator" },
+  "‣": { level: 4, color: "text-label-secondary", borderColor: "border-separator" },
 } as const;
 
 export function FormattedContent({ content }: FormattedContentProps) {
@@ -115,7 +125,7 @@ export function FormattedContent({ content }: FormattedContentProps) {
         symbol: "",
         text: trimmedLine,
         children: [],
-        color: "text-gray-700",
+        color: "text-label",
         borderColor: "",
       };
 
@@ -129,7 +139,7 @@ export function FormattedContent({ content }: FormattedContentProps) {
   });
 
   return (
-    <div className="space-y-2">
+    <div className="reading space-y-2 text-base">
       {items.map((item, index) => (
         <ContentNode key={index} item={item} />
       ))}
@@ -150,67 +160,48 @@ function ContentNode({ item, depth = 0 }: { item: ContentItem; depth?: number })
   // Plain text (no bullet)
   if (item.level === 0) {
     return (
-      <div className={`leading-relaxed ${item.color}`}>
+      <div className={item.color}>
         <LinkifiedText text={item.text} />
       </div>
     );
   }
 
   // Hierarchical bullet point (levels 1-4)
+  const Caret = isOpen ? CaretDown : CaretRight;
   return (
     <div className={item.level === 1 ? "mb-3" : ""}>
-      <div className="flex items-center gap-2">
-        <div className="w-5 flex-shrink-0 flex items-center justify-center">
-          {hasChildren ? (
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`${item.color} font-bold ${
-                item.level === 1 ? "text-lg" : "text-base"
-              } hover:opacity-80 transition-opacity focus:outline-none focus:ring-2 focus:ring-offset-2 rounded p-0.5`}
-              aria-expanded={isOpen}
-              aria-label={`${toggleLabel}: ${item.text.substring(0, 50)}`}
-            >
-              <span aria-hidden="true">{isOpen ? "▼" : "▶"}</span>
-            </button>
-          ) : (
-            <span
-              className={`${item.color} font-bold ${
-                item.level === 1 ? "text-lg" : "text-base"
-              } block`}
-            >
-              {item.symbol}
-            </span>
-          )}
-        </div>
-        <div className="flex-1 min-w-0">
-          <div
-            className={`text-gray-700 leading-relaxed ${
-              hasChildren ? "cursor-pointer hover:text-gray-900" : ""
-            }`}
-            onClick={() => hasChildren && setIsOpen(!isOpen)}
-            onKeyDown={(e) => {
-              if (hasChildren && (e.key === "Enter" || e.key === " ")) {
-                e.preventDefault();
-                setIsOpen(!isOpen);
-              }
-            }}
-            role={hasChildren ? "button" : undefined}
-            tabIndex={hasChildren ? 0 : undefined}
-            aria-expanded={hasChildren ? isOpen : undefined}
-          >
+      {hasChildren ? (
+        <button
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
+          className={`w-full min-h-11 flex items-start gap-2 text-left rounded-lg -mx-1 px-1 py-1 hover:bg-surface-secondary transition-colors ${item.color}`}
+          aria-expanded={isOpen}
+          aria-label={`${toggleLabel}: ${item.text.substring(0, 50)}`}
+        >
+          <span className="w-6 flex-shrink-0 flex items-center justify-center mt-1" aria-hidden="true">
+            <Caret size={18} weight="bold" />
+          </span>
+          <span className={`flex-1 min-w-0 ${item.level === 1 ? "font-semibold" : ""}`}>
+            <LinkifiedText text={item.text} />
+          </span>
+        </button>
+      ) : (
+        <div className={`flex items-start gap-2 px-1 ${item.color}`}>
+          <span className="w-6 flex-shrink-0 flex items-center justify-center font-bold" aria-hidden="true">
+            {item.symbol}
+          </span>
+          <div className="flex-1 min-w-0">
             <LinkifiedText text={item.text} />
           </div>
-          {hasChildren && isOpen && (
-            <div
-              className={`mt-2 ml-2 space-y-2 border-l-2 ${item.borderColor} pl-4`}
-            >
-              {item.children.map((child, index) => (
-                <ContentNode key={index} item={child} depth={depth + 1} />
-              ))}
-            </div>
-          )}
         </div>
-      </div>
+      )}
+      {hasChildren && isOpen && (
+        <div className={`mt-2 ml-3 space-y-2 border-l-2 ${item.borderColor} pl-4`}>
+          {item.children.map((child, index) => (
+            <ContentNode key={index} item={child} depth={depth + 1} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
@@ -315,7 +306,7 @@ function LPNPopup({ matchedText }: { matchedText: string }) {
           e.stopPropagation();
           setIsOpen(!isOpen);
         }}
-        className="text-yellow-600 hover:text-yellow-700 font-semibold underline decoration-2 decoration-yellow-400 hover:decoration-yellow-500 cursor-pointer transition-colors"
+        className="link font-semibold inline min-h-0 min-w-0 text-left"
         aria-haspopup="dialog"
         aria-expanded={isOpen}
       >
@@ -326,7 +317,7 @@ function LPNPopup({ matchedText }: { matchedText: string }) {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black bg-opacity-10 z-40"
+            className="fixed inset-0 bg-black/40 z-40"
             onClick={(e) => {
               e.stopPropagation();
               handleClose();
@@ -340,10 +331,10 @@ function LPNPopup({ matchedText }: { matchedText: string }) {
             role="dialog"
             aria-modal="true"
             aria-label={labels.contactTitle}
-            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-lg shadow-2xl z-50 p-4 sm:p-6 max-w-md w-[calc(100%-2rem)] sm:w-full border-2 border-yellow-400 max-h-[90vh] overflow-y-auto"
+            className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-elevated text-label rounded-2xl border border-separator z-50 p-4 sm:p-6 max-w-md w-[calc(100%-2rem)] sm:w-full max-h-[90vh] overflow-y-auto"
           >
             <div className="flex justify-between items-start mb-4 gap-2">
-              <h3 className="text-base sm:text-lg font-bold text-gray-800 leading-tight">
+              <h3 className="text-base sm:text-lg font-bold text-label">
                 {labels.contactTitle}
               </h3>
               <button
@@ -351,88 +342,68 @@ function LPNPopup({ matchedText }: { matchedText: string }) {
                   e.stopPropagation();
                   handleClose();
                 }}
-                className="text-gray-400 hover:text-gray-600 transition-colors flex-shrink-0"
+                className="w-12 h-12 -mr-2 -mt-2 inline-flex items-center justify-center rounded-lg text-label-secondary hover:text-label hover:bg-surface-secondary transition-colors flex-shrink-0"
                 aria-label={locale === "en" ? "Close dialog" : locale === "mm" ? "ပိတ်ရန်" : "ปิด"}
               >
-                <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
+                <X size={24} aria-hidden="true" />
               </button>
             </div>
 
             <div className="space-y-2 sm:space-y-3">
-              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                <span className="text-yellow-600 font-bold text-sm mt-0.5">
-                  ◦
-                </span>
+              <div className="flex items-center gap-3 p-3 bg-surface-secondary rounded-xl">
+                <Phone size={22} className="text-label-secondary flex-shrink-0" aria-hidden="true" />
                 <div>
-                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
+                  <p className="font-semibold text-label text-sm sm:text-base">
                     {labels.myanmar}
                   </p>
                   <a
                     href="tel:099-1865-587"
-                    className="text-yellow-600 hover:text-yellow-700 font-medium text-sm sm:text-base"
+                    className="link font-medium text-base"
                   >
                     099-1865-587
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                <span className="text-yellow-600 font-bold text-sm mt-0.5">
-                  ◦
-                </span>
+              <div className="flex items-center gap-3 p-3 bg-surface-secondary rounded-xl">
+                <Phone size={22} className="text-label-secondary flex-shrink-0" aria-hidden="true" />
                 <div>
-                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
+                  <p className="font-semibold text-label text-sm sm:text-base">
                     {labels.thai}
                   </p>
                   <a
                     href="tel:084-121-1609"
-                    className="text-yellow-600 hover:text-yellow-700 font-medium text-sm sm:text-base"
+                    className="link font-medium text-base"
                   >
                     084-121-1609
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                <span className="text-yellow-600 font-bold text-sm mt-0.5">
-                  ◦
-                </span>
+              <div className="flex items-center gap-3 p-3 bg-surface-secondary rounded-xl">
+                <Phone size={22} className="text-label-secondary flex-shrink-0" aria-hidden="true" />
                 <div>
-                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
+                  <p className="font-semibold text-label text-sm sm:text-base">
                     {labels.lao}
                   </p>
                   <a
                     href="tel:092-321-1516"
-                    className="text-yellow-600 hover:text-yellow-700 font-medium text-sm sm:text-base"
+                    className="link font-medium text-base"
                   >
                     092-321-1516
                   </a>
                 </div>
               </div>
 
-              <div className="flex items-start gap-2 sm:gap-3 p-2.5 sm:p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                <span className="text-yellow-600 font-bold text-sm mt-0.5">
-                  ◦
-                </span>
+              <div className="flex items-center gap-3 p-3 bg-surface-secondary rounded-xl">
+                <Phone size={22} className="text-label-secondary flex-shrink-0" aria-hidden="true" />
                 <div>
-                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
+                  <p className="font-semibold text-label text-sm sm:text-base">
                     {labels.cambodian}
                   </p>
                   <a
                     href="tel:086-449-9413"
-                    className="text-yellow-600 hover:text-yellow-700 font-medium text-sm sm:text-base"
+                    className="link font-medium text-base"
                   >
                     086-449-9413
                   </a>
@@ -514,37 +485,13 @@ function LinkifiedText({ text }: { text: string }) {
                 href={cleanedUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-2 py-1 bg-yellow-50 hover:bg-yellow-100 text-yellow-700 hover:text-yellow-800 rounded transition-colors text-xs font-medium border border-yellow-300"
+                className="btn btn-secondary min-h-11 px-3 text-sm"
                 onClick={(e) => e.stopPropagation()}
                 title={cleanedUrl}
               >
-                <svg
-                  className="w-3 h-3 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
+                <FileText size={18} aria-hidden="true" />
                 <span>{labels.viewDoc}</span>
-                <svg
-                  className="w-2.5 h-2.5 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                  />
-                </svg>
+                <ArrowSquareOut size={16} aria-hidden="true" />
               </a>
             </span>
           );
