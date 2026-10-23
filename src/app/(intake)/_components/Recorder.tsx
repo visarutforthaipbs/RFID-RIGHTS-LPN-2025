@@ -348,7 +348,8 @@ export function Recorder({
           setStatus(s.rateLimited);
         } else if (r.kind === "rejected") {
           setPhase("rejected");
-          setStatus(s.rejected);
+          // Tell the worker the real reason (no server detail leaks: these are the API's public error codes).
+          setStatus(r.error === "turnstile" ? s.rejectedVerify : r.error === "too_long" ? s.rejectedTooLong : s.rejected);
         } else {
           setPhase("fallback");
           setStatus(s.failTitle);
