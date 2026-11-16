@@ -1,7 +1,6 @@
 /**
  * Canonical origin for metadata, sitemap and JSON-LD.
- * Set NEXT_PUBLIC_SITE_URL on the host (e.g. https://guide.lpnfoundation.org)
- * once LPN confirms the domain; until then the Vercel URL stays the canonical.
- * (website/docs/RIGHT-GUIDE-REVIEW.md — canonical/OG/sitemap point at vercel.)
+ * Production host: https://guide.lpnfoundation.org (owner decision 2026-11-16;
+ * www.lpnrightguide.site 308-redirects here). NEXT_PUBLIC_SITE_URL overrides.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://rfid-rights.vercel.app").replace(/\/$/, "");
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://guide.lpnfoundation.org").replace(/\/$/, "");
